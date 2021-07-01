@@ -1,9 +1,11 @@
 package com.meal_prep.MealPrepApp;
 
 import com.meal_prep.MealPrepApp.components.enums.AllergenType;
+import com.meal_prep.MealPrepApp.models.Menu;
 import com.meal_prep.MealPrepApp.models.Shop;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
 import com.meal_prep.MealPrepApp.repositories.FoodRepository;
+import com.meal_prep.MealPrepApp.repositories.MenuRepository;
 import com.meal_prep.MealPrepApp.repositories.ShopRepository;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -25,34 +27,69 @@ class MealPrepAppApplicationTests {
 	@Autowired
 	FoodRepository foodRepository;
 
+	@Autowired
+	MenuRepository menuRepository;
+
+	HashMap<AllergenType, Boolean> allergenList;
+	ArrayList<String> ingredientList;
+	ArrayList<FoodItem> mealList;
+	ArrayList<String> filterList;
+	Menu menu;
+	FoodItem food;
 
 	@Test
 	void contextLoads() {
 	}
 
+
 	@Before
 	public void before() {
-		HashMap allergenList = new HashMap<AllergenType, Boolean>();
-		ArrayList ingredientList = new ArrayList<>();
-		FoodItem food = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
-		foodRepository.save(food);
-		ingredientList.add("pepper");
+		// FOODITEM
+		allergenList = new HashMap<>();
 		allergenList.put(AllergenType.CELERY, true);
+
+		ingredientList = new ArrayList<>();
+		ingredientList.add("pepper");
+
+		food = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
+		foodRepository.save(food);
+
+		// MENU
+
+		mealList = new ArrayList<>();
+		mealList.add(food);
+
+		filterList = new ArrayList<>();
+		filterList.add("gluten");
+
+
+//
+
 	}
 
-	@Test
-	void canCreateFoodItem() {
-		//ID-less foodItem object
-		List<FoodItem> result = foodRepository.findByName("Chicken Jalfrezi");
-		assertEquals(3, result.size());
-	}
 
 	@Test
-	void canCreateFoodDBEntryAndRetrieve() {
+	void FoodToDBandBack() {
 		// save food object to DB and retrieve and coerce to complete foodItem object (with ID).
 //		foodRepository.save(food);
 		List<FoodItem> foodList = foodRepository.findByName("Chicken Jalfrezi");
 		assertEquals("Chicken Jalfrezi", foodList.get(0).getName());
+	}
+
+
+
+	@Test
+	void canAddFoodItemToMealList(){
+		menu = new Menu(mealList, filterList);
+		assertEquals(mealList, menu.getMealList());
+	}
+
+	@Test
+	void MenuWithFoodListToDBandBack() {
+		menu = new Menu(mealList, filterList);
+		menuRepository.save(menu);
+		List<Menu> menuList = menuRepository.findAll();
+		assertEquals(mealList, menuList.get(0).getMealList());
 	}
 
 }
