@@ -19,9 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class FoodItemTest {
 
-    @Autowired
-    FoodRepository foodRepository;
-
     HashMap<AllergenType, Boolean> allergenList;
     ArrayList<String> ingredientList;
     FoodItem food;
@@ -37,67 +34,122 @@ public class FoodItemTest {
 
     @Test
     public void foodHasName() {
-        foodRepository.save(food);
         assertEquals("Chicken Sandwich", food.getName());
     }
 
     @Test
+    public void canSetName(){
+        food.setName("Beef Sandwich");
+        assertEquals("Beef Sandwich", food.getName());
+    }
+
+    @Test
     public void foodHasProtein(){
-        foodRepository.save(food);
         assertEquals(20, food.getProtein());
     }
 
     @Test
+    public void canSetProtein(){
+        food.setProtein(30);
+        assertEquals(30, food.getProtein());
+    }
+
+    @Test
     public void foodHasCarbs(){
-        foodRepository.save(food);
         assertEquals(20, food.getCarbs());
     }
 
     @Test
+    public void canSetCarbs(){
+        food.setCarbs(10);
+        assertEquals(10, food.getCarbs());
+    }
+
+    @Test
     public void foodHasFats(){
-        foodRepository.save(food);
         assertEquals(20, food.getFats());
     }
 
     @Test
+    public void canSetFats(){
+        food.setFats(200);
+        assertEquals(200, food.getFats());
+    }
+
+    @Test
     public void foodHasCalories(){
-        foodRepository.save(food);
         assertEquals(100, food.getCalories());
     }
 
     @Test
+    public void canSetCalories(){
+        food.setCalories(1000);
+        assertEquals(1000, food.getCalories());
+    }
+
+    @Test
     public void foodHasWeight(){
-        foodRepository.save(food);
         assertEquals(100, food.getTotalWeight());
     }
 
     @Test
+    public void canSetWeight(){
+        food.setTotalWeight(150);
+        assertEquals(150, food.getTotalWeight());
+    }
+
+    @Test
     public void foodHasPrice(){
-        foodRepository.save(food);
         assertEquals(5.00, food.getPrice(), 0.0);
     }
 
     @Test
+    public void canSetPrice(){
+        food.setPrice(10.50);
+        assertEquals(10.50, food.getPrice(), 0.0);
+    }
+
+    @Test
     public void foodHasImageUrl(){
-        foodRepository.save(food);
         assertEquals("http://stuff", food.getImageUrl());
     }
 
     @Test
+    public void canSetImageUrl(){
+        food.setImageUrl("http://stuff.co.uk");
+        assertEquals("http://stuff.co.uk", food.getImageUrl());
+    }
+
+    @Test
     public void foodHasIngredientList(){
-        foodRepository.save(food);
         assertEquals("pepper", food.getIngredients().get(0));
     }
 
     @Test
+    public void canAddToIngredientList(){
+        ingredientList.add("chicken");
+        assertEquals("chicken", food.getIngredients().get(1));
+    }
+
+    @Test
     public void foodHasAllergensList(){
-        foodRepository.save(food);
         assertEquals(true, food.getAllergens().get(AllergenType.CELERY));
     }
 
     @Test
+    public void canModifyAllergensList(){
+        allergenList.put(AllergenType.CELERY, false);
+        assertEquals(false, food.getAllergens().get(AllergenType.CELERY));
+    }
+
+    @Test
+    public void canAddAllergens(){
+        allergenList.put(AllergenType.CORN, true);
+        assertEquals(true, food.getAllergens().get(AllergenType.CORN));
+    }
+
+    @Test
     public void canGetSizeOfFoodAllergensList(){
-        foodRepository.save(food);
         assertEquals(1, food.getAllergens().size());
     }
 
