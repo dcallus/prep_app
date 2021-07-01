@@ -43,7 +43,6 @@ public class MealPrepAppApplicationTests {
 	Menu menu;
 	FoodItem food;
 
-
 	@BeforeEach
 	public void before() {
 		// FOODITEM
@@ -53,15 +52,24 @@ public class MealPrepAppApplicationTests {
 		ingredientList = new ArrayList<>();
 		ingredientList.add("pepper");
 
-
-//		food = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
-		mealList = new ArrayList<>();
-
 		// MENU
 
+		food = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
+
+		mealList = new ArrayList<>();
+		mealList.add(food);
 		filterList = new ArrayList<>();
 		filterList.add("gluten");
 	}
+
+	@Test
+	public void canAddFoodItemToMenu(){
+		mealList.add(food);
+		menu = new Menu("TestMenu", mealList, filterList);
+		assertEquals(2, menu.getMealList().size());
+	}
+
+	// DATABASE TESTS
 
 	@Test
 	public void FoodToDBandBack() {
@@ -73,12 +81,15 @@ public class MealPrepAppApplicationTests {
 	}
 
 	@Test
-	public void canAddFoodItemToMealList(){
-		mealList.add(food);
-		menu = new Menu("TestMenu", mealList, filterList);
-		assertEquals(1, menu.getMealList().size());
+	public void canSaveMenuWithMealList(){
+//		food = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
+//		mealList.add(food);
+		menu = new Menu("TestMenuWithFood", mealList, filterList);
+		menuRepository.save(menu);
+		List<Menu> menuList = menuRepository.findByName("TestMenuWithFood");
+		assertEquals(1, menuList.get(0).getMealList().size());
 	}
-//
+
 //	@Test
 //	public void MenuWithFoodListToDBandBack() {
 //		mealList.add(food);
@@ -98,5 +109,4 @@ public class MealPrepAppApplicationTests {
 ////		menu = new Menu(dbMealList, filterList);
 //
 //	}
-
 }

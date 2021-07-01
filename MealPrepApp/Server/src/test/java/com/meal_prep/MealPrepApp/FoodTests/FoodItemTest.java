@@ -122,7 +122,7 @@ public class FoodItemTest {
 
     @Test
     public void foodHasIngredientList(){
-        assertEquals("pepper", food.getIngredients().get(0));
+        assertEquals(true, food.getIngredients().contains("pepper"));
     }
 
     @Test
