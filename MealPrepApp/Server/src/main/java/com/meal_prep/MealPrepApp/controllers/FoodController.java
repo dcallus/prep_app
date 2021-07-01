@@ -66,7 +66,7 @@ public class FoodController {
             newFoodItem.setPrice(foodItem.getPrice());
         if(foodItem.getImageUrl() != null)
             newFoodItem.setImageUrl(foodItem.getImageUrl());
-        return newFoodItem;
+        return foodRepository.save(newFoodItem);
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/food/{id}")
