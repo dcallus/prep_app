@@ -8,8 +8,8 @@ import com.meal_prep.MealPrepApp.repositories.FoodRepository;
 import com.meal_prep.MealPrepApp.repositories.MenuRepository;
 import com.meal_prep.MealPrepApp.repositories.ShopRepository;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @SpringBootTest
@@ -44,7 +44,7 @@ public class MealPrepAppApplicationTests {
 	FoodItem food;
 
 
-	@Before
+	@BeforeEach
 	public void before() {
 		// FOODITEM
 		allergenList = new HashMap<>();
