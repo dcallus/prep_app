@@ -38,13 +38,13 @@ public class DummyDataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) {
 
-        allergenList = new HashMap<>();
-        allergenList.put(AllergenType.CELERY, true);
-
-        ingredientList = new ArrayList<>();
-        ingredientList.add("pepper");
-
-        FoodItem food = new FoodItem("Chicken Sandwich", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
-        foodRepository.save(food);
+//        allergenList = new HashMap<>();
+//        allergenList.put(AllergenType.CELERY, true);
+//
+//        ingredientList = new ArrayList<>();
+//        ingredientList.add("pepper");
+//
+//        FoodItem food = new FoodItem("Chicken Sandwich", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
+//        foodRepository.save(food);
     }
 }
