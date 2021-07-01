@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -23,6 +24,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class MealPrepAppApplicationTests {
+
+	@Autowired
+	MongoTemplate mongoTemplate;
 
 	@Autowired
 	ShopRepository shopRepository;
@@ -92,9 +96,9 @@ public class MealPrepAppApplicationTests {
 	@Test
 	public void canAddSavedFoodToMenuAndRetrieve(){
 		// save food
-		food = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
+		food = new FoodItem("Beef Curry", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
 		foodRepository.save(food);
-		List<FoodItem> foodListOfChxJalfrezis = foodRepository.findByName("Chicken Jalfrezi");
+		List<FoodItem> foodListOfChxJalfrezis = foodRepository.findByName("Beef Curry");
 		FoodItem dbFood = foodListOfChxJalfrezis.get(0);
 		ArrayList newFoodList = new ArrayList<FoodItem>();
 		newFoodList.add(dbFood);
