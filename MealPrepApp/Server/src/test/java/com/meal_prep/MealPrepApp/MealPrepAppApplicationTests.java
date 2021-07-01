@@ -7,8 +7,9 @@ import com.meal_prep.MealPrepApp.models.food.FoodItem;
 import com.meal_prep.MealPrepApp.repositories.FoodRepository;
 import com.meal_prep.MealPrepApp.repositories.MenuRepository;
 import com.meal_prep.MealPrepApp.repositories.ShopRepository;
+
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,10 +17,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
+
 
 @SpringBootTest
-class MealPrepAppApplicationTests {
+public class MealPrepAppApplicationTests {
 
 	@Autowired
 	ShopRepository shopRepository;
@@ -30,16 +32,16 @@ class MealPrepAppApplicationTests {
 	@Autowired
 	MenuRepository menuRepository;
 
+	@Test
+	public void contextLoads() {
+	}
+
 	HashMap<AllergenType, Boolean> allergenList;
 	ArrayList<String> ingredientList;
 	ArrayList<FoodItem> mealList;
 	ArrayList<String> filterList;
 	Menu menu;
 	FoodItem food;
-
-	@Test
-	void contextLoads() {
-	}
 
 
 	@Before
@@ -51,45 +53,57 @@ class MealPrepAppApplicationTests {
 		ingredientList = new ArrayList<>();
 		ingredientList.add("pepper");
 
+
+//		foodRepository.save(food);
+
 		food = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
-		foodRepository.save(food);
+		mealList = new ArrayList<>();
 
 		// MENU
 
-		mealList = new ArrayList<>();
-		mealList.add(food);
+
+//		mealList = new ArrayList<>();
+//		mealList.add(food);
+
 
 		filterList = new ArrayList<>();
 		filterList.add("gluten");
 
-
-//
-
 	}
 
-
 	@Test
-	void FoodToDBandBack() {
+	public void FoodToDBandBack() {
 		// save food object to DB and retrieve and coerce to complete foodItem object (with ID).
 //		foodRepository.save(food);
 		List<FoodItem> foodList = foodRepository.findByName("Chicken Jalfrezi");
 		assertEquals("Chicken Jalfrezi", foodList.get(0).getName());
 	}
 
-
-
 	@Test
-	void canAddFoodItemToMealList(){
+	public void canAddFoodItemToMealList(){
+//		System.out.println(mealList);
+		mealList.add(food);
 		menu = new Menu(mealList, filterList);
-		assertEquals(mealList, menu.getMealList());
+		assertEquals(1, menu.getMealList().size());
 	}
 
-	@Test
-	void MenuWithFoodListToDBandBack() {
-		menu = new Menu(mealList, filterList);
-		menuRepository.save(menu);
-		List<Menu> menuList = menuRepository.findAll();
-		assertEquals(mealList, menuList.get(0).getMealList());
-	}
+//	@Test
+//	public void MenuWithFoodListToDBandBack() {
+//		menu = new Menu(mealList, filterList);
+//		menuRepository.save(menu);
+//		List<Menu> menuList = menuRepository.findAll();
+//		assertEquals(mealList, menuList.get(0).getMealList());
+//	}
+
+	//	@Test
+//	public void CanAddFoodToDBAttachToMenuAndReturn() {
+//		food = new FoodItem("Chicken Korma", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
+//		foodRepository.save(food);
+//		List<FoodItem> dbMealList = foodRepository.findByName("Chicken Korma");
+//		FoodItem dbFood = dbMealList.get(0);
+//		ArrayList dbArrayList = new ArrayList<FoodItem>();
+////		menu = new Menu(dbMealList, filterList);
+//
+//	}
 
 }
