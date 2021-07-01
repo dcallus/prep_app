@@ -7,10 +7,12 @@ import java.util.ArrayList;
 public class Menu {
 
     private String id;
+    private String name;
     private ArrayList<FoodItem> mealList;
     private ArrayList<String> filterList;
 
-    public Menu(ArrayList<FoodItem> mealList, ArrayList<String> filterList) {
+    public Menu(String name, ArrayList<FoodItem> mealList, ArrayList<String> filterList) {
+        this.name = name;
         this.mealList = mealList;
         this.filterList = filterList;
     }
@@ -24,6 +26,14 @@ public class Menu {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     public ArrayList<FoodItem> getMealList() {
@@ -41,4 +51,5 @@ public class Menu {
     public void setFilterList(ArrayList<String> filterList) {
         this.filterList = filterList;
     }
+
 }

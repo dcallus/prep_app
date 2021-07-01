@@ -54,44 +54,37 @@ public class MealPrepAppApplicationTests {
 		ingredientList.add("pepper");
 
 
-//		foodRepository.save(food);
-
-		food = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
+//		food = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
 		mealList = new ArrayList<>();
 
 		// MENU
 
-
-//		mealList = new ArrayList<>();
-//		mealList.add(food);
-
-
 		filterList = new ArrayList<>();
 		filterList.add("gluten");
-
 	}
 
 	@Test
 	public void FoodToDBandBack() {
 		// save food object to DB and retrieve and coerce to complete foodItem object (with ID).
-//		foodRepository.save(food);
+		food = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
+		foodRepository.save(food);
 		List<FoodItem> foodList = foodRepository.findByName("Chicken Jalfrezi");
 		assertEquals("Chicken Jalfrezi", foodList.get(0).getName());
 	}
 
 	@Test
 	public void canAddFoodItemToMealList(){
-//		System.out.println(mealList);
 		mealList.add(food);
-		menu = new Menu(mealList, filterList);
+		menu = new Menu("TestMenu", mealList, filterList);
 		assertEquals(1, menu.getMealList().size());
 	}
-
+//
 //	@Test
 //	public void MenuWithFoodListToDBandBack() {
-//		menu = new Menu(mealList, filterList);
+//		mealList.add(food);
+//		menu = new Menu("TestMenuWithFood", mealList, filterList);
 //		menuRepository.save(menu);
-//		List<Menu> menuList = menuRepository.findAll();
+//		List<Menu> menuList = menuRepository.findByName("TestMenuWithFood");
 //		assertEquals(mealList, menuList.get(0).getMealList());
 //	}
 
