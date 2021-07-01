@@ -57,7 +57,6 @@ public class MealPrepAppApplicationTests {
 		food = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
 
 		mealList = new ArrayList<>();
-		mealList.add(food);
 		filterList = new ArrayList<>();
 		filterList.add("gluten");
 	}
@@ -90,23 +89,18 @@ public class MealPrepAppApplicationTests {
 		assertEquals(1, menuList.get(0).getMealList().size());
 	}
 
-//	@Test
-//	public void MenuWithFoodListToDBandBack() {
-//		mealList.add(food);
-//		menu = new Menu("TestMenuWithFood", mealList, filterList);
-//		menuRepository.save(menu);
-//		List<Menu> menuList = menuRepository.findByName("TestMenuWithFood");
-//		assertEquals(mealList, menuList.get(0).getMealList());
-//	}
+	@Test
+	public void canSaveFoodToDBandPutInMenu(){
+	FoodItem beefFood = new FoodItem("BEEF CURRY", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
+	mealList.add(beefFood);
+	foodRepository.save(beefFood);
 
-	//	@Test
-//	public void CanAddFoodToDBAttachToMenuAndReturn() {
-//		food = new FoodItem("Chicken Korma", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
-//		foodRepository.save(food);
-//		List<FoodItem> dbMealList = foodRepository.findByName("Chicken Korma");
-//		FoodItem dbFood = dbMealList.get(0);
-//		ArrayList dbArrayList = new ArrayList<FoodItem>();
-////		menu = new Menu(dbMealList, filterList);
-//
-//	}
+	// No need to re-extract food from dB. beefFood variable now has an ID attached gather from the database.
+
+	menu = new Menu("TestBeefMenu", mealList, filterList);
+	menuRepository.save(menu);
+	List<Menu> menuList = menuRepository.findByName("TestBeefMenu");
+	assertEquals(1, menuList.get(0).getMealList().size());
+}
+
 }
