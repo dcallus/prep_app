@@ -131,22 +131,10 @@ public class FoodItemTest {
         assertEquals("chicken", food.getIngredients().get(1));
     }
 
-//    @Test
-//    public void foodHasAllergensList(){
-//        assertEquals(true, food.getAllergens().get(AllergenType.CELERY));
-//    }
-
-//    @Test
-//    public void canModifyAllergensList(){
-//        allergenList.add(AllergenType.CELERY, false);
-//        assertEquals(false, food.getAllergens().get(AllergenType.CELERY));
-//    }
-//
-//    @Test
-//    public void canAddAllergens(){
-//        allergenList.put(AllergenType.CORN, true);
-//        assertEquals(true, food.getAllergens().get(AllergenType.CORN));
-//    }
+    @Test
+    public void foodHasAllergensList(){
+        assertEquals(true, food.getAllergens().contains(AllergenType.CELERY));
+    }
 
     @Test
     public void canGetSizeOfFoodAllergensList(){

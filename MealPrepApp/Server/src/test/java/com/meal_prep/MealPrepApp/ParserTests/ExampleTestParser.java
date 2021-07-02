@@ -216,12 +216,11 @@ public class ExampleTestParser {
                 allergenList.add(AllergenType.MOLLUSCS); }
 
 
-//            FoodItem foodItem = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, listy, allergies, 5.00, "http://stuff");
-            FoodItem foodItem = new FoodItem(meal_name, Integer.valueOf(protein_amount), Integer.valueOf(carb_amount), Integer.valueOf(fat_amount), Integer.valueOf(total_calories), Integer.valueOf(total_weight), listOfString, allergenList, Double.valueOf(price), image_url);
+            FoodItem foodItem = new FoodItem(meal_name, Integer.valueOf(protein_amount), Integer.valueOf(carb_amount),
+                    Integer.valueOf(fat_amount), Integer.valueOf(total_calories), Integer.valueOf(total_weight),
+                    listOfString, allergenList, Double.valueOf(price), image_url);
             foodRepository.save(foodItem);
             }
-
-
 
 
         }
