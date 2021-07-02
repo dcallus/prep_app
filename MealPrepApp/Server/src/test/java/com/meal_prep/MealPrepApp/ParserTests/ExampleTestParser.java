@@ -1,5 +1,6 @@
 package com.meal_prep.MealPrepApp.ParserTests;
 
+import com.meal_prep.MealPrepApp.models.food.FoodItem;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.testng.annotations.Test;
@@ -111,8 +112,6 @@ public class ExampleTestParser {
             String vegan = record.get("Vegan (X=true)");
             String paleo = record.get("Paleo (X=true)");
             String keto = record.get("Keto (X=true)");
-
-
 
 
 
