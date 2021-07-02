@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from 'react-native';
-import {MaterialIcons} from '@expo/vector-icons'
+
 
 
 const MyHeader = () => {
@@ -8,7 +8,6 @@ const MyHeader = () => {
 
     return(
         <View style={styles.header}>
-            {/* Icon for the menu */}
             <View>
                 <Text style={styles.headerText}>Header!</Text>
             </View>

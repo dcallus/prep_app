@@ -1,12 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View, ActivityIndicator, Image } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, Image, SafeAreaView } from 'react-native';
 
 const  MealPrepBox = ({foodItems}) => {
 
+    const handlePress = () => {console.log("Text pressed")}
+
 return (
-    <View>
-        <Text>{foodItems}</Text>
-    </View>
+    <SafeAreaView>
+        <Text onPress={handlePress}>{foodItems}</Text>
+        <Image style={{width: 50, height: 50}} source={require("../assets/favicon.png")} />
+    </SafeAreaView>
 )
 
 }

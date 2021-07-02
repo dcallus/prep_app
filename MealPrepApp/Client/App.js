@@ -12,6 +12,7 @@ export default function App() {
 
   const [items, setItems] = useState([]);
 
+
   useEffect(() => {
     MealAppService.getFoodItem()
         .then(items => setItems(items))
@@ -29,13 +30,10 @@ export default function App() {
 
   return (
     <>
-    {/* <MyHeader>Meal Prep App!</MyHeader> */}
+
+    <StatusBar style="auto" />
     <MealPrepBox foodItems={foodItems}></MealPrepBox>
-    {/* <View style={styles.container}> */}
-      {/* <Text>Hello, World!!</Text> */}
-      {/* <Text>{foodItems}</Text> */}
-      {/* <StatusBar style="auto" /> */}
-    {/* </View> */}
+
     </>
   );
 } 
@@ -43,7 +41,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#fff',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

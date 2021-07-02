@@ -1,6 +1,7 @@
 const baseURL = 'http://localhost:8080/'
 
 const MealAppService = {
+
   getFoodItem() {
     return fetch(baseURL + "food/")
     .then(res => res.json())
