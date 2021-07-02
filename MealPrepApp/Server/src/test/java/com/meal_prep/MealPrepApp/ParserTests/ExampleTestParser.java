@@ -1,6 +1,5 @@
 package com.meal_prep.MealPrepApp.ParserTests;
 
-//import com.meal_prep.MealPrepApp.models.Menu;
 import com.meal_prep.MealPrepApp.components.enums.AllergenType;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
 import com.meal_prep.MealPrepApp.repositories.FoodRepository;
@@ -26,6 +25,7 @@ public class ExampleTestParser {
     @Autowired
     FoodRepository foodRepository;
 
+    // Create HashMap for comparison with CSV file
     HashMap<String, String> FOOD_DATA_MAP = new HashMap<String, String>() {
         {
             put("SHOP_NAME", "NUMBER ONE");
@@ -67,6 +67,8 @@ public class ExampleTestParser {
         }
     };
 
+
+    // List header names in CSV file
     String[] HEADERS = { "SHOP_NAME", "MEAL_NAME", "PROTEIN (grams)", "CARB (grams)", "FAT (grams)",
             "TOTAL_CALORIES (KCal)", "TOTAL_WEIGHT (grams)", "INGREDIENTS (e.g. Chicken, Cauliflower…)",
             "IMAGE_URL", "SET_MEAL? (TRUE/FALSE - FALSE=Individual food item for a custom meal)",
@@ -81,13 +83,16 @@ public class ExampleTestParser {
     @Test
     public void givenCSVFile_whenRead_thenContentsAsExpected() throws IOException {
 
+        // import CSV file
         Reader in = new FileReader("src/test/parser_test_files/example_client_meal.csv");
 
+        // put CSV file into iterable called records
         Iterable<CSVRecord> records = CSVFormat.DEFAULT
                 .withHeader(HEADERS)
                 .withFirstRecordAsHeader()
                 .parse(in);
 
+        // for each line in the CSV file check it matches with the expected (above).
         for (CSVRecord record : records) {
             // 36 fields
             String shop_name = record.get("SHOP_NAME");
@@ -166,6 +171,8 @@ public class ExampleTestParser {
             assertEquals(FOOD_DATA_MAP.get("PALEO"), paleo);
             assertEquals(FOOD_DATA_MAP.get("KETO"), keto);
 
+
+            // create new FoodItem from CSV file
             ArrayList<String> csvIngredientsList = new ArrayList<>();
             String[] elements = ingredients.split(",");
             List<String> fixedLengthList = Arrays.asList(elements);
