@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, Image } from 'react-native';
 import MealAppService from './services/MealAppService';
+import MealPrepBox from './containers/MealPrepBox';
 
 export default function App() {
 
@@ -15,22 +16,22 @@ export default function App() {
   useEffect(() => {
     console.log("list of items: ", items);
   }, [items])
-
+  
   const foodItems = items.map((item, key) => {
-    return <View key={key} style={styles.container}>
-    <Text> Meal Name: {item.name} </Text>
+    return <View key={key} style={styles.item}>
+    <Text> {item.name} </Text>
     </View>
   }) 
 
   return (
-    items ?
+    <>
+    <MealPrepBox foodItems={foodItems}></MealPrepBox>
     <View style={styles.container}>
-      <Text>Hello, World!!</Text>
-      <Text>{foodItems}</Text>
-      <StatusBar style="auto" />
+      {/* <Text>Hello, World!!</Text> */}
+      {/* <Text>{foodItems}</Text> */}
+      {/* <StatusBar style="auto" /> */}
     </View>
-    :
-    <View></View>
+    </>
   );
 } 
 
@@ -41,4 +42,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  item: {
+    flex: 1,
+    alignSelf: 'stretch',
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderBottomWidth: 1, 
+    borderBottomColor: '#eee'
+  }
 });
