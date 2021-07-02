@@ -19,7 +19,7 @@ export default function App() {
   return (
     items ?
     <View style={styles.container}>
-      <Text>React Native!</Text>
+      <Text>Hello, World!!</Text>
       <StatusBar style="auto" />
     </View>
     :
