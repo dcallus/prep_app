@@ -11,9 +11,9 @@ import java.util.HashMap;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class RealExampleTestParser {
+public class ExampleTestParser {
 
-    HashMap<String, String> AUTHOR_BOOK_MAP = new HashMap<String, String>() {
+    HashMap<String, String> FOOD_DATA_MAP = new HashMap<String, String>() {
         {
             put("SHOP_NAME", "NUMBER ONE");
             put("MEAL_NAME", "NOT chicken Jalfrezi");
@@ -116,42 +116,42 @@ public class RealExampleTestParser {
 
 
 
-            assertEquals(AUTHOR_BOOK_MAP.get("SHOP_NAME"), shop_name);
-            assertEquals(AUTHOR_BOOK_MAP.get("MEAL_NAME"), meal_name);
-            assertEquals(AUTHOR_BOOK_MAP.get("PROTEIN"), protein_amount);
-            assertEquals(AUTHOR_BOOK_MAP.get("CARB"), carb_amount);
-            assertEquals(AUTHOR_BOOK_MAP.get("FAT"), fat_amount);
-            assertEquals(AUTHOR_BOOK_MAP.get("CALS"), total_calories);
-            assertEquals(AUTHOR_BOOK_MAP.get("WEIGHT"), total_weight);
-            assertEquals(AUTHOR_BOOK_MAP.get("INGREDIENTS"), ingredients);
-            assertEquals(AUTHOR_BOOK_MAP.get("IMAGE"), image_url);
-            assertEquals(AUTHOR_BOOK_MAP.get("SET_MEAL"), set_meal);
-            assertEquals(AUTHOR_BOOK_MAP.get("CATEGORY"), category);
-            assertEquals(AUTHOR_BOOK_MAP.get("MAIN_PROTEIN"), main_protein);
-            assertEquals(AUTHOR_BOOK_MAP.get("DESCRIPTION"), description);
-            assertEquals(AUTHOR_BOOK_MAP.get("PRICE"), price);
-            assertEquals(AUTHOR_BOOK_MAP.get("CELERY"), contains_celery);
-            assertEquals(AUTHOR_BOOK_MAP.get("CORN"), contains_corn);
-            assertEquals(AUTHOR_BOOK_MAP.get("EGG"), contains_egg);
-            assertEquals(AUTHOR_BOOK_MAP.get("GLUTEN"), contains_gluten);
-            assertEquals(AUTHOR_BOOK_MAP.get("LUPIN"), contains_lupin);
-            assertEquals(AUTHOR_BOOK_MAP.get("MILK"), contains_milk);
-            assertEquals(AUTHOR_BOOK_MAP.get("MUSHROOM"), contains_mushroom);
-            assertEquals(AUTHOR_BOOK_MAP.get("MUSTARD"), contains_mustard);
-            assertEquals(AUTHOR_BOOK_MAP.get("PEANUTS"), contains_peanuts);
-            assertEquals(AUTHOR_BOOK_MAP.get("SESAME"), contains_sesame);
-            assertEquals(AUTHOR_BOOK_MAP.get("SOYA"), contains_soya);
-            assertEquals(AUTHOR_BOOK_MAP.get("SULPHITES"), contains_sulphites);
-            assertEquals(AUTHOR_BOOK_MAP.get("TREE_NUTS"), contains_tree_nuts);
-            assertEquals(AUTHOR_BOOK_MAP.get("WHEAT"), contains_wheat);
-            assertEquals(AUTHOR_BOOK_MAP.get("FISH"), contains_fish);
-            assertEquals(AUTHOR_BOOK_MAP.get("CRUSTACEANS"), contains_crustaceans);
-            assertEquals(AUTHOR_BOOK_MAP.get("MOLLUSCS"), contains_molluscs);
-            assertEquals(AUTHOR_BOOK_MAP.get("PESCATARIAN"), pescatarian);
-            assertEquals(AUTHOR_BOOK_MAP.get("VEGETARIAN"), vegetarian);
-            assertEquals(AUTHOR_BOOK_MAP.get("VEGAN"), vegan);
-            assertEquals(AUTHOR_BOOK_MAP.get("PALEO"), paleo);
-            assertEquals(AUTHOR_BOOK_MAP.get("KETO"), keto);
+            assertEquals(FOOD_DATA_MAP.get("SHOP_NAME"), shop_name);
+            assertEquals(FOOD_DATA_MAP.get("MEAL_NAME"), meal_name);
+            assertEquals(FOOD_DATA_MAP.get("PROTEIN"), protein_amount);
+            assertEquals(FOOD_DATA_MAP.get("CARB"), carb_amount);
+            assertEquals(FOOD_DATA_MAP.get("FAT"), fat_amount);
+            assertEquals(FOOD_DATA_MAP.get("CALS"), total_calories);
+            assertEquals(FOOD_DATA_MAP.get("WEIGHT"), total_weight);
+            assertEquals(FOOD_DATA_MAP.get("INGREDIENTS"), ingredients);
+            assertEquals(FOOD_DATA_MAP.get("IMAGE"), image_url);
+            assertEquals(FOOD_DATA_MAP.get("SET_MEAL"), set_meal);
+            assertEquals(FOOD_DATA_MAP.get("CATEGORY"), category);
+            assertEquals(FOOD_DATA_MAP.get("MAIN_PROTEIN"), main_protein);
+            assertEquals(FOOD_DATA_MAP.get("DESCRIPTION"), description);
+            assertEquals(FOOD_DATA_MAP.get("PRICE"), price);
+            assertEquals(FOOD_DATA_MAP.get("CELERY"), contains_celery);
+            assertEquals(FOOD_DATA_MAP.get("CORN"), contains_corn);
+            assertEquals(FOOD_DATA_MAP.get("EGG"), contains_egg);
+            assertEquals(FOOD_DATA_MAP.get("GLUTEN"), contains_gluten);
+            assertEquals(FOOD_DATA_MAP.get("LUPIN"), contains_lupin);
+            assertEquals(FOOD_DATA_MAP.get("MILK"), contains_milk);
+            assertEquals(FOOD_DATA_MAP.get("MUSHROOM"), contains_mushroom);
+            assertEquals(FOOD_DATA_MAP.get("MUSTARD"), contains_mustard);
+            assertEquals(FOOD_DATA_MAP.get("PEANUTS"), contains_peanuts);
+            assertEquals(FOOD_DATA_MAP.get("SESAME"), contains_sesame);
+            assertEquals(FOOD_DATA_MAP.get("SOYA"), contains_soya);
+            assertEquals(FOOD_DATA_MAP.get("SULPHITES"), contains_sulphites);
+            assertEquals(FOOD_DATA_MAP.get("TREE_NUTS"), contains_tree_nuts);
+            assertEquals(FOOD_DATA_MAP.get("WHEAT"), contains_wheat);
+            assertEquals(FOOD_DATA_MAP.get("FISH"), contains_fish);
+            assertEquals(FOOD_DATA_MAP.get("CRUSTACEANS"), contains_crustaceans);
+            assertEquals(FOOD_DATA_MAP.get("MOLLUSCS"), contains_molluscs);
+            assertEquals(FOOD_DATA_MAP.get("PESCATARIAN"), pescatarian);
+            assertEquals(FOOD_DATA_MAP.get("VEGETARIAN"), vegetarian);
+            assertEquals(FOOD_DATA_MAP.get("VEGAN"), vegan);
+            assertEquals(FOOD_DATA_MAP.get("PALEO"), paleo);
+            assertEquals(FOOD_DATA_MAP.get("KETO"), keto);
 
         }
     }
