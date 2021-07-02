@@ -15,12 +15,12 @@ public class FoodItem {
     private Integer calories;
     private Integer totalWeight;
     private ArrayList<String> ingredients;
-    private HashMap<AllergenType, Boolean> allergens;
+    private ArrayList<AllergenType> allergens;
     private Double price;
     private String imageUrl;
 
 
-    public FoodItem(String name, Integer protein, Integer carbs, Integer fats, Integer calories, Integer totalWeight, ArrayList<String> ingredients, HashMap<AllergenType, Boolean> allergens, Double price, String imageUrl) {
+    public FoodItem(String name, Integer protein, Integer carbs, Integer fats, Integer calories, Integer totalWeight, ArrayList<String> ingredients, ArrayList<AllergenType> allergens, Double price, String imageUrl) {
         this.name = name;
         this.protein = protein;
         this.carbs = carbs;
@@ -100,11 +100,11 @@ public class FoodItem {
         this.ingredients = ingredients;
     }
 
-    public HashMap<AllergenType, Boolean> getAllergens() {
+    public ArrayList<AllergenType> getAllergens() {
         return allergens;
     }
 
-    public void setAllergens(HashMap<AllergenType, Boolean> allergens) {
+    public void setAllergens(ArrayList<AllergenType> allergens) {
         this.allergens = allergens;
     }
 

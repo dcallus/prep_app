@@ -29,7 +29,7 @@ public class DummyDataLoader implements ApplicationRunner {
     public DummyDataLoader() {
     }
 
-    HashMap<AllergenType, Boolean> allergenList;
+    ArrayList<AllergenType> allergenList;
     ArrayList<String> ingredientList;
     ArrayList<FoodItem> mealList;
     ArrayList<String> filterList;
@@ -38,8 +38,8 @@ public class DummyDataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) {
 
-        allergenList = new HashMap<>();
-        allergenList.put(AllergenType.CELERY, true);
+        allergenList = new ArrayList<>();
+        allergenList.add(AllergenType.CELERY);
 
         ingredientList = new ArrayList<>();
         ingredientList.add("pepper");

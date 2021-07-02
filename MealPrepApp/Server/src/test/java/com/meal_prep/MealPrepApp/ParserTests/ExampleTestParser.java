@@ -1,14 +1,21 @@
 package com.meal_prep.MealPrepApp.ParserTests;
 
+//import com.meal_prep.MealPrepApp.models.Menu;
+import com.meal_prep.MealPrepApp.components.enums.AllergenType;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
+import com.meal_prep.MealPrepApp.repositories.FoodRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -65,8 +72,10 @@ public class ExampleTestParser {
             "WHEAT (X=true)", "FISH (X=true)", "CRUSTACEANS (X=true)", "MOLLUSCS (X=true)", "Pescatarian (X=true)",
             "Vegetarian (X=true)", "Vegan (X=true)", "Paleo (X=true)", "Keto (X=true)"};
 
+
     @Test
     public void givenCSVFile_whenRead_thenContentsAsExpected() throws IOException {
+
         Reader in = new FileReader("src/test/parser_test_files/example_client_meal.csv");
 
         Iterable<CSVRecord> records = CSVFormat.DEFAULT
@@ -152,7 +161,58 @@ public class ExampleTestParser {
             assertEquals(FOOD_DATA_MAP.get("PALEO"), paleo);
             assertEquals(FOOD_DATA_MAP.get("KETO"), keto);
 
+            ArrayList<String> csvIngredientsList = new ArrayList<>();
+            String[] elements = ingredients.split(",");
+            List<String> fixedLengthList = Arrays.asList(elements);
+            ArrayList<String> listOfString = new ArrayList<String>(fixedLengthList);
+
+            ArrayList<AllergenType> allergenList = new ArrayList<>();
+
+            if (contains_celery.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.CELERY); }
+            if (contains_corn.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.CORN); }
+            if (contains_egg.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.EGG); }
+            if (contains_gluten.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.GLUTEN); }
+            if (contains_lupin.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.LUPIN); }
+            if (contains_milk.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.MILK); }
+            if (contains_mushroom.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.MUSHROOMS); }
+            if (contains_mustard.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.MUSTARD); }
+            if (contains_peanuts.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.PEANUTS); }
+            if (contains_sesame.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.SESAME); }
+            if (contains_soya.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.SOYA); }
+            if (contains_sulphites.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.SULPHITES); }
+            if (contains_tree_nuts.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.TREE_NUTS); }
+            if (contains_wheat.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.WHEAT); }
+            if (contains_fish.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.FISH); }
+            if (contains_crustaceans.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.CRUSTACEANS); }
+            if (contains_molluscs.equalsIgnoreCase("x")){
+                allergenList.add(AllergenType.MOLLUSCS); }
+
+
+
+            FoodItem foodItem = new FoodItem(meal_name, Integer.valueOf(protein_amount), Integer.valueOf(carb_amount), Integer.valueOf(fat_amount), Integer.valueOf(total_calories), Integer.valueOf(total_weight), listOfString, allergenList, Double.valueOf(price), image_url);
+
+            }
+
+
+
+
         }
+
     }
 
-}

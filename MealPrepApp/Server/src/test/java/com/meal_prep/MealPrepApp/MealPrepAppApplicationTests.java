@@ -41,7 +41,7 @@ public class MealPrepAppApplicationTests {
 	public void contextLoads() {
 	}
 
-	HashMap<AllergenType, Boolean> allergenList;
+	ArrayList<AllergenType> allergenList;
 	ArrayList<String> ingredientList;
 	ArrayList<FoodItem> mealList;
 	ArrayList<String> filterList;
@@ -51,8 +51,8 @@ public class MealPrepAppApplicationTests {
 	@BeforeEach
 	public void before() {
 		// FOODITEM
-		allergenList = new HashMap<>();
-		allergenList.put(AllergenType.CELERY, true);
+		allergenList = new ArrayList<>();
+		allergenList.add(AllergenType.CELERY);
 
 		ingredientList = new ArrayList<>();
 		ingredientList.add("pepper");

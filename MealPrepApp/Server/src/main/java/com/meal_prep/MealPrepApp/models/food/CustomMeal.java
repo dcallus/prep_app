@@ -10,7 +10,7 @@ public class CustomMeal extends FoodItem{
     private ArrayList<FoodItem> customMealItems;
 
     public CustomMeal(String name, Integer protein, Integer carbs, Integer fats, Integer calories, Integer totalWeight,
-                      ArrayList<String> ingredients, HashMap<AllergenType, Boolean> allergens, Double price,
+                      ArrayList<String> ingredients, ArrayList<AllergenType> allergens, Double price,
                       String imageUrl, ArrayList<FoodItem> customMealItems) {
         super(name, protein, carbs, fats, calories, totalWeight, ingredients, allergens, price, imageUrl);
         this.customMealItems = customMealItems;
