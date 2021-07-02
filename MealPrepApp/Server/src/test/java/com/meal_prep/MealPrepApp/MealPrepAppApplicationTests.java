@@ -93,7 +93,6 @@ public class MealPrepAppApplicationTests {
 	}
 
 	@Test
-<<<<<<< HEAD
 	public void canSaveFoodToDBandPutInMenu(){
 	FoodItem beefFood = new FoodItem("BEEF CURRY", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
 	mealList.add(beefFood);
@@ -106,33 +105,4 @@ public class MealPrepAppApplicationTests {
 	List<Menu> menuList = menuRepository.findByName("TestBeefMenu");
 	assertEquals(1, menuList.get(0).getMealList().size());
 }
-
-=======
-	public void canAddSavedFoodToMenuAndRetrieve(){
-		// save food
-		food = new FoodItem("Beef Curry", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
-		foodRepository.save(food);
-		List<FoodItem> foodListOfChxJalfrezis = foodRepository.findByName("Beef Curry");
-		FoodItem dbFood = foodListOfChxJalfrezis.get(0);
-		ArrayList newFoodList = new ArrayList<FoodItem>();
-		newFoodList.add(dbFood);
-		// add saved food to menu
-		menu = new Menu("SavedFoodTestMenu", newFoodList, filterList);
-		menuRepository.save(menu);
-		// retrieve menu from db
-		List<Menu> newMenuList = menuRepository.findByName("SavedFoodTestMenu");
-		assertEquals(dbFood.getId(), newMenuList.get(0).getMealList().get(0).getId());
-	}
-
-	//	@Test
-//	public void CanAddFoodToDBAttachToMenuAndReturn() {
-//		food = new FoodItem("Chicken Korma", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
-//		foodRepository.save(food);
-//		List<FoodItem> dbMealList = foodRepository.findByName("Chicken Korma");
-//		FoodItem dbFood = dbMealList.get(0);
-//		ArrayList dbArrayList = new ArrayList<FoodItem>();
-//		menu = new Menu(dbMealList, filterList);
-//
-//	}
->>>>>>> 4878cdaf0b2e76872c9e136fc1024ba17942833b
 }
