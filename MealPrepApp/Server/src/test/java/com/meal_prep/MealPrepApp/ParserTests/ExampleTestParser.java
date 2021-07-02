@@ -7,7 +7,8 @@ import com.meal_prep.MealPrepApp.repositories.FoodRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,9 +18,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest
 public class ExampleTestParser {
+
+    @Autowired
+    FoodRepository foodRepository;
 
     HashMap<String, String> FOOD_DATA_MAP = new HashMap<String, String>() {
         {
@@ -36,7 +41,7 @@ public class ExampleTestParser {
             put("CATEGORY", "Main");
             put("MAIN_PROTEIN", "Tofu");
             put("DESCRIPTION", "Delicious fake chicken!");
-            put("PRICE", "£6.5");
+            put("PRICE", "5");
             put("CELERY", "X");
             put("CORN", "X");
             put("EGG", "X");
@@ -204,9 +209,9 @@ public class ExampleTestParser {
                 allergenList.add(AllergenType.MOLLUSCS); }
 
 
-
+//            FoodItem foodItem = new FoodItem("Chicken Jalfrezi", 20, 20, 20, 100, 100, listy, allergies, 5.00, "http://stuff");
             FoodItem foodItem = new FoodItem(meal_name, Integer.valueOf(protein_amount), Integer.valueOf(carb_amount), Integer.valueOf(fat_amount), Integer.valueOf(total_calories), Integer.valueOf(total_weight), listOfString, allergenList, Double.valueOf(price), image_url);
-
+            foodRepository.save(foodItem);
             }
 
 
