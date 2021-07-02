@@ -30,31 +30,39 @@ public class RealExampleTestParser {
             put("DESCRIPTION", "Delicious fake chicken!");
             put("PRICE", "£6.5");
             put("CELERY", "X");
-            put("CORN", "X");
-            put("EGG", null);
-            put("GLUTEN", "X");
-            put("LUPIN", null);
-            put("MILK", "X");
-            put("MUSHROOM", null);
+            put("CORN", null);
+            put("EGG", "X");
+            put("GLUTEN", null);
+            put("LUPIN", "X");
+            put("MILK", null);
+            put("MUSHROOM", "X");
             put("MUSTARD", null);
-            put("PEANUTS", null);
+            put("PEANUTS", "X");
             put("SESAME", null);
-            put("SOYA", null);
+            put("SOYA", "X");
             put("SULPHITES", null);
-            put("TREE_NUTS", null);
+            put("TREE_NUTS", "X");
             put("WHEAT", null);
-            put("FISH", null);
+            put("FISH", "X");
             put("CRUSTACEANS", null);
-            put("MOLLUSCS", null);
+            put("MOLLUSCS", "X");
             put("PESCATARIAN", null);
-            put("VEGETARIAN", null);
+            put("VEGETARIAN", "X");
             put("VEGAN", null);
             put("PALEO", null);
-            put("KETO", null);
+            put("KETO", "X");
         }
     };
 
-    String[] HEADERS = { "SHOP_NAME", "MEAL_NAME"};
+    String[] HEADERS = { "SHOP_NAME", "MEAL_NAME", "PROTEIN (grams)", "CARB (grams)", "FAT (grams)",
+            "TOTAL_CALORIES (KCal)", "TOTAL_WEIGHT (grams)", "INGREDIENTS (e.g. Chicken, Cauliflower…)",
+            "IMAGE_URL", "SET_MEAL? (TRUE/FALSE - FALSE=Individual food item for a custom meal)",
+            "SET_MEAL: CATEGORY (e.g. Breakfast - Muscle Food - Snack)", "MAIN_PROTEIN (Optional if not a set meal)",
+            "DESCRIPTION (Optional)", "PRICE (optional if there is a set price for all meals)", "CELERY (X=true)",
+            "EGG (X=true)", "GLUTEN (X=true)", "LUPIN (X=true)", "MILK (X=true)", "MUSHROOM (X=true)", "MUSTARD (X=true)",
+            "PEANUTS (X=true)", "SESAME (X=true)", "SOYA (X=true)", "SULPHITES (X=true)", "TREE_NUTS (X=true)",
+            "WHEAT (X=true)", "FISH (X=true)", "CRUSTACEANS (X=true)", "MOLLUSCS (X=true)", "Pescatarian (X=true)",
+            "Vegetarian (X=true)", "Vegan (X=true)", "Paleo (X=true)", "Keto (X=true)"};
 
     @Test
     public void givenCSVFile_whenRead_thenContentsAsExpected() throws IOException {
