@@ -16,5 +16,6 @@ public enum AllergenType {
     SESAME,
     SOYA,
     SULPHITES,
-    TREE_NUTS;
+    TREE_NUTS,
+    WHEAT
 }
