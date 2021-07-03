@@ -28,14 +28,22 @@ const  MealPrepBox = ({foodItems}) => {
     );
 
 return (
-    <SafeAreaView style={StyleSheet.container} onPress={handlePress}>
+    <View style={StyleSheet.container} onPress={handlePress}>
         <ScrollView style={{flex: 1}}>
         <Text>{foodItems}</Text>
+        <Button 
+        color="orange" 
+        onPress={() => 
+            Alert.alert("My Title", "My Message", [
+            {text: "Yes", onPress: () => console.log("Yes")},
+            {text: "No", onPress: () => console.log("No")}
+        ])} />
         </ScrollView>
         {/* <Button title="Show alert" onPress={showAlert} /> */}
-    </SafeAreaView>
+    </View>
 )
 
 }
 
 export default MealPrepBox;
+
