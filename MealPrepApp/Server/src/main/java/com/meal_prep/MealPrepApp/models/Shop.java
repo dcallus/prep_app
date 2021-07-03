@@ -1,6 +1,6 @@
 package com.meal_prep.MealPrepApp.models;
 
-import com.meal_prep.MealPrepApp.components.enums.BadgeType;
+import com.meal_prep.MealPrepApp.components.enums.shop_enums.BadgeType;
 
 import java.util.ArrayList;
 import java.util.HashMap;

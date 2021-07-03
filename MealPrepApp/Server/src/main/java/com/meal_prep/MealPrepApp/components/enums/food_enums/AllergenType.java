@@ -1,4 +1,4 @@
-package com.meal_prep.MealPrepApp.components.enums;
+package com.meal_prep.MealPrepApp.components.enums.food_enums;
 
 public enum AllergenType {
     CELERY,

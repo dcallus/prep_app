@@ -1,13 +1,14 @@
 package com.meal_prep.MealPrepApp.models.food;
 
-import com.meal_prep.MealPrepApp.components.enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class FoodItem {
 
     private String id;
+    private String shopName;
     private String name;
     private Integer protein;
     private Integer carbs;
@@ -16,11 +17,15 @@ public class FoodItem {
     private Integer totalWeight;
     private ArrayList<String> ingredients;
     private ArrayList<AllergenType> allergens;
+    private ArrayList<FilterType> filters;
     private Double price;
     private String imageUrl;
 
 
-    public FoodItem(String name, Integer protein, Integer carbs, Integer fats, Integer calories, Integer totalWeight, ArrayList<String> ingredients, ArrayList<AllergenType> allergens, Double price, String imageUrl) {
+    public FoodItem(String shopName, String name, Integer protein, Integer carbs, Integer fats, Integer calories,
+                    Integer totalWeight, ArrayList<String> ingredients, ArrayList<AllergenType> allergens,
+                    ArrayList<FilterType> filters, Double price, String imageUrl) {
+        this.shopName = shopName;
         this.name = name;
         this.protein = protein;
         this.carbs = carbs;
@@ -29,11 +34,20 @@ public class FoodItem {
         this.totalWeight = totalWeight;
         this.ingredients = ingredients;
         this.allergens = allergens;
+        this.filters = filters;
         this.price = price;
         this.imageUrl = imageUrl;
     }
 
     public FoodItem() {
+    }
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
     }
 
     public String getId() {
@@ -106,6 +120,14 @@ public class FoodItem {
 
     public void setAllergens(ArrayList<AllergenType> allergens) {
         this.allergens = allergens;
+    }
+
+    public ArrayList<FilterType> getFilters() {
+        return filters;
+    }
+
+    public void setFilters(ArrayList<FilterType> filters) {
+        this.filters = filters;
     }
 
     public Double getPrice() {

@@ -1,6 +1,7 @@
 package com.meal_prep.MealPrepApp.ParserTests;
 
-import com.meal_prep.MealPrepApp.components.enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
 import com.meal_prep.MealPrepApp.repositories.FoodRepository;
 import org.apache.commons.csv.CSVFormat;
@@ -215,10 +216,24 @@ public class ExampleTestParser {
             if (contains_molluscs.equalsIgnoreCase("x")){
                 allergenList.add(AllergenType.MOLLUSCS); }
 
+            ArrayList<FilterType> filterList = new ArrayList<>();
 
-            FoodItem foodItem = new FoodItem(meal_name, Integer.valueOf(protein_amount), Integer.valueOf(carb_amount),
+            if (pescatarian.equalsIgnoreCase("x")){
+                filterList.add(FilterType.PESCATARIAN); }
+            if (vegetarian.equalsIgnoreCase("x")){
+                filterList.add(FilterType.VEGETARIAN); }
+            if (vegan.equalsIgnoreCase("x")){
+                filterList.add(FilterType.VEGAN); }
+            if (paleo.equalsIgnoreCase("x")){
+                filterList.add(FilterType.PALEO); }
+            if (keto.equalsIgnoreCase("x")){
+                filterList.add(FilterType.KETO); }
+
+
+
+            FoodItem foodItem = new FoodItem(shop_name, meal_name, Integer.valueOf(protein_amount), Integer.valueOf(carb_amount),
                     Integer.valueOf(fat_amount), Integer.valueOf(total_calories), Integer.valueOf(total_weight),
-                    listOfString, allergenList, Double.valueOf(price), image_url);
+                    listOfString, allergenList, filterList, Double.valueOf(price), image_url);
             foodRepository.save(foodItem);
             }
 

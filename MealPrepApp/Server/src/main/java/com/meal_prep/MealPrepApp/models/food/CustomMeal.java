@@ -1,22 +1,19 @@
 package com.meal_prep.MealPrepApp.models.food;
 
-import com.meal_prep.MealPrepApp.components.enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CustomMeal extends FoodItem{
 
     private ArrayList<FoodItem> customMealItems;
 
-    public CustomMeal(String name, Integer protein, Integer carbs, Integer fats, Integer calories, Integer totalWeight,
-                      ArrayList<String> ingredients, ArrayList<AllergenType> allergens, Double price,
-                      String imageUrl, ArrayList<FoodItem> customMealItems) {
-        super(name, protein, carbs, fats, calories, totalWeight, ingredients, allergens, price, imageUrl);
+    public CustomMeal(String shopName, String name, Integer protein, Integer carbs, Integer fats, Integer calories,
+                      Integer totalWeight, ArrayList<String> ingredients, ArrayList<AllergenType> allergens,
+                      ArrayList<FilterType> filters, Double price, String imageUrl, ArrayList<FoodItem> customMealItems) {
+        super(shopName, name, protein, carbs, fats, calories, totalWeight, ingredients, allergens, filters, price, imageUrl);
         this.customMealItems = customMealItems;
-        // potentially use composition to replace mac/cal/fat etc properties by using an addition method
-        // if this doesn't work - potentially, new class of food with same properties as FoodItem (and abstract
-        // FoodItem class).
     }
 
     public CustomMeal(ArrayList<FoodItem> customMealItems) {

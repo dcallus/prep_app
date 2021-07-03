@@ -1,4 +1,4 @@
-package com.meal_prep.MealPrepApp.components.enums;
+package com.meal_prep.MealPrepApp.components.enums.shop_enums;
 
 public enum BadgeType {
     SUSTAINABLE_PACKAGING,

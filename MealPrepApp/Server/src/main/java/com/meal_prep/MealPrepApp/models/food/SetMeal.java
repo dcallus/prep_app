@@ -1,9 +1,8 @@
 package com.meal_prep.MealPrepApp.models.food;
 
-import com.meal_prep.MealPrepApp.components.enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SetMeal extends FoodItem{
 

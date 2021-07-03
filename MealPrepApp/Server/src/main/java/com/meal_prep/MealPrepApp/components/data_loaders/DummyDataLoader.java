@@ -1,6 +1,7 @@
 package com.meal_prep.MealPrepApp.components.data_loaders;
 
-import com.meal_prep.MealPrepApp.components.enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
 import com.meal_prep.MealPrepApp.models.Menu;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
 import com.meal_prep.MealPrepApp.repositories.FoodRepository;
@@ -12,7 +13,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 @Component
 public class DummyDataLoader implements ApplicationRunner {
@@ -32,7 +32,7 @@ public class DummyDataLoader implements ApplicationRunner {
     ArrayList<AllergenType> allergenList;
     ArrayList<String> ingredientList;
     ArrayList<FoodItem> mealList;
-    ArrayList<String> filterList;
+    ArrayList<FilterType> filterList;
     Menu menu;
     FoodItem food;
 
@@ -44,7 +44,10 @@ public class DummyDataLoader implements ApplicationRunner {
         ingredientList = new ArrayList<>();
         ingredientList.add("pepper");
 
-        FoodItem food = new FoodItem("Chicken Sandwich", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
+        filterList = new ArrayList<>();
+
+        FoodItem food = new FoodItem("The Shop", "Chicken Sandwich", 20, 20, 20,
+                100, 100, ingredientList, allergenList, filterList, 5.00, "http://stuff");
         foodRepository.save(food);
     }
 }

@@ -1,8 +1,7 @@
 package com.meal_prep.MealPrepApp;
 
-import com.meal_prep.MealPrepApp.components.enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
 import com.meal_prep.MealPrepApp.models.Menu;
-import com.meal_prep.MealPrepApp.models.Shop;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
 import com.meal_prep.MealPrepApp.repositories.FoodRepository;
 import com.meal_prep.MealPrepApp.repositories.MenuRepository;
@@ -14,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
