@@ -1,6 +1,7 @@
 package com.meal_prep.MealPrepApp.FoodTests;
 
 import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +20,7 @@ public class FoodItemTest {
     ArrayList<AllergenType> allergenList;
     ArrayList<String> ingredientList;
     FoodItem food;
+    ArrayList<FilterType> filterList;
 
     @Before
     public void before() {
@@ -26,7 +28,8 @@ public class FoodItemTest {
         allergenList.add(AllergenType.CELERY);
         ingredientList = new ArrayList<>();
         ingredientList.add("pepper");
-        food = new FoodItem("Chicken Sandwich", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
+        food = new FoodItem("The Chicken Shack", "Chicken Sandwich", 20, 20, 20,
+                100, 100, ingredientList, allergenList, filterList, 5.00, "http://stuff");
     }
 
     @Test

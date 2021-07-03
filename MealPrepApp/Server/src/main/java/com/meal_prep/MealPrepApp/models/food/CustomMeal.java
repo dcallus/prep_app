@@ -16,10 +16,6 @@ public class CustomMeal extends FoodItem{
         this.customMealItems = customMealItems;
     }
 
-    public CustomMeal(ArrayList<FoodItem> customMealItems) {
-        this.customMealItems = customMealItems;
-    }
-
     public CustomMeal(){
 
     }

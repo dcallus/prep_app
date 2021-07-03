@@ -9,12 +9,10 @@ public class Menu {
     private String id;
     private String name;
     private ArrayList<FoodItem> mealList;
-    private ArrayList<String> filterList;
 
-    public Menu(String name, ArrayList<FoodItem> mealList, ArrayList<String> filterList) {
+    public Menu(String name, ArrayList<FoodItem> mealList) {
         this.name = name;
         this.mealList = mealList;
-        this.filterList = filterList;
     }
 
     public Menu(){
@@ -42,14 +40,6 @@ public class Menu {
 
     public void setMealList(ArrayList<FoodItem> mealList) {
         this.mealList = mealList;
-    }
-
-    public ArrayList<String> getFilterList() {
-        return filterList;
-    }
-
-    public void setFilterList(ArrayList<String> filterList) {
-        this.filterList = filterList;
     }
 
 }
