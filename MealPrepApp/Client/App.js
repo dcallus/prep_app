@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { 
   StyleSheet, 
@@ -9,12 +8,16 @@ import {
   ActivityIndicator, 
   Image, 
   TouchableWithoutFeedback } from 'react-native';
-import MealAppService from './services/MealAppService';
-import MealPrepBox from './containers/MealPrepBox';
-import MyHeader from './components/MyHeader';
+  
+  import MealAppService from './services/MealAppService';
+  import MyHeader from './components/MyHeader';
+  import SplashScreen from './app/screens/SplashScreen';
+  import WelcomeScreen from './app/screens/WelcomeScreen';
+  import ViewCompaniesScreen from './app/screens/ViewCompaniesScreen';
+  // import { createStackNavigator } from '@react-navigator/stack';
+  
+import { StatusBar } from 'expo-status-bar';
 import {useDeviceOrientation, useDimensions} from '@react-native-community/hooks';
-import WelcomeScreen from './app/screens/WelcomeScreen';
-// import { createStackNavigator } from '@react-navigator/stack';
 
 // const Stack = createStackNavigator();
 
@@ -50,7 +53,7 @@ export default function App() {
   // <MealPrepBox foodItems={foodItems}></MealPrepBox>
 
   return (
-  <WelcomeScreen />
+  <SplashScreen />
   );
 } 
 

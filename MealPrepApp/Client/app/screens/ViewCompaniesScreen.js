@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, ActivityIndicator, Image, SafeAreaView, Button, Alert, ScrollView } from 'react-native';
 
-const  MealPrepBox = ({foodItems}) => {
+const  ViewCompaniesScreen = ({foodItems}) => {
 
     const handlePress = () => {
         alert("Opens restaurant details...")
@@ -45,5 +45,5 @@ return (
 
 }
 
-export default MealPrepBox;
+export default ViewCompaniesScreen;
 

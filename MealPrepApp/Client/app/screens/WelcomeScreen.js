@@ -1,19 +1,23 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, View, Image, Text } from "react-native";
+import { 
+    ImageBackground, StyleSheet, 
+    View, Image, Text 
+} from "react-native";
+import { color } from 'react-native-reanimated';
+import colors from '../config/colors';
+
 
 function WelcomeScreen(props) {
     return (
         <ImageBackground
             style={styles.background}
-            source={require("../assets/images/background.jpg")}
-        >
+            source={require("../assets/images/background.jpg")}>
             <View style={styles.header}/>
+            <View style={styles.postcodeField}/>
+            <View style={styles.footer}/>
             <View style={styles.logoContainer}>
-                <Image style={styles.logo} source={require("../assets/images/logo.png")}/>
-                <Text style={styles.logoText}>Preparado</Text>
+                <Image style={styles.logo} source={require("../assets/images/logo2.png")}/>
             </View>
-            <View style={styles.loginButton}/>
-            <View style={styles.registerButton}/>
         </ImageBackground>
     );
 }
@@ -26,33 +30,34 @@ const styles = StyleSheet.create({
     },
     header: {
         width: "100%", 
-        height: 95,
-        backgroundColor: "black",
+        height: 135,
+        backgroundColor: colors.black,
         alignItems: "flex-start", 
     },
-    loginButton: {
+    postcodeField: {
+        backgroundColor: colors.white,
         width: "80%", 
         height: 100,
-        backgroundColor: "white"
-    },
-    logo: {
-        width: 80, 
-        height: 80,
-        alignItems: "center"
+        borderRadius: 30
     },
     logoContainer: {
         position: "absolute",
-        top: 40, 
+        top: 20, 
         flexDirection: "row"
+    },
+    logo: {
+        width: 480, 
+        height: 100,
+        alignItems: "center"
     },
     logoText: {
         color: "white",
         fontSize: 40
     },
-    registerButton: {
+    footer: {
         width: "100%", 
-        height: 70,
-        backgroundColor: "#00DB92"
+        height: 90,
+        backgroundColor: colors.grassgreen
     }
 })
 
