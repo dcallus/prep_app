@@ -2,8 +2,9 @@ package com.meal_prep.MealPrepApp.ParserTests;
 
 import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
 import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
+import com.meal_prep.MealPrepApp.models.food.Food;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
-import com.meal_prep.MealPrepApp.repositories.FoodRepository;
+import com.meal_prep.MealPrepApp.repositories.FoodItemRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ExampleTestParser {
 
     @Autowired
-    FoodRepository foodRepository;
+    FoodItemRepository foodItemRepository;
 
     // Create HashMap for comparison with CSV file
     HashMap<String, String> FOOD_DATA_MAP = new HashMap<String, String>() {
@@ -233,8 +234,8 @@ public class ExampleTestParser {
 
             FoodItem foodItem = new FoodItem(shop_name, meal_name, Integer.valueOf(protein_amount), Integer.valueOf(carb_amount),
                     Integer.valueOf(fat_amount), Integer.valueOf(total_calories), Integer.valueOf(total_weight),
-                    listOfString, allergenList, filterList, Double.valueOf(price), image_url);
-            foodRepository.save(foodItem);
+                    listOfString, allergenList, filterList, image_url, "test", "test", "test", 5.0);
+            foodItemRepository.save(foodItem);
             }
 
 

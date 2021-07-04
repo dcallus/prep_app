@@ -5,26 +5,27 @@ import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
 
 import java.util.ArrayList;
 
-public class CustomMeal extends FoodItem{
+public class CustomMeal extends Food{
 
-    private ArrayList<FoodItem> customMealItems;
+    private ArrayList<Food> customMealItems;
 
     public CustomMeal(String shopName, String name, Integer protein, Integer carbs, Integer fats, Integer calories,
                       Integer totalWeight, ArrayList<String> ingredients, ArrayList<AllergenType> allergens,
-                      ArrayList<FilterType> filters, Double price, String imageUrl, ArrayList<FoodItem> customMealItems) {
-        super(shopName, name, protein, carbs, fats, calories, totalWeight, ingredients, allergens, filters, price, imageUrl);
+                      ArrayList<FilterType> filters, String imageUrl, String description, String mainProtein,
+                      String category, ArrayList<Food> customMealItems) {
+        super(shopName, name, protein, carbs, fats, calories, totalWeight, ingredients, allergens, filters,
+                imageUrl, description, mainProtein, category);
         this.customMealItems = customMealItems;
     }
 
     public CustomMeal(){
-
     }
 
-    public ArrayList<FoodItem> getCustomMealItems() {
+    public ArrayList<Food> getCustomMealItems() {
         return customMealItems;
     }
 
-    public void setCustomMealItems(ArrayList<FoodItem> customMealItems) {
+    public void setCustomMealItems(ArrayList<Food> customMealItems) {
         this.customMealItems = customMealItems;
     }
 }

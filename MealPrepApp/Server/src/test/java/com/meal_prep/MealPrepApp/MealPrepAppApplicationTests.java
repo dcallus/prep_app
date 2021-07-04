@@ -3,8 +3,9 @@ package com.meal_prep.MealPrepApp;
 import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
 import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
 import com.meal_prep.MealPrepApp.models.Menu;
+import com.meal_prep.MealPrepApp.models.food.Food;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
-import com.meal_prep.MealPrepApp.repositories.FoodRepository;
+import com.meal_prep.MealPrepApp.repositories.FoodItemRepository;
 import com.meal_prep.MealPrepApp.repositories.MenuRepository;
 import com.meal_prep.MealPrepApp.repositories.ShopRepository;
 
@@ -30,7 +31,7 @@ public class MealPrepAppApplicationTests {
 	ShopRepository shopRepository;
 
 	@Autowired
-	FoodRepository foodRepository;
+	FoodItemRepository foodItemRepository;
 
 	@Autowired
 	MenuRepository menuRepository;
@@ -41,7 +42,7 @@ public class MealPrepAppApplicationTests {
 
 	ArrayList<AllergenType> allergenList;
 	ArrayList<String> ingredientList;
-	ArrayList<FoodItem> mealList;
+	ArrayList<Food> mealList;
 	ArrayList<FilterType> filterList;
 	Menu menu;
 	FoodItem food;
@@ -57,7 +58,9 @@ public class MealPrepAppApplicationTests {
 
 		filterList = new ArrayList<>();
 
-		food = new FoodItem("The Shop", "Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, filterList, 5.00, "http://stuff");
+		food = new FoodItem("The Shop", "Chicken Jalfrezi", 20, 20, 20, 100,
+				100, ingredientList, allergenList, filterList, "http://stuff",
+				"description", "mainProtein", "breafkast", 5.00);
 		// MENU
 
 
@@ -78,9 +81,10 @@ public class MealPrepAppApplicationTests {
 	@Test
 	public void FoodToDBandBack() {
 		// save food object to DB and retrieve and coerce to complete foodItem object (with ID).
-		food = new FoodItem("Food Shop", "Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList, filterList, 5.00, "http://stuff");
-		foodRepository.save(food);
-		List<FoodItem> foodList = foodRepository.findByName("Chicken Jalfrezi");
+		food = new FoodItem("Food Shop", "Chicken Jalfrezi", 20, 20, 20, 100, 100, ingredientList, allergenList,
+				filterList, "http://stuff", "description", "chicken", "lunch", 5.00);
+		foodItemRepository.save(food);
+		List<FoodItem> foodList = foodItemRepository.findByName("Chicken Jalfrezi");
 		assertEquals("Chicken Jalfrezi", foodList.get(0).getName());
 	}
 
@@ -94,9 +98,10 @@ public class MealPrepAppApplicationTests {
 
 	@Test
 	public void canSaveFoodToDBandPutInMenu(){
-	FoodItem beefFood = new FoodItem("Beef Shop", "BEEF CURRY", 20, 20, 20, 100, 100, ingredientList, allergenList, filterList, 5.00, "http://stuff");
+	FoodItem beefFood = new FoodItem("Beef Shop", "BEEF CURRY", 20, 20, 20, 100, 100, ingredientList,
+			allergenList, filterList, "http://stuff", "description", "chicken", "lunch", 5.00);
 	mealList.add(beefFood);
-	foodRepository.save(beefFood);
+	foodItemRepository.save(beefFood);
 
 	// No need to re-extract food from dB. beefFood variable now has an ID attached gather from the database.
 

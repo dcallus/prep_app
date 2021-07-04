@@ -38,6 +38,13 @@ public class Shop {
         this.badges = badges;
     }
 
+    // for test
+    public Shop(String name, Menu menu, String logo) {
+        this.name = name;
+        this.menu = menu;
+        this.logo = logo;
+    }
+
     public Shop(){
     }
 

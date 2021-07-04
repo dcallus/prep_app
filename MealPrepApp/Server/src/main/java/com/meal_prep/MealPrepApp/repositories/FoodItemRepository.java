@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FoodRepository extends MongoRepository<FoodItem, String> {
+public interface FoodItemRepository extends MongoRepository<FoodItem, String> {
     List<FoodItem> findByName(String name);
 }

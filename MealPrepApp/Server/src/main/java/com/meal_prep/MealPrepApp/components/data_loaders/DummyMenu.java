@@ -8,15 +8,12 @@ import com.meal_prep.MealPrepApp.repositories.FoodItemRepository;
 import com.meal_prep.MealPrepApp.repositories.MenuRepository;
 import com.meal_prep.MealPrepApp.repositories.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
 @Component
-public class DummyDataLoader implements ApplicationRunner {
-
+public class DummyMenu {
     @Autowired
     ShopRepository shopRepository;
 
@@ -26,7 +23,7 @@ public class DummyDataLoader implements ApplicationRunner {
     @Autowired
     FoodItemRepository foodItemRepository;
 
-    public DummyDataLoader() {
+    public DummyMenu() {
     }
 
     ArrayList<AllergenType> allergenList;
@@ -37,19 +34,19 @@ public class DummyDataLoader implements ApplicationRunner {
     Food food;
 
 
-    public void run(ApplicationArguments args) {
-//
-//        allergenList = new ArrayList<>();
-//        allergenList.add(AllergenType.CELERY);
-//
-//        ingredientList = new ArrayList<>();
-//        ingredientList.add("pepper");
-//
-//        filterList = new ArrayList<>();
-//
-//        FoodItem food = new FoodItem("The Shop", "Chicken Sandwich", 20, 20, 20,
-//                100, 100, ingredientList, allergenList, filterList, 5.00, "http://stuff");
-//        foodRepository.save(food);
+//    public ArrayList findFoodBelongingToShop(String shopName){
+//        List<FoodItem> returnedList = foodRepository.findByName(shopName);
+//        ArrayList<Food> shopFoodList;
+//        shopFoodList = new ArrayList<>(returnedList);
+//        return shopFoodList;
+//    }
 
-    }
+//    public void run(ApplicationArguments args) {
+//
+//        ArrayList<Food> shopOneFoodList = findFoodBelongingToShop("Shop One");
+//
+//        Menu menuONE = new Menu("Shop One Menu", shopOneFoodList);
+//    }
+
+
 }
