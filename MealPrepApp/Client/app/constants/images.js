@@ -1,7 +1,7 @@
-const logo2 = require("../assets/images/logo2.png")
-const background = require("../assets/images/background.jpg")
+export const logo2 = require("../assets/images/logo2.png")
+export const background = require("../assets/images/background.jpg")
 
-export default (
+export default {
     logo2,
     background
-)
+}
