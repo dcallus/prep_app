@@ -19,17 +19,51 @@ const Tabs = () => {
             showLabel: false
         }}>
             <Tab.Screen
+                name="User"
+                component={Home}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                            source={icons.user}
+                            resizeMode="contain"
+                            style={{
+                                width: 25,
+                                height: 25,
+                                tintColor: focused ? COLORS.secondary2 : COLORS.secondary
+                            }}
+                        />
+                    )
+                }}
+            />
+            <Tab.Screen
                 name="Home"
                 component={Home}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
-                            source={icons.drink}
+                            source={icons.salad}
                             resizeMode="contain"
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? COLORS.primary : COLORS.secondary
+                                tintColor: focused ? COLORS.secondary2 : COLORS.secondary
+                            }}
+                        />
+                    )
+                }}
+            />
+            <Tab.Screen
+                name="Basket"
+                component={Home}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                            source={icons.shoppingbasket}
+                            resizeMode="contain"
+                            style={{
+                                width: 25,
+                                height: 25,
+                                tintColor: focused ? COLORS.secondary2 : COLORS.secondary
                             }}
                         />
                     )
