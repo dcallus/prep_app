@@ -250,15 +250,15 @@ public class ParserShopOne {
                     setMealRepository.save(setMeal);
                 }
             }
-//            else {
-//                // if not a set meal - create a custom foodItem
-//                Double price = convertStringToDouble(price_string);
-//                Food foodItem = new FoodItem(shop_name, meal_name, protein_amount, carb_amount,
-//                        fat_amount, total_calories, total_weight, listOfIngredients, allergenList, filterList,
-//                        image_url, description, main_protein, category, price);
-//                foodItemRepository.save(foodItem);
+            else {
+                // if not a set meal - create a custom foodItem
+                Double price = convertStringToDouble(price_string);
+                FoodItem foodItem = new FoodItem(shop_name, meal_name, protein_amount, carb_amount,
+                        fat_amount, total_calories, total_weight, listOfIngredients, allergenList, filterList,
+                        image_url, description, main_protein, category, price);
+                foodItemRepository.save(foodItem);
 
-//            }
+            }
         }
 
 
