@@ -65,7 +65,8 @@ const Home = () => {
         )
     }
 
-    function renderMainCategories() {
+    function renderCompanyList() {
+
         const renderItem = ({item}) => {
             return (
                 <TouchableOpacity
@@ -79,6 +80,7 @@ const Home = () => {
                         marginRight: SIZES.padding,
                         ...styles.shadow
                     }}
+                    onPress={() => onSelectCategory(item)}
                 >
                     <View
                         style={{
@@ -99,6 +101,16 @@ const Home = () => {
                             }}
                         />
                     </View>
+
+                    <Text
+                        style={{
+                            marginTop: SIZES.padding,
+                            color: COLORS.white,
+                            ...FONTS.body5
+                        }}
+                    >
+                        {item.name}
+                    </Text>
                 </TouchableOpacity>
             )
         }
@@ -121,7 +133,7 @@ const Home = () => {
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
-            {renderMainCategories()}
+            {renderCompanyList()}
         </SafeAreaView>
     )
 }
