@@ -9,7 +9,7 @@ public class Shop {
 
     private String id;
     private String name;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String emailAddress;
     private Double rating;
     private Double deliveryRadius;
@@ -18,12 +18,12 @@ public class Shop {
     private ArrayList<Integer> deliveryDays; // 1 - 7
     private String logo;
     private Integer minimumMealQuantity;
-    private HashMap<Integer, Integer> mealPriceByQuantity;
+    private HashMap<Integer, Double> mealPriceByQuantity;
     private ArrayList<BadgeType> badges;
 
-    public Shop(String name, Integer phoneNumber, String emailAddress, Double rating, Double deliveryRadius,
+    public Shop(String name, String phoneNumber, String emailAddress, Double rating, Double deliveryRadius,
                 Menu menu, ArrayList<Integer> mealsPerDay, ArrayList<Integer> deliveryDays, String logo,
-                Integer minimumMealQuantity, HashMap<Integer, Integer> mealPriceByQuantity, ArrayList<BadgeType> badges) {
+                Integer minimumMealQuantity, HashMap<Integer, Double> mealPriceByQuantity, ArrayList<BadgeType> badges) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
@@ -36,13 +36,6 @@ public class Shop {
         this.minimumMealQuantity = minimumMealQuantity;
         this.mealPriceByQuantity = mealPriceByQuantity;
         this.badges = badges;
-    }
-
-    // for test
-    public Shop(String name, Menu menu, String logo) {
-        this.name = name;
-        this.menu = menu;
-        this.logo = logo;
     }
 
     public Shop(){
@@ -64,11 +57,11 @@ public class Shop {
         this.name = name;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -136,11 +129,11 @@ public class Shop {
         this.minimumMealQuantity = minimumMealQuantity;
     }
 
-    public HashMap<Integer, Integer> getMealPriceByQuantity() {
+    public HashMap<Integer, Double> getMealPriceByQuantity() {
         return mealPriceByQuantity;
     }
 
-    public void setMealPriceByQuantity(HashMap<Integer, Integer> mealPriceByQuantity) {
+    public void setMealPriceByQuantity(HashMap<Integer, Double> mealPriceByQuantity) {
         this.mealPriceByQuantity = mealPriceByQuantity;
     }
 
