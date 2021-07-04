@@ -16,7 +16,14 @@ const Tabs = () => {
     return (
         <Tab.Navigator
         tabBarOptions={{
-            showLabel: false
+            showLabel: false,
+            style: {
+                borderTopWidth: 0,
+                borderTopLeftRadius: 35,
+                borderTopRightRadius: 35,
+                // backgroundColor: "transparent",
+                elevation: 0
+            }
         }}>
             <Tab.Screen
                 name="User"
