@@ -1,9 +1,9 @@
 import React from 'react';
 import { Image, StyleSheet, View } from "react-native";
 
-import colors from '../config/colors';
+import colors from '../constants/colors';
 
-function SplashScreen(props) {
+function Splash(props) {
     return (
         <>
         <View style={styles.container}>
@@ -14,24 +14,7 @@ function SplashScreen(props) {
 }
 
 
-
 const styles = StyleSheet.create({
-    // closeIcon: {
-    //     width: 50, 
-    //     height: 50,
-    //     backgroundColor: colors.grassgreen,
-    //     position: "absolute",
-    //     top: 40,
-    //     left: 30
-    // },
-    // deleteIcon: {
-    //     width: 50, 
-    //     height: 50,
-    //     backgroundColor: colors.grassgreen,
-    //     position: "absolute",
-    //     top: 40,
-    //     right: 30
-    // },
     container: {
         backgroundColor: colors.black,
         flex: 1,
@@ -44,4 +27,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default SplashScreen;
+export default Splash;

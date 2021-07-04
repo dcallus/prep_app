@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { Text, View, StyleSheet, Image } from "react-native";
 
-import colors from '../config/colors';
+import colors from '../constants/colors';
 import MealAppService from '../../services/MealAppService';
 
 
-function ViewCompaniesList(props) {
+function Home(props) {
 
     const [items, setItems] = useState([]);
     console.log(items);
@@ -88,4 +88,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default ViewCompaniesList;
+export default Home;
