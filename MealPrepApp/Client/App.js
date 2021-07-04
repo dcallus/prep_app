@@ -13,7 +13,8 @@ import {
   import MyHeader from './components/MyHeader';
   import SplashScreen from './app/screens/SplashScreen';
   import WelcomeScreen from './app/screens/WelcomeScreen';
-  import ViewCompaniesScreen from './app/screens/ViewCompaniesScreen';
+  import CompaniesScreen from './app/screens/CompaniesScreen';
+  import ViewCompaniesList from './app/screens/ViewCompaniesList';
   // import { createStackNavigator } from '@react-navigator/stack';
   
 import { StatusBar } from 'expo-status-bar';
@@ -53,7 +54,9 @@ export default function App() {
   // <MealPrepBox foodItems={foodItems}></MealPrepBox>
 
   return (
-  <SplashScreen />
+  // <SplashScreen />
+  // <WelcomeScreen />
+  <ViewCompaniesList />
   );
 } 
 

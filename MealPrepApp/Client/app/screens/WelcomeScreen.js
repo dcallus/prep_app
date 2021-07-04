@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         width: "100%", 
         height: 135,
         backgroundColor: colors.black,
-        alignItems: "flex-start", 
+        // alignItems: "flex-start", 
     },
     postcodeField: {
         backgroundColor: colors.white,
@@ -46,6 +46,9 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     logo: {
+        // width: "90%",
+        // minWidth: 200,
+        // height: "100%",
         width: 480, 
         height: 100,
         alignItems: "center"
