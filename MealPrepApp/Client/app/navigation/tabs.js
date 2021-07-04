@@ -14,7 +14,10 @@ const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator
+        tabBarOptions={{
+            showLabel: false
+        }}>
             <Tab.Screen
                 name="Home"
                 component={Home}
