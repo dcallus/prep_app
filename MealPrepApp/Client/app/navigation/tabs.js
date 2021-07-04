@@ -19,9 +19,7 @@ const Tabs = () => {
             showLabel: false,
             style: {
                 borderTopWidth: 0,
-                borderTopLeftRadius: 35,
-                borderTopRightRadius: 35,
-                // backgroundColor: "transparent",
+                backgroundColor: "transparent",
                 elevation: 0
             }
         }}>

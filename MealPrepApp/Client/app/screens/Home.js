@@ -12,7 +12,7 @@ const Home = () => {
     function renderHeader() {
         return (
             <View style={{ flexDirection: 'row', height: 50 }}>
-                <TouchableOpacity
+                <TouchableOpacity //LOGO
                     style={{
                         width: 50, 
                         paddingLeft: SIZES.padding *2,
@@ -30,7 +30,7 @@ const Home = () => {
                 </TouchableOpacity>
 
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <View
+                        <View //POSTCODE ENTRY FIELD
                             style={{
                                 width: "75%",
                                 height: "100%",
@@ -44,7 +44,7 @@ const Home = () => {
                         </View>
                 </View>
 
-                <TouchableOpacity
+                <TouchableOpacity // SETTINGS COG ICON
                     style={{
                         width: 50,
                         paddingRight: SIZES.padding *2,
@@ -61,7 +61,59 @@ const Home = () => {
                             }}
                         />
                 </TouchableOpacity>
+            </View>
+        )
+    }
 
+    function renderMainCategories() {
+        const renderItem = ({item}) => {
+            return (
+                <TouchableOpacity
+                    style={{
+                        padding: SIZES.padding,
+                        paddingBottom: SIZES.padding *2,
+                        backgroundColor: COLORS.grassgreen,
+                        borderRadius: SIZES.radius,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginRight: SIZES.padding,
+                        ...styles.shadow
+                    }}
+                >
+                    <View
+                        style={{
+                            width: 50, 
+                            height: 50, 
+                            borderRadius: 25,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: COLORS.white
+                        }}
+                    >
+                        <Image 
+                            source={item.icon}
+                            resizeMode='contain'
+                            style={{
+                                width: 30,
+                                height: 30
+                            }}
+                        />
+                    </View>
+                </TouchableOpacity>
+            )
+        }
+        return (
+            <View style={{padding: SIZES.padding *2}}>
+                <Text style={{ ...FONTS.h1, fontWeight: "800" }}>ORDER NOW</Text>
+
+                <FlatList
+                    // data={categories}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    keyExtractor={item => {item.id}}
+                    renderItem={renderItem}
+                    contentContainerStyle={{ paddingVertical: SIZES.padding }}
+                />
             </View>
         )
     }
@@ -69,6 +121,7 @@ const Home = () => {
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
+            {renderMainCategories()}
         </SafeAreaView>
     )
 }
