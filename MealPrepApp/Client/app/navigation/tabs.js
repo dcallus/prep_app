@@ -36,7 +36,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? COLORS.secondary2 : COLORS.secondary
+                                tintColor: focused ? COLORS.grassgreen : COLORS.secondary
                             }}
                         />
                     )
@@ -53,7 +53,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? COLORS.secondary2 : COLORS.secondary
+                                tintColor: focused ? COLORS.grassgreen : COLORS.secondary
                             }}
                         />
                     )
@@ -70,7 +70,7 @@ const Tabs = () => {
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? COLORS.secondary2 : COLORS.secondary
+                                tintColor: focused ? COLORS.grassgreen : COLORS.secondary
                             }}
                         />
                     )

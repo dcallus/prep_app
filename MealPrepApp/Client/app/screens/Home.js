@@ -1,16 +1,92 @@
 import React, {useState, useEffect} from 'react';
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, Image } from "react-native";
+
 
 import colors from '../constants/colors';
 import MealAppService from '../../services/MealAppService';
 
+import { icons, images, SIZES, COLORS, FONTS } from '../constants';
+
 const Home = () => {
+
+    function renderHeader() {
+        return (
+            <View style={{ flexDirection: 'row', height: 50 }}>
+                <TouchableOpacity
+                    style={{
+                        width: 50, 
+                        paddingLeft: SIZES.padding *2,
+                        justifyContent: 'center'
+                    }}
+                >
+                    <Image
+                        source={icons.logo_icon}
+                        resizeMode="contain"
+                        style={{
+                            width: 55,
+                            height: 50
+                        }}
+                    />
+                </TouchableOpacity>
+
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                        <View
+                            style={{
+                                width: "75%",
+                                height: "100%",
+                                backgroundColor: COLORS.lightGray3,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                borderRadius: SIZES.radius
+                            }}
+                        >
+                            <Text style={{ ...FONTS.h3, color: "grey"}}>Enter postcode...</Text>
+                        </View>
+                </View>
+
+                <TouchableOpacity
+                    style={{
+                        width: 50,
+                        paddingRight: SIZES.padding *2,
+                        justifyContent: 'center'
+                    }}
+                    >
+                        <Image
+                            source={icons.settings}
+                            resizeMode="contain"
+                            style={{
+                                width: 35, 
+                                height: 35,
+                                right: 15,
+                            }}
+                        />
+                </TouchableOpacity>
+
+            </View>
+        )
+    }
+
     return (
-        <View>
-            <Text>Home</Text>
-        </View>
+        <SafeAreaView style={styles.container}>
+            {renderHeader()}
+        </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: COLORS.lightGray4
+    },
+    shadow: {
+        shadowColor: '#800',
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        }
+    }
+    
+})
 
 // function Home(props) {
 
