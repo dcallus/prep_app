@@ -17,17 +17,90 @@ const Home = () => {
             .then(items => setItems(items))
     }, []);
 
-    function renderCompaniesList() {
-        const foodItems = items.map((item, key) => {
+    // function renderCompaniesList() {
+        const foodItems = items.map((item) => {
             return (
-                <View style={styles.companyListContainer}>
-                    <View>
-                        <Image style={styles.image} source={{uri: item.imageUrl}}/>
-                        <Text> {item.name} </Text>
+                <TouchableOpacity
+                    style={{ marginBottom: SIZES.padding *2}}
+                >
+                    {/* Image */}
+                    <View
+                        style={{
+                            marginBottom: SIZES.padding
+                        }}
+                    >
+                        <Image
+                            source={{uri: item.imageUrl}}
+                            resizeMode="cover"
+                            style={{
+                                width: "100%",
+                                height: 200,
+                                borderRadius: SIZES.radius
+                            }}
+                        />
+
+                        <View
+                            style={{
+                                position: 'absolute',
+                                bottom: 0,
+                                height: 50,
+                                width: SIZES.width * 0.3,
+                                backgroundColor: COLORS.white,
+                                borderTopRightRadius: SIZES.radius,
+                                borderBottomLeftRadius: SIZES.radius,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                ...styles.shadow
+                            }}
+                        >
+                            <Text style={{ ...FONTS.h4}}>25-30</Text>
+                        </View>
                     </View>
-                </View>
-            )}) 
-    }
+
+                    {/* Restaurant Info */}
+                    <Text style={{ ...FONTS.body2 }}>{item.name}</Text>
+                    
+                    <View
+                        style={{
+                            marginTop: SIZES.padding,
+                            flexDirection: 'row'
+                        }}
+                    >
+                        {/* Rating */}
+                        <Image 
+                            source={icons.star}
+                            style={{
+                                height: 20,
+                                width: 20,
+                                tintColor: COLORS.primary,
+                                marginRight: 10
+                            }}
+                        />
+                        <Text style={{ ...FONTS.body3 }}>{item.price}</Text>
+                        
+                    </View>
+                </TouchableOpacity>
+        )})
+            // return (
+            //     <FlatList
+            //         data={this.tems}
+            //         keyExtractor={item => `${item.id}`}
+            //         renderItem={foodItems}
+            //         contentContainerStyle={{
+            //             paddingHorizontal: SIZES.padding * 2,
+            //             paddingBottom: 30
+            //         }}
+            //     />
+            // )
+            
+                // <View style={styles.companyListContainer}>
+                //     <View>
+                //         <Image style={styles.image} source={{uri: item.imageUrl}}/>
+                //         <Text> {item.name} </Text>
+                //     </View>
+                // </View>
+            
+    // }
 
     function renderHeader() {
         return (
@@ -85,75 +158,76 @@ const Home = () => {
         )
     }
 
-    function renderCompanyList() {
+    // function renderCompanyList() {
 
-        const renderItem = ({item}) => {
-            return (
-                <TouchableOpacity
-                    style={{
-                        padding: SIZES.padding,
-                        paddingBottom: SIZES.padding *2,
-                        backgroundColor: COLORS.grassgreen,
-                        borderRadius: SIZES.radius,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginRight: SIZES.padding,
-                        ...styles.shadow
-                    }}
-                    onPress={() => onSelectCategory(item)}
-                >
-                    <View
-                        style={{
-                            width: 50, 
-                            height: 50, 
-                            borderRadius: 25,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            backgroundColor: (selectedCategory?.id == item.id) ? COLORS.white : COLORS.lightGray
-                        }}
-                    >
-                        <Image 
-                            source={item.icon}
-                            resizeMode='contain'
-                            style={{
-                                width: 30,
-                                height: 30
-                            }}
-                        />
-                    </View>
+    //     const renderItem = ({item}) => {
+    //         return (
+    //             <TouchableOpacity
+    //                 style={{
+    //                     padding: SIZES.padding,
+    //                     paddingBottom: SIZES.padding *2,
+    //                     backgroundColor: COLORS.grassgreen,
+    //                     borderRadius: SIZES.radius,
+    //                     alignItems: 'center',
+    //                     justifyContent: 'center',
+    //                     marginRight: SIZES.padding,
+    //                     ...styles.shadow
+    //                 }}
+    //                 onPress={() => onSelectCategory(item)}
+    //             >
+    //                 <View
+    //                     style={{
+    //                         width: 50, 
+    //                         height: 50, 
+    //                         borderRadius: 25,
+    //                         alignItems: 'center',
+    //                         justifyContent: 'center',
+    //                         backgroundColor: (selectedCategory?.id == item.id) ? COLORS.white : COLORS.lightGray
+    //                     }}
+    //                 >
+    //                     <Image 
+    //                         source={item.icon}
+    //                         resizeMode='contain'
+    //                         style={{
+    //                             width: 30,
+    //                             height: 30
+    //                         }}
+    //                     />
+    //                 </View>
 
-                    <Text
-                        style={{
-                            marginTop: SIZES.padding,
-                            color: COLORS.white,
-                            ...FONTS.body5
-                        }}
-                    >
-                        {item.name}
-                    </Text>
-                </TouchableOpacity>
-            )
-        }
-        return (
-            <View style={{padding: SIZES.padding *2}}>
-                <Text style={{ ...FONTS.h1, fontWeight: "800" }}>ORDER NOW</Text>
+    //                 <Text
+    //                     style={{
+    //                         marginTop: SIZES.padding,
+    //                         color: COLORS.white,
+    //                         ...FONTS.body5
+    //                     }}
+    //                 >
+    //                     {item.name}
+    //                 </Text>
+    //             </TouchableOpacity>
+    //         )
+    //     }
+    //     return (
+    //         <View style={{padding: SIZES.padding *2}}>
+    //             <Text style={{ ...FONTS.h1, fontWeight: "800" }}>ORDER NOW</Text>
 
-                <FlatList
-                    // data={categories}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    keyExtractor={item => {item.id}}
-                    renderItem={renderItem}
-                    contentContainerStyle={{ paddingVertical: SIZES.padding }}
-                />
-            </View>
-        )
-    }
+    //             <FlatList
+    //                 // data={categories}
+    //                 horizontal
+    //                 showsHorizontalScrollIndicator={false}
+    //                 keyExtractor={item => {item.id}}
+    //                 renderItem={renderItem}
+    //                 contentContainerStyle={{ paddingVertical: SIZES.padding }}
+    //             />
+    //         </View>
+    //     )
+    // }
 
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
-            {renderCompanyList()}
+            {/* {renderCompaniesList()} */}
+            {foodItems}
         </SafeAreaView>
     )
 }
