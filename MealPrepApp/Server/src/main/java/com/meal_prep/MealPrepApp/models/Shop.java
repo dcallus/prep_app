@@ -1,11 +1,17 @@
 package com.meal_prep.MealPrepApp.models;
 
 import com.meal_prep.MealPrepApp.components.enums.shop_enums.BadgeType;
+import com.meal_prep.MealPrepApp.repositories.MenuRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Shop {
+
+    @Autowired
+    MenuRepository menuRepository;
 
     private String id;
     private String name;
@@ -143,5 +149,15 @@ public class Shop {
 
     public void setBadges(ArrayList<BadgeType> badges) {
         this.badges = badges;
+    }
+
+    public String getMenuID() {
+        List<Menu> menus = menuRepository.findAll();
+        for (Menu menu : menus){
+            if (menu.getName().equals(this.name)) {
+                return menu.getId();
+            }
+        }
+        return null;
     }
 }

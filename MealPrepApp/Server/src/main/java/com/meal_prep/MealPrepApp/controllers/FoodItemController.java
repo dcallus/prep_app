@@ -1,6 +1,5 @@
 package com.meal_prep.MealPrepApp.controllers;
 
-import com.meal_prep.MealPrepApp.models.food.Food;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
 import com.meal_prep.MealPrepApp.repositories.FoodItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
