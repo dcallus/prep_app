@@ -25,10 +25,12 @@ public class Shop {
     private Integer minimumMealQuantity;
     private HashMap<Integer, Double> mealPriceByQuantity;
     private ArrayList<BadgeType> badges;
+    private String description;
 
     public Shop(String name, String phoneNumber, String emailAddress, Double rating, Double deliveryRadius,
                 ArrayList<Integer> mealsPerDay, ArrayList<Integer> deliveryDays, String logo,
-                Integer minimumMealQuantity, HashMap<Integer, Double> mealPriceByQuantity, ArrayList<BadgeType> badges)
+                Integer minimumMealQuantity, HashMap<Integer, Double> mealPriceByQuantity, ArrayList<BadgeType> badges,
+                String description)
     {
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -41,6 +43,7 @@ public class Shop {
         this.minimumMealQuantity = minimumMealQuantity;
         this.mealPriceByQuantity = mealPriceByQuantity;
         this.badges = badges;
+        this.description = description;
     }
 
     public Shop(){
@@ -142,4 +145,11 @@ public class Shop {
         this.badges = badges;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

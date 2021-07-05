@@ -1,33 +1,23 @@
-package com.meal_prep.MealPrepApp.ParserTests;
+package com.meal_prep.MealPrepApp.Loaders.Scripts;
 
 import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
 import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
-import com.meal_prep.MealPrepApp.components.enums.shop_enums.BadgeType;
-import com.meal_prep.MealPrepApp.models.Menu;
-import com.meal_prep.MealPrepApp.models.Shop;
-import com.meal_prep.MealPrepApp.models.food.Food;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
 import com.meal_prep.MealPrepApp.models.food.SetMeal;
 import com.meal_prep.MealPrepApp.repositories.FoodItemRepository;
-import com.meal_prep.MealPrepApp.repositories.MenuRepository;
 import com.meal_prep.MealPrepApp.repositories.SetMealRepository;
-import com.meal_prep.MealPrepApp.repositories.ShopRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-@SpringBootTest
-public class ParserShopOne {
+public class Parser {
 
     @Autowired
     FoodItemRepository foodItemRepository;
@@ -35,21 +25,23 @@ public class ParserShopOne {
     @Autowired
     SetMealRepository setMealRepository;
 
-    @Autowired
-    MenuRepository menuRepository;
 
-    @Autowired
-    ShopRepository shopRepository;
+    private String file;
+    private ArrayList<SetMeal> setMealList;
+    private ArrayList<FoodItem> customFoodList;
 
-    ArrayList<SetMeal> setMealList = new ArrayList<>();
-    ArrayList<FoodItem> customFoodList = new ArrayList<>();
+    public Parser(String file) {
+        this.file = file;
+        this.setMealList = new ArrayList<>();
+        this.customFoodList = new ArrayList<>();
+    }
 
 
     // List header names in CSV file
     String[] HEADERS = { "SHOP_NAME", "MEAL_NAME", "PROTEIN (grams)", "CARB (grams)", "FAT (grams)",
             "TOTAL_CALORIES (KCal)", "TOTAL_WEIGHT (grams)", "INGREDIENTS (e.g. Chicken, Cauliflower…)",
             "IMAGE_URL", "SET_MEAL? (TRUE/FALSE - FALSE=Individual food item for a custom meal)",
-            "SET_MEAL: CATEGORY (e.g. Breakfast - Muscle Food - Snack)", "MAIN_PROTEIN (Optional)",
+            "CATEGORY (e.g. Breakfast - Muscle Food - Snack)", "MAIN_PROTEIN (Optional)",
             "DESCRIPTION (Optional)", "PRICE (optional if there is a set price for all meals)", "CELERY (X=true)",
             "EGG (X=true)", "GLUTEN (X=true)", "LUPIN (X=true)", "MILK (X=true)", "MUSHROOM (X=true)", "MUSTARD (X=true)",
             "PEANUTS (X=true)", "SESAME (X=true)", "SOYA (X=true)", "SULPHITES (X=true)", "TREE_NUTS (X=true)",
@@ -93,13 +85,10 @@ public class ParserShopOne {
         return value;
     }
 
-
-
-    @Test
-    public void givenCSVFile_whenRead_thenContentsAsExpected() throws IOException {
+    public void parseCSVFile() throws IOException {
 
         // import CSV file
-        Reader in = new FileReader("src/test/parser_test_files/shop_one_dummy.csv");
+        Reader in = new FileReader(file);
 
         // put CSV file into iterable called records
         Iterable<CSVRecord> records = CSVFormat.DEFAULT
@@ -134,7 +123,7 @@ public class ParserShopOne {
             String set_meal_string = record.get("SET_MEAL? (TRUE/FALSE - FALSE=Individual food item for a custom meal)").toLowerCase();
             Boolean set_meal = convertStringToBoolean(set_meal_string);
 
-            String category = record.get("SET_MEAL: CATEGORY (e.g. Breakfast - Muscle Food - Snack)").toLowerCase();
+            String category = record.get("CATEGORY (e.g. Breakfast - Muscle Food - Snack)").toLowerCase();
             String main_protein = record.get("MAIN_PROTEIN (Optional)").toLowerCase();
             String description = record.get("DESCRIPTION (Optional)").toLowerCase();
 
@@ -243,74 +232,54 @@ public class ParserShopOne {
             }
 
 
-
             if (set_meal) {
 
                 // if price field is blank - set meal has a default price (calculated from shop object)
-                if (price_string.equals("")){
+                if (price_string.equals("")) {
                     SetMeal setMeal = new SetMeal(shop_name, meal_name, protein_amount, carb_amount,
                             fat_amount, total_calories, total_weight, listOfIngredients, allergenList, filterList,
                             image_url, description, main_protein, category);
 
-                    setMealRepository.save(setMeal);
+//                    setMealRepository.save(setMeal);
                     setMealList.add(setMeal);
-                }
-                else {
+                } else {
                     // otherwise price is set directly
                     Double price = convertStringToDouble(price_string);
                     SetMeal setMeal = new SetMeal(shop_name, meal_name, protein_amount, carb_amount,
                             fat_amount, total_calories, total_weight, listOfIngredients, allergenList, filterList,
                             image_url, description, main_protein, category, price);
 
-                    setMealRepository.save(setMeal);
+//                    setMealRepository.save(setMeal);
                     setMealList.add(setMeal);
                 }
-            }
-            else {
+            } else {
                 // if not a set meal - create a custom foodItem
                 Double price = convertStringToDouble(price_string);
                 FoodItem foodItem = new FoodItem(shop_name, meal_name, protein_amount, carb_amount,
                         fat_amount, total_calories, total_weight, listOfIngredients, allergenList, filterList,
                         image_url, description, main_protein, category, price);
-                foodItemRepository.save(foodItem);
+//                foodItemRepository.save(foodItem);
                 customFoodList.add(foodItem);
 
             }
         }
 
-        // dummy menu
-        Menu menu = new Menu("Shop One", setMealList, customFoodList);
-        menuRepository.save(menu);
-
-        ArrayList<Integer> mealsPerDay = new ArrayList<>();
-        mealsPerDay.add(1);
-        mealsPerDay.add(2);
-        mealsPerDay.add(3);
-        mealsPerDay.add(4);
-
-        ArrayList<Integer> deliveryDays = new ArrayList<>();
-        deliveryDays.add(1);
-        deliveryDays.add(3);
-        deliveryDays.add(5);
-
-        HashMap<Integer, Double> mealPriceByQuantity = new HashMap<>();
-        mealPriceByQuantity.put(4, 6.50);
-        mealPriceByQuantity.put(6, 6.25);
-        mealPriceByQuantity.put(8, 6.00);
-        mealPriceByQuantity.put(10, 5.50);
-
-        ArrayList<BadgeType> badges = new ArrayList<>();
-        badges.add(BadgeType.ORGANIC);
-        badges.add(BadgeType.LOCALLY_SOURCED);
-
-        Shop shop = new Shop("Shop One", "01035356591", "shopone@theshop.com", 5.0, 25.5, mealsPerDay, deliveryDays,
-                "https://sm.pcmag.com/pcmag_uk/review/p/phase-one-/phase-one-capture-one-pro_q8qp.jpg", 4,
-                mealPriceByQuantity, badges);
-        shopRepository.save(shop);
-
-        }
-
-
 
     }
 
+    public ArrayList<SetMeal> getSetMealList() {
+        return setMealList;
+    }
+
+    public void setSetMealList(ArrayList<SetMeal> setMealList) {
+        this.setMealList = setMealList;
+    }
+
+    public ArrayList<FoodItem> getCustomFoodList() {
+        return customFoodList;
+    }
+
+    public void setCustomFoodList(ArrayList<FoodItem> customFoodList) {
+        this.customFoodList = customFoodList;
+    }
+}

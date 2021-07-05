@@ -1,4 +1,4 @@
-package com.meal_prep.MealPrepApp;
+package com.meal_prep.MealPrepApp.OtherTests;
 
 import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
 import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
