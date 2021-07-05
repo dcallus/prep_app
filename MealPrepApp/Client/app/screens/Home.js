@@ -10,7 +10,6 @@ import { icons, images, SIZES, COLORS, FONTS } from '../constants';
 const Home = ({ navigation }) => {
 
     const [items, setItems] = useState([]);
-    console.log(items);
 
     useEffect(() => {
         ShopServices.getShop()
@@ -252,7 +251,7 @@ const styles = StyleSheet.create({
 // function Home(props) {
 
 //     const [items, setItems] = useState([]);
-//     console.log(items);
+//     (items);
 
 //     useEffect(() => {
 //         MealAppService.getFoodItem()

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
     View, 
@@ -11,24 +11,26 @@ import {
 } from "react-native";
 
 import { icons, images, SIZES, COLORS, FONTS } from '../constants';
+import ShopServices from '../../services/ShopServices';
 
 function Company({ route, navigation }) {
-
-    // useEffect(() => {
-    //     MealAppService.getFoodItem()
-    //         .then(items => setItems(items))
-    // }, []);
-
-    const [company, setCompany] = React.useState(null);
-
-    React.useEffect(() => {
-        let {item} = route.params;
-
-        setCompany(item)
-    })
-
-    console.log(company)
-
+    
+        const [company, setCompany] = useState(null);
+        const [menu, setMenu] = useState(null);
+        
+        useEffect(() => {
+            let {item} = route.params;
+            setCompany(item)
+            ShopServices.getShopMenu(companyId)
+                .then(items => setMenu(items))
+        })
+        
+        // useEffect(() => {
+        //     let companyId = company?.id;
+        //     ShopServices.getShopMenu(companyId)
+        //         .then(items => setMenu(items))
+        // }, []);
+        // console.log(companyId);
 
     function renderHeader() {
         return (

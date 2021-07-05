@@ -7,6 +7,11 @@ const ShopServices = {
     .then(res => res.json())
   },
 
+  getShopMenu(id) {
+    return fetch(baseURL + "shop/" + id + "/menu")
+    .then(res => res.json())
+  },
+
   postShop(payload) {
     return fetch(baseURL + "shop/", {
       method: 'POST',

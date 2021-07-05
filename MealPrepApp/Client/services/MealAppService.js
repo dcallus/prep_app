@@ -16,7 +16,7 @@ const MealAppService = {
     .then(res => res.json())
   },
 
-  deleteCard(id) {
+  deleteFoodItem(id) {
     return fetch(baseURL + "food/" + id, {
       method: 'DELETE'
     })
