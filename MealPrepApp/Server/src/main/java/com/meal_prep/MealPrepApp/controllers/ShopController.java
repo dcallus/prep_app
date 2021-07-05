@@ -29,6 +29,7 @@ public class ShopController {
         return shopRepository.findAll();
     }
 
+    // GET menu with identical name to shop
     @RequestMapping(method= RequestMethod.GET, value = "/shop/{id}/menu")
     public Optional<Menu> getShopByID(@PathVariable String id) {
         Optional<Shop> shop = shopRepository.findById(id);
