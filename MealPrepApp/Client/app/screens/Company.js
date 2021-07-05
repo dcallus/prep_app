@@ -21,16 +21,13 @@ function Company({ route, navigation }) {
         useEffect(() => {
             let {item} = route.params;
             setCompany(item)
+        }, [])
+        
+        useEffect(() => {
+            let companyId = company?.id;
             ShopServices.getShopMenu(companyId)
                 .then(items => setMenu(items))
-        })
-        
-        // useEffect(() => {
-        //     let companyId = company?.id;
-        //     ShopServices.getShopMenu(companyId)
-        //         .then(items => setMenu(items))
-        // }, []);
-        // console.log(companyId);
+        }, []);
 
     function renderHeader() {
         return (
