@@ -1,44 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import MealAppService from './services/MealAppService';
+import React from 'react';
 
-export default function App() {
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-  const [items, setItems] = useState([]);
+import Tabs from './app/navigation/tabs';
+import { Splash, Home, Company } from './app/screens';
 
-  useEffect(() => {
-    MealAppService.getFoodItem()
-        .then(items => setItems(items))
-  }, []);
+const Stack = createStackNavigator();
 
-  useEffect(() => {
-    console.log("list of items: ", items);
-  }, [items])
 
-  const foodItems = items.map((item, key) => {
-    return <View key={key} style={styles.container}>
-    <Text> Meal Name: {item.name} </Text>
-    </View>
-  }) 
+const App = () => {
 
   return (
-    items ?
-    <View style={styles.container}>
-      <Text>Hello, World!!</Text>
-      <Text>{foodItems}</Text>
-      <StatusBar style="auto" />
-    </View>
-    :
-    <View></View>
+    <NavigationContainer>
+      <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+      initialRouteName={"Home"}
+      >
+        <Stack.Screen name="home" component={Tabs} />
+        <Stack.Screen name="company" component={Company} />
+        <Stack.Screen name="splash" component={Splash} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 } 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
