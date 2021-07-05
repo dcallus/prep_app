@@ -19,7 +19,6 @@ public class Shop {
     private String emailAddress;
     private Double rating;
     private Double deliveryRadius;
-    private Menu menu;
     private ArrayList<Integer> mealsPerDay;
     private ArrayList<Integer> deliveryDays; // 1 - 7
     private String logo;
@@ -28,14 +27,14 @@ public class Shop {
     private ArrayList<BadgeType> badges;
 
     public Shop(String name, String phoneNumber, String emailAddress, Double rating, Double deliveryRadius,
-                Menu menu, ArrayList<Integer> mealsPerDay, ArrayList<Integer> deliveryDays, String logo,
-                Integer minimumMealQuantity, HashMap<Integer, Double> mealPriceByQuantity, ArrayList<BadgeType> badges) {
+                ArrayList<Integer> mealsPerDay, ArrayList<Integer> deliveryDays, String logo,
+                Integer minimumMealQuantity, HashMap<Integer, Double> mealPriceByQuantity, ArrayList<BadgeType> badges)
+    {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.rating = rating;
         this.deliveryRadius = deliveryRadius;
-        this.menu = menu;
         this.mealsPerDay = mealsPerDay;
         this.deliveryDays = deliveryDays;
         this.logo = logo;
@@ -95,14 +94,6 @@ public class Shop {
         this.deliveryRadius = deliveryRadius;
     }
 
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
-    }
-
     public ArrayList<Integer> getMealsPerDay() {
         return mealsPerDay;
     }
@@ -151,13 +142,4 @@ public class Shop {
         this.badges = badges;
     }
 
-    public String getMenuID() {
-        List<Menu> menus = menuRepository.findAll();
-        for (Menu menu : menus){
-            if (menu.getName().equals(this.name)) {
-                return menu.getId();
-            }
-        }
-        return null;
-    }
 }

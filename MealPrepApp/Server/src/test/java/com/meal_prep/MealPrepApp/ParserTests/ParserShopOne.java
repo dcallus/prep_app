@@ -279,7 +279,7 @@ public class ParserShopOne {
         }
 
         // dummy menu
-        Menu menu = new Menu("Shop One Menu", setMealList, customFoodList);
+        Menu menu = new Menu("Shop One", setMealList, customFoodList);
         menuRepository.save(menu);
 
         ArrayList<Integer> mealsPerDay = new ArrayList<>();
@@ -303,7 +303,7 @@ public class ParserShopOne {
         badges.add(BadgeType.ORGANIC);
         badges.add(BadgeType.LOCALLY_SOURCED);
 
-        Shop shop = new Shop("Shop One", "01035356591", "shopone@theshop.com", 5.0, 25.5, menu, mealsPerDay, deliveryDays,
+        Shop shop = new Shop("Shop One", "01035356591", "shopone@theshop.com", 5.0, 25.5, mealsPerDay, deliveryDays,
                 "https://sm.pcmag.com/pcmag_uk/review/p/phase-one-/phase-one-capture-one-pro_q8qp.jpg", 4,
                 mealPriceByQuantity, badges);
         shopRepository.save(shop);
