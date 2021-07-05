@@ -17,9 +17,9 @@ const Home = () => {
             .then(items => setItems(items))
     }, []);
 
-    // function renderCompaniesList() {
-        const foodItems = items.map((item) => {
-            return (
+    function renderCompaniesList() {
+        const renderItem = ({ item }) => (
+           
                 <TouchableOpacity
                     style={{ marginBottom: SIZES.padding *2}}
                 >
@@ -80,27 +80,19 @@ const Home = () => {
                         
                     </View>
                 </TouchableOpacity>
-        )})
-            // return (
-            //     <FlatList
-            //         data={this.tems}
-            //         keyExtractor={item => `${item.id}`}
-            //         renderItem={foodItems}
-            //         contentContainerStyle={{
-            //             paddingHorizontal: SIZES.padding * 2,
-            //             paddingBottom: 30
-            //         }}
-            //     />
-            // )
-            
-                // <View style={styles.companyListContainer}>
-                //     <View>
-                //         <Image style={styles.image} source={{uri: item.imageUrl}}/>
-                //         <Text> {item.name} </Text>
-                //     </View>
-                // </View>
-            
-    // }
+        )
+            return (
+                <FlatList
+                data={items}
+                keyExtractor={item => `${item.id}`}
+                renderItem={renderItem}
+                contentContainerStyle={{
+                    paddingHorizontal: SIZES.padding * 2,
+                    paddingBottom: 30
+                }}
+            />
+            )            
+    }
 
     function renderHeader() {
         return (
@@ -226,8 +218,7 @@ const Home = () => {
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
-            {/* {renderCompaniesList()} */}
-            {foodItems}
+            {renderCompaniesList()}
         </SafeAreaView>
     )
 }
