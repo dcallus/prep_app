@@ -11,39 +11,38 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 @SpringBootTest
-public class ShopOneLoader {
+public class BulkHouseLoader {
 
     @Autowired
     ShopRepository shopRepository;
 
 
     @Test
-            public void loadShop(){
-    //SHOP
+    public void loadShop(){
+        //SHOP
         ArrayList<Integer> mealsPerDay = new ArrayList<>();
         mealsPerDay.add(1);
         mealsPerDay.add(2);
         mealsPerDay.add(3);
-        mealsPerDay.add(4);
 
         ArrayList<Integer> deliveryDays = new ArrayList<>();
-        deliveryDays.add(1);
+        deliveryDays.add(2);
         deliveryDays.add(3);
         deliveryDays.add(5);
 
         HashMap<Integer, Double> mealPriceByQuantity = new HashMap<>();
-        mealPriceByQuantity.put(4, 6.50);
-        mealPriceByQuantity.put(6, 6.25);
-        mealPriceByQuantity.put(8, 6.00);
-        mealPriceByQuantity.put(10, 5.50);
+        mealPriceByQuantity.put(4, 7.00);
+        mealPriceByQuantity.put(6, 6.55);
+        mealPriceByQuantity.put(8, 6.20);
+        mealPriceByQuantity.put(120, 5.90);
 
         ArrayList<BadgeType> badges = new ArrayList<>();
-        badges.add(BadgeType.ORGANIC);
-        badges.add(BadgeType.LOCALLY_SOURCED);
+        badges.add(BadgeType.LIVING_WAGE);
+        badges.add(BadgeType.ETHICAL_MEAT);
 
-        Shop shop = new Shop("Shop One", "01035356111", "shopone@theshop.com", 5.0, 25.5, mealsPerDay, deliveryDays,
-                "https://sm.pcmag.com/pcmag_uk/review/p/phase-one-/phase-one-capture-one-pro_q8qp.jpg", 4,
+        Shop shop = new Shop("Bulk House", "010353232231", "bullkhouse@bulkhouse.com", 5.0, 40.0, mealsPerDay, deliveryDays,
+                "https://www.haolaowai.co/wp-content/uploads/2019/09/the-bulk-house-beijing-logo.png", 5,
                 mealPriceByQuantity, badges);
         shopRepository.save(shop);
-}
+    }
 }

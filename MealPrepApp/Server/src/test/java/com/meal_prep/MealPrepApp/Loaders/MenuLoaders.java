@@ -47,7 +47,7 @@ public class MenuLoaders {
     }
 
     @Test
-    public void createMenuForShopTwo() throws IOException {
+    public void createMenuForPrepKing() throws IOException {
         Parser parseFile = new Parser("src/test/parser_test_files/shop_two_dummy.csv");
         parseFile.parseCSVFile();
 
@@ -59,7 +59,7 @@ public class MenuLoaders {
             foodItemRepository.save(food);
         }
 
-        Menu menu = new Menu("Shop Two", parseFile.getSetMealList(), parseFile.getCustomFoodList());
+        Menu menu = new Menu("Prep King", parseFile.getSetMealList(), parseFile.getCustomFoodList());
         menuRepository.save(menu);
     }
 

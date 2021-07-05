@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 @SpringBootTest
-public class ShopOneLoader {
+public class PrepKingLoader {
 
     @Autowired
     ShopRepository shopRepository;
 
 
     @Test
-            public void loadShop(){
-    //SHOP
+    public void loadShop(){
+        //SHOP
         ArrayList<Integer> mealsPerDay = new ArrayList<>();
         mealsPerDay.add(1);
         mealsPerDay.add(2);
@@ -40,10 +40,12 @@ public class ShopOneLoader {
         ArrayList<BadgeType> badges = new ArrayList<>();
         badges.add(BadgeType.ORGANIC);
         badges.add(BadgeType.LOCALLY_SOURCED);
+        badges.add(BadgeType.LIVING_WAGE);
+        badges.add(BadgeType.ETHICAL_MEAT);
 
-        Shop shop = new Shop("Shop One", "01035356111", "shopone@theshop.com", 5.0, 25.5, mealsPerDay, deliveryDays,
-                "https://sm.pcmag.com/pcmag_uk/review/p/phase-one-/phase-one-capture-one-pro_q8qp.jpg", 4,
+        Shop shop = new Shop("Prep King", "01034356543", "prepking@prepking.com", 5.0, 30.0, mealsPerDay, deliveryDays,
+                "https://mark.trademarkia.com/logo-images/powerful-king/pk-77932839.jpg", 5,
                 mealPriceByQuantity, badges);
         shopRepository.save(shop);
-}
+    }
 }
