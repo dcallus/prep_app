@@ -27,6 +27,9 @@ function Company({ route, navigation }) {
         setCompany(item)
     })
 
+    console.log(company)
+
+
     function renderHeader() {
         return (
             <View style={{ flexDirection: 'row' }}>
