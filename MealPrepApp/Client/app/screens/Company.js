@@ -26,7 +26,7 @@ function Company({ route, navigation }) {
         useEffect(() => {
             ShopServices.getShopMenu(company?.id)
                 .then(items => setMenu(items))
-        }, [company]);
+        }, []);
 
     function renderHeader() {
         return (
@@ -70,7 +70,7 @@ function Company({ route, navigation }) {
                         }}
                     >
                         <Text style={{ ...FONTS.h3 }}>{company?.name}</Text>
-                        <Text>{menu?.setMealList[0].name}</Text>
+                        {/* <Text>{menu?.setMealList[0].name}</Text> */}
                     </View>
                 </View>
 
