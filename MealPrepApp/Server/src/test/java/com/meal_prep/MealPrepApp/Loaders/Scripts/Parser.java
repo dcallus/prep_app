@@ -1,4 +1,4 @@
-package com.meal_prep.MealPrepApp.ParserTests;
+package com.meal_prep.MealPrepApp.Loaders.Scripts;
 
 import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
 import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
@@ -26,9 +26,9 @@ public class Parser {
     SetMealRepository setMealRepository;
 
 
-    String file;
-    ArrayList<SetMeal> setMealList;
-    ArrayList<FoodItem> customFoodList;
+    private String file;
+    private ArrayList<SetMeal> setMealList;
+    private ArrayList<FoodItem> customFoodList;
 
     public Parser(String file) {
         this.file = file;
