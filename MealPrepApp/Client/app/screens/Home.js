@@ -9,6 +9,26 @@ import { icons, images, SIZES, COLORS, FONTS } from '../constants';
 
 const Home = () => {
 
+    const [items, setItems] = useState([]);
+    console.log(items);
+
+    useEffect(() => {
+        MealAppService.getFoodItem()
+            .then(items => setItems(items))
+    }, []);
+
+    function renderCompaniesList() {
+        const foodItems = items.map((item, key) => {
+            return (
+                <View style={styles.companyListContainer}>
+                    <View>
+                        <Image style={styles.image} source={{uri: item.imageUrl}}/>
+                        <Text> {item.name} </Text>
+                    </View>
+                </View>
+            )}) 
+    }
+
     function renderHeader() {
         return (
             <View style={{ flexDirection: 'row', height: 50 }}>
@@ -89,7 +109,7 @@ const Home = () => {
                             borderRadius: 25,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            backgroundColor: COLORS.white
+                            backgroundColor: (selectedCategory?.id == item.id) ? COLORS.white : COLORS.lightGray
                         }}
                     >
                         <Image 
