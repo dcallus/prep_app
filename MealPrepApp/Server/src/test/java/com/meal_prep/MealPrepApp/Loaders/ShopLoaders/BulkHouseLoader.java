@@ -42,7 +42,7 @@ public class BulkHouseLoader {
 
         Shop shop = new Shop("Bulk House", "010353232231", "bullkhouse@bulkhouse.com", 5.0, 40.0, mealsPerDay, deliveryDays,
                 "https://www.haolaowai.co/wp-content/uploads/2019/09/the-bulk-house-beijing-logo.png", 5,
-                mealPriceByQuantity, badges);
+                mealPriceByQuantity, badges, "Bulk House - GAINS!");
         shopRepository.save(shop);
     }
 }

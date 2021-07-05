@@ -45,7 +45,7 @@ public class PrepKingLoader {
 
         Shop shop = new Shop("Prep King", "01034356543", "prepking@prepking.com", 5.0, 30.0, mealsPerDay, deliveryDays,
                 "https://mark.trademarkia.com/logo-images/powerful-king/pk-77932839.jpg", 5,
-                mealPriceByQuantity, badges);
+                mealPriceByQuantity, badges, "King of Prepared Food");
         shopRepository.save(shop);
     }
 }
