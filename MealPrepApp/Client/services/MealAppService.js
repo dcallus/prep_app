@@ -1,6 +1,7 @@
-const baseURL = 'http://localhost:8080/'
+const baseURL = 'http://192.168.1.2:8080/'
 
 const MealAppService = {
+
   getFoodItem() {
     return fetch(baseURL + "food/")
     .then(res => res.json())
@@ -15,7 +16,7 @@ const MealAppService = {
     .then(res => res.json())
   },
 
-  deleteCard(id) {
+  deleteFoodItem(id) {
     return fetch(baseURL + "food/" + id, {
       method: 'DELETE'
     })
