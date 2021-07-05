@@ -41,7 +41,7 @@ public class Parser {
     String[] HEADERS = { "SHOP_NAME", "MEAL_NAME", "PROTEIN (grams)", "CARB (grams)", "FAT (grams)",
             "TOTAL_CALORIES (KCal)", "TOTAL_WEIGHT (grams)", "INGREDIENTS (e.g. Chicken, Cauliflower…)",
             "IMAGE_URL", "SET_MEAL? (TRUE/FALSE - FALSE=Individual food item for a custom meal)",
-            "SET_MEAL: CATEGORY (e.g. Breakfast - Muscle Food - Snack)", "MAIN_PROTEIN (Optional)",
+            "CATEGORY (e.g. Breakfast - Muscle Food - Snack)", "MAIN_PROTEIN (Optional)",
             "DESCRIPTION (Optional)", "PRICE (optional if there is a set price for all meals)", "CELERY (X=true)",
             "EGG (X=true)", "GLUTEN (X=true)", "LUPIN (X=true)", "MILK (X=true)", "MUSHROOM (X=true)", "MUSTARD (X=true)",
             "PEANUTS (X=true)", "SESAME (X=true)", "SOYA (X=true)", "SULPHITES (X=true)", "TREE_NUTS (X=true)",
@@ -123,7 +123,7 @@ public class Parser {
             String set_meal_string = record.get("SET_MEAL? (TRUE/FALSE - FALSE=Individual food item for a custom meal)").toLowerCase();
             Boolean set_meal = convertStringToBoolean(set_meal_string);
 
-            String category = record.get("SET_MEAL: CATEGORY (e.g. Breakfast - Muscle Food - Snack)").toLowerCase();
+            String category = record.get("CATEGORY (e.g. Breakfast - Muscle Food - Snack)").toLowerCase();
             String main_protein = record.get("MAIN_PROTEIN (Optional)").toLowerCase();
             String description = record.get("DESCRIPTION (Optional)").toLowerCase();
 

@@ -43,7 +43,7 @@ public class ShopOneLoader {
 
         Shop shop = new Shop("Shop One", "01035356111", "shopone@theshop.com", 5.0, 25.5, mealsPerDay, deliveryDays,
                 "https://sm.pcmag.com/pcmag_uk/review/p/phase-one-/phase-one-capture-one-pro_q8qp.jpg", 4,
-                mealPriceByQuantity, badges);
+                mealPriceByQuantity, badges, "The One-Stop prep shop!");
         shopRepository.save(shop);
 }
 }
