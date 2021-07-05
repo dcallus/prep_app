@@ -16,10 +16,17 @@ export default function App() {
     console.log("list of items: ", items);
   }, [items])
 
+  const foodItems = items.map((item, key) => {
+    return <View key={key} style={styles.container}>
+    <Text> Meal Name: {item.name} </Text>
+    </View>
+  }) 
+
   return (
     items ?
     <View style={styles.container}>
       <Text>Hello, World!!</Text>
+      <Text>{foodItems}</Text>
       <StatusBar style="auto" />
     </View>
     :
