@@ -19,8 +19,8 @@ const Tabs = () => {
             showLabel: false,
             style: {
                 borderTopWidth: 0,
-                backgroundColor: "transparent",
-                elevation: 0
+                // backgroundColor: "transparent",
+                elevation: 0,
             }
         }}>
             <Tab.Screen

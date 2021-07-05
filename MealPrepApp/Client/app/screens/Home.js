@@ -23,7 +23,7 @@ const Home = ({ navigation }) => {
                 <TouchableOpacity
                     style={{ marginBottom: SIZES.padding *2}}
                     onPress={() => navigation.navigate("Company", {
-                        item
+                        item,
                     })}
                 >
                     {/* Image */}

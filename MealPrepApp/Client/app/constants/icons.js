@@ -9,6 +9,8 @@ export const settings = require("../assets/icons/settings.png");
 export const star = require("../assets/icons/star.png");
 export const search = require("../assets/icons/search.png");
 export const cutlery = require("../assets/icons/cutlery.png");
+export const back = require("../assets/icons/back.png");
+export const list = require("../assets/icons/list.png");
 
 export default {
     drink,
@@ -21,5 +23,7 @@ export default {
     settings,
     star,
     search,
-    cutlery
+    cutlery,
+    back,
+    list
 }
