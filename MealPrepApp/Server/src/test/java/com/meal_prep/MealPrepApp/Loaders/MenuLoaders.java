@@ -48,7 +48,7 @@ public class MenuLoaders {
 
     @Test
     public void createMenuForPrepKing() throws IOException {
-        Parser parseFile = new Parser("src/test/parser_test_files/shop_two_dummy.csv");
+        Parser parseFile = new Parser("src/test/parser_test_files/prep_king_dummy.csv");
         parseFile.parseCSVFile();
 
         for (SetMeal meal : parseFile.getSetMealList()) {
@@ -65,7 +65,7 @@ public class MenuLoaders {
 
     @Test
     public void createMenuForShopThree() throws IOException {
-        Parser parseFile = new Parser("src/test/parser_test_files/shop_three_dummy.csv");
+        Parser parseFile = new Parser("src/test/parser_test_files/bulk_house_dummy.csv");
         parseFile.parseCSVFile();
 
         for (SetMeal meal : parseFile.getSetMealList()) {
@@ -76,7 +76,7 @@ public class MenuLoaders {
             foodItemRepository.save(food);
         }
 
-        Menu menu = new Menu("Shop Three", parseFile.getSetMealList(), parseFile.getCustomFoodList());
+        Menu menu = new Menu("Bulk House", parseFile.getSetMealList(), parseFile.getCustomFoodList());
         menuRepository.save(menu);
     }
 
