@@ -240,7 +240,7 @@ public class Parser {
                             fat_amount, total_calories, total_weight, listOfIngredients, allergenList, filterList,
                             image_url, description, main_protein, category);
 
-                    setMealRepository.save(setMeal);
+//                    setMealRepository.save(setMeal);
                     setMealList.add(setMeal);
                 } else {
                     // otherwise price is set directly
@@ -249,7 +249,7 @@ public class Parser {
                             fat_amount, total_calories, total_weight, listOfIngredients, allergenList, filterList,
                             image_url, description, main_protein, category, price);
 
-                    setMealRepository.save(setMeal);
+//                    setMealRepository.save(setMeal);
                     setMealList.add(setMeal);
                 }
             } else {
@@ -258,7 +258,7 @@ public class Parser {
                 FoodItem foodItem = new FoodItem(shop_name, meal_name, protein_amount, carb_amount,
                         fat_amount, total_calories, total_weight, listOfIngredients, allergenList, filterList,
                         image_url, description, main_protein, category, price);
-                foodItemRepository.save(foodItem);
+//                foodItemRepository.save(foodItem);
                 customFoodList.add(foodItem);
 
             }

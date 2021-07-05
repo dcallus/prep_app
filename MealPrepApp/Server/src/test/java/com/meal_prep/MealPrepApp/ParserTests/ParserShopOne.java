@@ -2,6 +2,8 @@ package com.meal_prep.MealPrepApp.ParserTests;
 
 import com.meal_prep.MealPrepApp.models.Menu;
 
+import com.meal_prep.MealPrepApp.models.food.FoodItem;
+import com.meal_prep.MealPrepApp.models.food.SetMeal;
 import com.meal_prep.MealPrepApp.repositories.FoodItemRepository;
 import com.meal_prep.MealPrepApp.repositories.MenuRepository;
 
@@ -30,6 +32,15 @@ public class ParserShopOne {
     public void createMenuForShopOne() throws IOException {
         Parser parseFile = new Parser("src/test/parser_test_files/shop_one_dummy.csv");
         parseFile.parseCSVFile();
+
+        for (SetMeal meal : parseFile.setMealList) {
+            setMealRepository.save(meal);
+        }
+
+        for (FoodItem food : parseFile.customFoodList) {
+            foodItemRepository.save(food);
+        }
+
         // dummy menu
         Menu menu = new Menu("Shop One", parseFile.setMealList, parseFile.customFoodList);
         menuRepository.save(menu);
