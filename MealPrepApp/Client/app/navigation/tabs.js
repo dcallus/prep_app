@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs";
 
-import { Home } from "../screens";
+import { Home, Company, Basket, UserProfile } from "../screens";
 
 import { COLORS, icons } from '../constants';
 
@@ -29,7 +29,24 @@ const Tabs = () => {
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
-                            source={icons.salad}
+                            source={icons.search}
+                            resizeMode="contain"
+                            style={{
+                                width: 25,
+                                height: 25,
+                                tintColor: focused ? COLORS.grassgreen : COLORS.secondary
+                            }}
+                        />
+                    )
+                }}
+            />
+            <Tab.Screen
+                name="Company"
+                component={Company}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                            source={icons.cutlery}
                             resizeMode="contain"
                             style={{
                                 width: 25,
@@ -42,7 +59,7 @@ const Tabs = () => {
             />
             <Tab.Screen
                 name="Basket"
-                component={Home}
+                component={Basket}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
@@ -59,7 +76,7 @@ const Tabs = () => {
             />
             <Tab.Screen
                 name="User"
-                component={Home}
+                component={UserProfile}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image

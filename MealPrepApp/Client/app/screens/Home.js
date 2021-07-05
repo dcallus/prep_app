@@ -7,7 +7,7 @@ import MealAppService from '../../services/MealAppService';
 
 import { icons, images, SIZES, COLORS, FONTS } from '../constants';
 
-const Home = () => {
+const Home = ({ navigation }) => {
 
     const [items, setItems] = useState([]);
     console.log(items);
@@ -22,6 +22,9 @@ const Home = () => {
            
                 <TouchableOpacity
                     style={{ marginBottom: SIZES.padding *2}}
+                    onPress={() => navigation.navigate("Company", {
+                        item
+                    })}
                 >
                     {/* Image */}
                     <View
