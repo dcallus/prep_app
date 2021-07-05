@@ -43,8 +43,8 @@ const Home = () => {
                             style={{
                                 position: 'absolute',
                                 bottom: 0,
-                                height: 50,
-                                width: SIZES.width * 0.3,
+                                height: 40,
+                                width: SIZES.width * 0.25,
                                 backgroundColor: COLORS.white,
                                 borderTopRightRadius: SIZES.radius,
                                 borderBottomLeftRadius: SIZES.radius,
@@ -53,44 +53,49 @@ const Home = () => {
                                 ...styles.shadow
                             }}
                         >
-                            <Text style={{ ...FONTS.h4}}>25-30</Text>
+                            <View
+                        style={{
+                            marginTop: SIZES.padding,
+                            flexDirection: 'row',
+                            bottom: 4
+                        }}
+                    >
+                        <Image 
+                            source={icons.star}
+                            style={{
+                                height: 20,
+                                width: 20,
+                                tintColor: COLORS.grassgreen,
+                                marginRight: 10,
+                            }}
+                        />
+                        <Text style={{ ...FONTS.body3 }}>{item.price}</Text>
+                        
+                    </View>
                         </View>
                     </View>
 
                     {/* Restaurant Info */}
                     <Text style={{ ...FONTS.body2 }}>{item.name}</Text>
                     
-                    <View
-                        style={{
-                            marginTop: SIZES.padding,
-                            flexDirection: 'row'
-                        }}
-                    >
-                        {/* Rating */}
-                        <Image 
-                            source={icons.star}
-                            style={{
-                                height: 20,
-                                width: 20,
-                                tintColor: COLORS.primary,
-                                marginRight: 10
-                            }}
-                        />
-                        <Text style={{ ...FONTS.body3 }}>{item.price}</Text>
-                        
-                    </View>
+                    {/* Rating */}
+                    
                 </TouchableOpacity>
         )
             return (
+                // ORDER NOW text and list of companies
+                <View style={{padding: SIZES.padding *1.5}}>
+                    <Text style={{ ...FONTS.h1, fontWeight: "800", paddingBottom: 20, paddingLeft: 17 }}>ORDER NOW</Text>
                 <FlatList
                 data={items}
                 keyExtractor={item => `${item.id}`}
                 renderItem={renderItem}
                 contentContainerStyle={{
                     paddingHorizontal: SIZES.padding * 2,
-                    paddingBottom: 30
+                    paddingBottom: 80
                 }}
-            />
+                />
+                </View>
             )            
     }
 
@@ -233,7 +238,10 @@ const styles = StyleSheet.create({
         shadowOffset: {
             width: 0,
             height: 3,
-        }
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+        elevation: 1,
     }
     
 })
