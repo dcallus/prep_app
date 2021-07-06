@@ -24,18 +24,24 @@ function Basket({ route, navigation }) {
         const order = orderItems.map(item => {
             return (
                 <View
-                style={{ alignItems: 'center' }}
+                style={{ alignItems: 'center', 
+                flex: 1, flexDirection: "row", 
+                justifyContent: "space-evenly" }}
+                key={item => `${item.id}`}
                 >
+                    <Text style={{
+                        flex: 0.75
+                    }}>{item.name.name} x {item.qty}</Text>
                     <Image
                         source={{uri: item.name.imageUrl}}
                         resizeMode="contain"
                         style={{
-                            width: SIZES.width,
+                            width: SIZES.width/2,
                             height: "100%",
-                            borderRadius:20
+                            borderRadius:20,
+                            flex: 0.25
                         }}
                     />
-                    <Text>{item.name.name} x {item.qty}</Text>
                 </View>
             )
         })
