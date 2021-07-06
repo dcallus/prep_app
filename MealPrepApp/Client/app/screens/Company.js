@@ -40,29 +40,30 @@ function Company({ route, navigation }) {
         //         .then(items => setMenu(items))
         // }, []);
 
-        function editOrder(action, itemId) {
+        function editOrder(action, selectedItem) {
             
             let orderList = orderItems.slice() 
-            let item = orderList.filter(item => item.menuId == itemId)
+            let currentItem = orderList.filter(item => item.menuId == selectedItem.id)
 
             if (action == "+") {
-                if (item.length > 0) {
-                    let newQty = item[0].qty + 1
-                    item[0].qty = newQty
+                if (currentItem.length > 0) {
+                    let newQty = currentItem[0].qty + 1
+                    currentItem[0].qty = newQty
                 } else {
-                    const newItem = {
-                        menuId: itemId,
+                    const currentItem = {
+                        name: selectedItem,
+                        menuId: selectedItem.id,
                         qty: 1
                     }
-                    orderList.push(newItem)
+                    orderList.push(currentItem)
                 }
     
                 setOrderItems(orderList)
             } else {
-                if (item.length > 0) {
-                    if (item[0]?.qty > 0) {
-                        let newQty = item[0].qty - 1
-                        item[0].qty = newQty
+                if (currentItem.length > 0) {
+                    if (currentItem[0]?.qty > 0) {
+                        let newQty = currentItem[0].qty - 1
+                        currentItem[0].qty = newQty
                     }
                 }
     
@@ -71,8 +72,8 @@ function Company({ route, navigation }) {
             // console.log(orderList);
         }
             
-        function getOrderQuantity(itemId) {
-            let orderItem = orderItems.filter(item => item.menuId == itemId)
+        function getOrderQuantity(selectedItem) {
+            let orderItem = orderItems.filter(item => item.menuId == selectedItem.id)
 
             if (orderItem.length > 0) {
                 return orderItem[0].qty
@@ -165,7 +166,7 @@ function Company({ route, navigation }) {
                 ], { useNativeDriver: false })}
             >
                 {
-                    menu?.setMealList.map((item, index) => (
+                    menu?.setMealList.map((selectedItem, index) => (
                         <View
                             key={`menu-${index}`}
                             style={{ alignItems: 'center' }}
@@ -173,7 +174,7 @@ function Company({ route, navigation }) {
                             <View style={{ height: SIZES.height * 0.35 }}>
                                 {/* Food Image */}
                                 <Image
-                                    source={{uri: item.imageUrl}}
+                                    source={{uri: selectedItem.imageUrl}}
                                     resizeMode="contain"
                                     style={{
                                         width: SIZES.width,
@@ -202,7 +203,7 @@ function Company({ route, navigation }) {
                                             borderTopLeftRadius: 25,
                                             borderBottomLeftRadius: 25
                                         }}
-                                        onPress={() => editOrder("-", item?.id)}
+                                        onPress={() => editOrder("-", selectedItem)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}> - </Text>
                                     </TouchableOpacity>
@@ -215,7 +216,7 @@ function Company({ route, navigation }) {
                                             justifyContent: 'center'
                                         }}
                                     >
-                                          <Text style={{ ...FONTS.h2 }}>{getOrderQuantity(item?.id)}</Text>
+                                          <Text style={{ ...FONTS.h2 }}>{getOrderQuantity(selectedItem)}</Text>
                                     </View>
 
                                     <TouchableOpacity
@@ -227,7 +228,7 @@ function Company({ route, navigation }) {
                                             borderTopRightRadius: 25,
                                             borderBottomRightRadius: 25
                                         }}
-                                        onPress={() => editOrder("+", item?.id)}
+                                        onPress={() => editOrder("+", selectedItem)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}> + </Text>
                                     </TouchableOpacity>
@@ -243,8 +244,8 @@ function Company({ route, navigation }) {
                                     paddingHorizontal: SIZES.padding * 2
                                 }}
                             >
-                                <Text style={{ marginVertical: 10, textAlign: 'center', ...FONTS.h2 }}>{item.name}</Text>
-                                <Text style={{ ...FONTS.body3 }}>{item.description}</Text>
+                                <Text style={{ marginVertical: 10, textAlign: 'center', ...FONTS.h2 }}>{selectedItem.name}</Text>
+                                <Text style={{ ...FONTS.body3 }}>{selectedItem.description}</Text>
                             </View>
 
                             {/* Calories */}
@@ -265,7 +266,7 @@ function Company({ route, navigation }) {
 
                                 <Text style={{
                                     ...FONTS.body3, color: COLORS.darygray
-                                }}>{item.calories} cal - P:{item.protein} F:{item.fats} C:{item.carbs}</Text>
+                                }}>{selectedItem.calories} cal - P:{selectedItem.protein} F:{selectedItem.fats} C:{selectedItem.carbs}</Text>
                             </View>
                         </View>
                     ))

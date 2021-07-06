@@ -10,7 +10,7 @@ function Basket({ route, navigation }) {
     const [orderItems, setOrderItems] = useState([]);
     const [menu, setMenu] = useState(null);
 
-    console.log(menu);
+    console.log(orderItems);
 
     useEffect(() => {
         let { company, orderItems, menu } = route.params; 
