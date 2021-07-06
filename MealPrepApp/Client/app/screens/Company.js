@@ -28,6 +28,10 @@ function Company({ route, navigation }) {
             ShopServices.getShopMenu(company?.id)
             .then(items => setMenu(items))
         }, [company])
+
+        // useEffect(() => {
+        //     orderQuantity
+        // }, [getOrderQuantity])
         
         // useEffect(() => {
         //     ShopServices.getShopMenu(company?.id)
@@ -55,6 +59,14 @@ function Company({ route, navigation }) {
             }
             // console.log(orderQuantity)
             // console.log(currentMenuId)
+        }
+
+        function getOrderQuantity() {
+            console.log('swiped');
+
+
+
+            return 0;
         }
 
     function renderHeader() {
@@ -186,7 +198,7 @@ function Company({ route, navigation }) {
                                             justifyContent: 'center'
                                         }}
                                     >
-                                          <Text style={{ ...FONTS.h2 }}>{orderQuantity}</Text>
+                                          <Text style={{ ...FONTS.h2 }}>{getOrderQuantity()}</Text>
                                     </View>
 
                                     <TouchableOpacity
