@@ -30,7 +30,7 @@ public class MenuLoaders {
 
 
     @Test
-    public void createMenuForShopOne() throws IOException {
+    public void createMenuForGrams() throws IOException {
         Parser parseFile = new Parser("src/test/parser_test_files/shop_one_dummy.csv");
         parseFile.parseCSVFile();
 
@@ -42,7 +42,7 @@ public class MenuLoaders {
             foodItemRepository.save(food);
         }
 
-        Menu menu = new Menu("Shop One", parseFile.getSetMealList(), parseFile.getCustomFoodList());
+        Menu menu = new Menu("Grams", parseFile.getSetMealList(), parseFile.getCustomFoodList());
         menuRepository.save(menu);
     }
 
@@ -64,8 +64,8 @@ public class MenuLoaders {
     }
 
     @Test
-    public void createMenuForShopThree() throws IOException {
-        Parser parseFile = new Parser("src/test/parser_test_files/bulk_house_dummy.csv");
+    public void createMenuForBulkHouse() throws IOException {
+        Parser parseFile = new Parser("src/test/parser_test_files/shop_one_dummy.csv");
         parseFile.parseCSVFile();
 
         for (SetMeal meal : parseFile.getSetMealList()) {
@@ -77,6 +77,40 @@ public class MenuLoaders {
         }
 
         Menu menu = new Menu("Bulk House", parseFile.getSetMealList(), parseFile.getCustomFoodList());
+        menuRepository.save(menu);
+    }
+
+    @Test
+    public void createMenuForKCal() throws IOException {
+        Parser parseFile = new Parser("src/test/parser_test_files/shop_one_dummy.csv");
+        parseFile.parseCSVFile();
+
+        for (SetMeal meal : parseFile.getSetMealList()) {
+            setMealRepository.save(meal);
+        }
+
+        for (FoodItem food : parseFile.getCustomFoodList()) {
+            foodItemRepository.save(food);
+        }
+
+        Menu menu = new Menu("KCal Kitchen", parseFile.getSetMealList(), parseFile.getCustomFoodList());
+        menuRepository.save(menu);
+    }
+
+    @Test
+    public void createMenuForNourish() throws IOException {
+        Parser parseFile = new Parser("src/test/parser_test_files/shop_one_dummy.csv");
+        parseFile.parseCSVFile();
+
+        for (SetMeal meal : parseFile.getSetMealList()) {
+            setMealRepository.save(meal);
+        }
+
+        for (FoodItem food : parseFile.getCustomFoodList()) {
+            foodItemRepository.save(food);
+        }
+
+        Menu menu = new Menu("Nourish Fit Food", parseFile.getSetMealList(), parseFile.getCustomFoodList());
         menuRepository.save(menu);
     }
 

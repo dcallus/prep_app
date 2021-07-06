@@ -22,7 +22,9 @@ function Basket({ route, navigation }) {
     }, [])
 
     function completeOrder() {
-        
+        setCompany(null)
+        setOrderItems([])
+        setMenu(null)
         navigation.navigate("Home")
     }
 
