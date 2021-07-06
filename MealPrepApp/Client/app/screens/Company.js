@@ -15,12 +15,12 @@ import ShopServices from '../../services/ShopServices';
 
 function Company({ route, navigation }) {
     
-        // const scrollX = new Animated.Value(0);
+        const scrollX = new Animated.Value(0);
         const [company, setCompany] = useState(null);
         const [menu, setMenu] = useState(null);
-        const [orderQuantity, setOrderQuantity] = useState(0);
-        const [currentMenuId, setCurrentMenuId] = useState(null);
-        const [orderList, setOrderList] = useState([]);
+        // const [orderQuantity, setOrderQuantity] = useState(0);
+        // const [currentMenuId, setCurrentMenuId] = useState(null);
+        const [orderItems, setOrderItems] = useState([]);
         
         useEffect(() => {
             let {item} = route.params;
@@ -38,35 +38,46 @@ function Company({ route, navigation }) {
         //         .then(items => setMenu(items))
         // }, []);
 
-        function editOrder(action, item) {
-            // setOrderQuantity(item.quantity)
+        function editOrder(action, itemId) {
+            
+            let orderList = orderItems.slice() 
+            let item = orderList.filter(item => item.id == itemId)
+
             if (action == "+") {
-                if (item.hasOwnProperty('quantity')) {
-                    item.quantity += 1
-                }
-                else { item.quantity = 0}
-                setOrderQuantity(item.quantity)
-                // orderList.push(item)
-                // setCurrentMenuId(menuId)
-            } else {
-                if (orderQuantity > 0) {
-                    setOrderQuantity(item.quantity)
-                    if (item.hasOwnProperty('quantity')) {
-                        item.quantity -= 1
+                if (item.length > 0) {
+                    let newQty = item[0].qty + 1
+                    item[0].qty = newQty
+                } else {
+                    const newItem = {
+                        menuId: itemId,
+                        qty: 1
                     }
-                    else { item.quantity = 0}
+                    orderList.push(newItem)
                 }
+    
+                setOrderItems(orderList)
+            } else {
+                if (item.length > 0) {
+                    if (item[0]?.qty > 0) {
+                        let newQty = item[0].qty - 1
+                        itemArray[0].qty = newQty
+                    }
+                }
+    
+                setOrderItems(orderList)
             }
-            // console.log(orderQuantity)
-            // console.log(currentMenuId)
+            console.log(orderList);
         }
+            
+    
+        function getOrderQuantity(itemId) {
+            let orderItem = orderItems.filter(item => item.id == itemId)
 
-        function getOrderQuantity() {
-            console.log('swiped');
-
-
-
-            return 0;
+            if (orderItem.length > 0) {
+                return orderItem[0].qty
+            }
+    
+            return 0
         }
 
     function renderHeader() {
@@ -143,9 +154,9 @@ function Company({ route, navigation }) {
                 scrollEventThrottle={16}
                 snapToAlignment="center"
                 showsHorizontalScrollIndicator={false}
-                // onScroll={Animated.event([
-                //     { nativeEvent: { contentOffset: { x: scrollX } } }
-                // ], { useNativeDriver: false })}
+                onScroll={Animated.event([
+                    { nativeEvent: { contentOffset: { x: scrollX } } }
+                ], { useNativeDriver: false })}
             >
                 {
                     menu?.setMealList.map((item, index) => (
@@ -185,7 +196,7 @@ function Company({ route, navigation }) {
                                             borderTopLeftRadius: 25,
                                             borderBottomLeftRadius: 25
                                         }}
-                                        onPress={() => editOrder("-", item)}
+                                        onPress={() => editOrder("-", item?.id)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}> - </Text>
                                     </TouchableOpacity>
@@ -198,7 +209,7 @@ function Company({ route, navigation }) {
                                             justifyContent: 'center'
                                         }}
                                     >
-                                          <Text style={{ ...FONTS.h2 }}>{getOrderQuantity()}</Text>
+                                          <Text style={{ ...FONTS.h2 }}>{getOrderQuantity(item.id)}</Text>
                                     </View>
 
                                     <TouchableOpacity
@@ -210,7 +221,7 @@ function Company({ route, navigation }) {
                                             borderTopRightRadius: 25,
                                             borderBottomRightRadius: 25
                                         }}
-                                        onPress={() => editOrder("+", item)}
+                                        onPress={() => editOrder("+", item?.id)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}> + </Text>
                                     </TouchableOpacity>
