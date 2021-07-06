@@ -53,7 +53,7 @@ function Company({ route, navigation }) {
                     else { item.quantity = 0}
                 }
             }
-            // console.log(orderQuantity)
+            console.log(item.quantity)
             // console.log(currentMenuId)
         }
 
