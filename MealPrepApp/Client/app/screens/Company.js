@@ -268,10 +268,67 @@ function Company({ route, navigation }) {
         )
     }
 
+    function renderOrder() {
+        return (
+            <View>
+                <View
+                    style={{
+                        backgroundColor: COLORS.white,
+                        borderTopLeftRadius: 40,
+                        borderTopRightRadius: 40
+                    }}
+                >
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            paddingVertical: SIZES.padding * 2,
+                            paddingHorizontal: SIZES.padding * 3,
+                            borderBottomColor: COLORS.lightGray2,
+                            borderBottomWidth: 1
+                        }}
+                    >
+                        <Text style={{ ...FONTS.h3 }}> items in Cart</Text>
+                        <Text style={{ ...FONTS.h3 }}>£97.50</Text>
+                    </View>
+                        {/* Order Button */}
+                    <View
+                        style={{
+                            padding: SIZES.padding * 2,
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <TouchableOpacity
+                            style={{
+                                width: SIZES.width * 0.9,
+                                padding: SIZES.padding,
+                                backgroundColor: COLORS.primary,
+                                alignItems: 'center',
+                                borderRadius: SIZES.radius
+                            }}
+                            onPress={() => navigation.navigate("Basket", {
+                                company: company,
+                            })}
+                        >
+                            <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Order</Text>
+                        </TouchableOpacity>
+                    </View>
+ 
+
+
+                </View>
+
+
+            </View>
+        )
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
             {renderFoodInfo()}
+            {renderOrder()}
         </SafeAreaView>
     );
 }
