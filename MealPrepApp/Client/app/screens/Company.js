@@ -21,6 +21,7 @@ function Company({ route, navigation }) {
         // const [orderQuantity, setOrderQuantity] = useState(0);
         // const [currentMenuId, setCurrentMenuId] = useState(null);
         const [orderItems, setOrderItems] = useState([]);
+        const [orderQuantity, setOrderQuantity] = useState(0);
         
         useEffect(() => {
             // setCompany(null)
@@ -67,7 +68,7 @@ function Company({ route, navigation }) {
     
                 setOrderItems(orderList)
             }
-            console.log(orderList);
+            // console.log(orderList);
         }
             
         function getOrderQuantity(itemId) {
@@ -81,8 +82,8 @@ function Company({ route, navigation }) {
         }
 
         function getOrderCount() {
-            
-            return orderItems.length;
+            let itemCount = orderItems.reduce((a, b) => a + (b.qty || 0), 0)
+            return itemCount;
         }
 
     function renderHeader() {
