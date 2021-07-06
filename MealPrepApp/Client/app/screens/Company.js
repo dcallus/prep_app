@@ -82,7 +82,7 @@ function Company({ route, navigation }) {
         }
 
         function getOrderCount() {
-            let itemCount = orderItems.reduce((a, b) => a + (b.qty || 0), 0)
+            let itemCount = orderItems.reduce((counter, item) => counter + (item.qty || 0), 0)
             return itemCount;
         }
 
@@ -314,6 +314,8 @@ function Company({ route, navigation }) {
                             }}
                             onPress={() => navigation.navigate("Basket", {
                                 company: company,
+                                orderItems: orderItems,
+                                menu: menu
                             })}
                         >
                             <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Order</Text>
