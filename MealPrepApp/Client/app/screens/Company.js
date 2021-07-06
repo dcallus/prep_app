@@ -15,7 +15,7 @@ import ShopServices from '../../services/ShopServices';
 
 function Company({ route, navigation }) {
     
-        // const scrollX = new Animated.Value(0);
+        const scrollX = new Animated.Value(0);
         const [company, setCompany] = useState(null);
         const [menu, setMenu] = useState(null);
         // const [orderQuantity, setOrderQuantity] = useState(0);
@@ -27,9 +27,10 @@ function Company({ route, navigation }) {
             // setCompany(null)
             let {item} = route.params;
             setCompany(item)
+
             ShopServices.getShopMenu(company?.id)
             .then(items => setMenu(items))
-        }, [company])
+        })
 
         // useEffect(() => {
         //     orderQuantity
@@ -97,6 +98,7 @@ function Company({ route, navigation }) {
                         justifyContent: 'center'
                     }}
                     onPress={() => navigation.navigate("Home")}
+                    // onPress={() => this.props.navigation.push("Home")}
                 >
                     <Image
                         source={icons.back}
@@ -323,8 +325,6 @@ function Company({ route, navigation }) {
                         </TouchableOpacity>
                     </View>
  
-
-
                 </View>
 
 
