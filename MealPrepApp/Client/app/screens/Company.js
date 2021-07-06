@@ -73,7 +73,6 @@ function Company({ route, navigation }) {
                         }}
                     >
                         <Text style={{ ...FONTS.h3 }}>{company?.name}</Text>
-                        <Text>{menu?.setMealList[0].name}</Text>
                     </View>
                 </View>
 
@@ -122,7 +121,8 @@ function Company({ route, navigation }) {
                                     resizeMode="contain"
                                     style={{
                                         width: SIZES.width,
-                                        height: "100%"
+                                        height: "100%",
+                                        borderRadius:20
                                     }}
                                 />
 
@@ -146,9 +146,9 @@ function Company({ route, navigation }) {
                                             borderTopLeftRadius: 25,
                                             borderBottomLeftRadius: 25
                                         }}
-                                        // onPress={() => editOrder("-", item.menuId, item.price)}
+                                        // onPress={() => editOrder("-", item.id)}
                                     >
-                                        <Text style={{ ...FONTS.body1 }}>-</Text>
+                                        <Text style={{ ...FONTS.body1 }}> - </Text>
                                     </TouchableOpacity>
 
                                     <View
@@ -159,7 +159,6 @@ function Company({ route, navigation }) {
                                             justifyContent: 'center'
                                         }}
                                     >
-                                        {/* <Text style={{ ...FONTS.h2 }}>{getOrderQty(item.menuId)}</Text> */}
                                     </View>
 
                                     <TouchableOpacity
@@ -171,9 +170,9 @@ function Company({ route, navigation }) {
                                             borderTopRightRadius: 25,
                                             borderBottomRightRadius: 25
                                         }}
-                                        // onPress={() => editOrder("+", item.menuId, item.price)}
+                                        // onPress={() => editOrder("+", item.id)}
                                     >
-                                        <Text style={{ ...FONTS.body1 }}>+</Text>
+                                        <Text style={{ ...FONTS.body1 }}> + </Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
