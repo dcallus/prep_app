@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import {View, Text, StyleSheet, SafeAreaView} from "react-native";
+import {View, Text, StyleSheet, SafeAreaView, Image} from "react-native";
 
 import { icons, images, SIZES, COLORS, FONTS } from '../constants';
 
@@ -20,20 +20,34 @@ function Basket({ route, navigation }) {
         // console.log(orderItems);
     }, [])
 
-    // function getOrderDetails() {
-    //     orderItems.filter((item) => 
-    // }
+    function getOrderDetails() {
+        const order = orderItems.map(item => {
+            return (
+                <View
+                style={{ alignItems: 'center' }}
+                >
+                    <Image
+                        source={{uri: item.name.imageUrl}}
+                        resizeMode="contain"
+                        style={{
+                            width: SIZES.width,
+                            height: "100%",
+                            borderRadius:20
+                        }}
+                    />
+                    <Text>{item.name.name} x {item.qty}</Text>
+                </View>
+            )
+        })
+        return order;
+    }
           
-
-    
-    
-
     return (
         <SafeAreaView style={styles.container}>
             <Text>Basket Screen</Text>
             <Text>{company?.name}</Text>
             {/* <Text> ? { orderItems[0].id} : null </Text> */}
-            {/* {getOrderDetails()} */}
+            {getOrderDetails()}
         </SafeAreaView>
     );
 }
