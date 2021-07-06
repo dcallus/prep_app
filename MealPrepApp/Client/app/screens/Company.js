@@ -15,7 +15,7 @@ import ShopServices from '../../services/ShopServices';
 
 function Company({ route, navigation }) {
     
-        const scrollX = new Animated.Value(0);
+        // const scrollX = new Animated.Value(0);
         const [company, setCompany] = useState(null);
         const [menu, setMenu] = useState(null);
         // const [orderQuantity, setOrderQuantity] = useState(0);
@@ -23,6 +23,7 @@ function Company({ route, navigation }) {
         const [orderItems, setOrderItems] = useState([]);
         
         useEffect(() => {
+            // setCompany(null)
             let {item} = route.params;
             setCompany(item)
             ShopServices.getShopMenu(company?.id)
@@ -69,7 +70,6 @@ function Company({ route, navigation }) {
             console.log(orderList);
         }
             
-    
         function getOrderQuantity(itemId) {
             let orderItem = orderItems.filter(item => item.menuId == itemId)
 
@@ -78,6 +78,11 @@ function Company({ route, navigation }) {
             }
     
             return 0
+        }
+
+        function getOrderCount() {
+            
+            return orderItems.length;
         }
 
     function renderHeader() {
@@ -89,7 +94,7 @@ function Company({ route, navigation }) {
                         paddingLeft: SIZES.padding * 2,
                         justifyContent: 'center'
                     }}
-                    onPress={() => navigation.goBack()}
+                    onPress={() => navigation.navigate("Home")}
                 >
                     <Image
                         source={icons.back}
@@ -167,7 +172,7 @@ function Company({ route, navigation }) {
                             <View style={{ height: SIZES.height * 0.35 }}>
                                 {/* Food Image */}
                                 <Image
-                                    source={item.imageUrl}
+                                    source={{uri: item.imageUrl}}
                                     resizeMode="contain"
                                     style={{
                                         width: SIZES.width,
@@ -288,8 +293,7 @@ function Company({ route, navigation }) {
                             borderBottomWidth: 1
                         }}
                     >
-                        <Text style={{ ...FONTS.h3 }}> items in Cart</Text>
-                        <Text style={{ ...FONTS.h3 }}>£97.50</Text>
+                        <Text style={{ ...FONTS.h3 }}> {getOrderCount()} items in Cart</Text>
                     </View>
                         {/* Order Button */}
                     <View
