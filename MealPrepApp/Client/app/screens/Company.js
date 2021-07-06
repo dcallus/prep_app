@@ -119,7 +119,7 @@ function Company({ route, navigation }) {
                                 {/* Food Image */}
                                 <Image
                                     source={item.imageUrl}
-                                    resizeMode="cover"
+                                    resizeMode="contain"
                                     style={{
                                         width: SIZES.width,
                                         height: "100%"
@@ -127,7 +127,7 @@ function Company({ route, navigation }) {
                                 />
 
                                 {/* Quantity */}
-                                {/* <View
+                                <View
                                     style={{
                                         position: 'absolute',
                                         bottom: - 20,
@@ -136,8 +136,8 @@ function Company({ route, navigation }) {
                                         justifyContent: 'center',
                                         flexDirection: 'row'
                                     }}
-                                > */}
-                                    {/* <TouchableOpacity
+                                >
+                                    <TouchableOpacity
                                         style={{
                                             width: 50,
                                             backgroundColor: COLORS.white,
@@ -146,7 +146,7 @@ function Company({ route, navigation }) {
                                             borderTopLeftRadius: 25,
                                             borderBottomLeftRadius: 25
                                         }}
-                                        onPress={() => editOrder("-", item.menuId, item.price)}
+                                        // onPress={() => editOrder("-", item.menuId, item.price)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}>-</Text>
                                     </TouchableOpacity>
@@ -159,10 +159,10 @@ function Company({ route, navigation }) {
                                             justifyContent: 'center'
                                         }}
                                     >
-                                        <Text style={{ ...FONTS.h2 }}>{getOrderQty(item.menuId)}</Text>
-                                    </View> */}
+                                        {/* <Text style={{ ...FONTS.h2 }}>{getOrderQty(item.menuId)}</Text> */}
+                                    </View>
 
-                                    {/* <TouchableOpacity
+                                    <TouchableOpacity
                                         style={{
                                             width: 50,
                                             backgroundColor: COLORS.white,
@@ -171,15 +171,15 @@ function Company({ route, navigation }) {
                                             borderTopRightRadius: 25,
                                             borderBottomRightRadius: 25
                                         }}
-                                        onPress={() => editOrder("+", item.menuId, item.price)}
+                                        // onPress={() => editOrder("+", item.menuId, item.price)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}>+</Text>
                                     </TouchableOpacity>
                                 </View>
-                            </View> */}
+                            </View>
 
                             {/* Name & Description */}
-                            {/* <View
+                            <View
                                 style={{
                                     width: SIZES.width,
                                     alignItems: 'center',
@@ -187,12 +187,12 @@ function Company({ route, navigation }) {
                                     paddingHorizontal: SIZES.padding * 2
                                 }}
                             >
-                                <Text style={{ marginVertical: 10, textAlign: 'center', ...FONTS.h2 }}>{item.name} - {item.price.toFixed(2)}</Text>
+                                <Text style={{ marginVertical: 10, textAlign: 'center', ...FONTS.h2 }}>{item.name}</Text>
                                 <Text style={{ ...FONTS.body3 }}>{item.description}</Text>
-                            </View> */}
+                            </View>
 
                             {/* Calories */}
-                            {/* <View
+                            <View
                                 style={{
                                     flexDirection: 'row',
                                     marginTop: 10
@@ -209,7 +209,7 @@ function Company({ route, navigation }) {
 
                                 <Text style={{
                                     ...FONTS.body3, color: COLORS.darygray
-                                }}>{item.calories.toFixed(2)} cal</Text> */}
+                                }}>{item.calories} cal - P:{item.protein} F:{item.fats} C:{item.carbs}</Text>
                             </View>
                         </View>
                     ))
