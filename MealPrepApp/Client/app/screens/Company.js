@@ -41,7 +41,7 @@ function Company({ route, navigation }) {
         function editOrder(action, itemId) {
             
             let orderList = orderItems.slice() 
-            let item = orderList.filter(item => item.id == itemId)
+            let item = orderList.filter(item => item.menuId == itemId)
 
             if (action == "+") {
                 if (item.length > 0) {
@@ -60,7 +60,7 @@ function Company({ route, navigation }) {
                 if (item.length > 0) {
                     if (item[0]?.qty > 0) {
                         let newQty = item[0].qty - 1
-                        itemArray[0].qty = newQty
+                        item[0].qty = newQty
                     }
                 }
     
@@ -71,7 +71,7 @@ function Company({ route, navigation }) {
             
     
         function getOrderQuantity(itemId) {
-            let orderItem = orderItems.filter(item => item.id == itemId)
+            let orderItem = orderItems.filter(item => item.menuId == itemId)
 
             if (orderItem.length > 0) {
                 return orderItem[0].qty
@@ -209,7 +209,7 @@ function Company({ route, navigation }) {
                                             justifyContent: 'center'
                                         }}
                                     >
-                                          <Text style={{ ...FONTS.h2 }}>{getOrderQuantity(item.id)}</Text>
+                                          <Text style={{ ...FONTS.h2 }}>{getOrderQuantity(item?.id)}</Text>
                                     </View>
 
                                     <TouchableOpacity
