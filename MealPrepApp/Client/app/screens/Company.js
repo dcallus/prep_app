@@ -18,6 +18,7 @@ function Company({ route, navigation }) {
         const scrollX = new Animated.Value(0);
         const [company, setCompany] = useState(null);
         const [menu, setMenu] = useState(null);
+        const [orderQuantity, setOrderQuantity] = useState(0);
         
         useEffect(() => {
             let {item} = route.params;
@@ -30,6 +31,17 @@ function Company({ route, navigation }) {
         //     ShopServices.getShopMenu(company?.id)
         //         .then(items => setMenu(items))
         // }, []);
+
+        function editOrder(action, menuId) {
+            if (action == "+") {
+                setOrderQuantity(orderQuantity+1)
+            } else {
+                if (orderQuantity > 0) {
+                    setOrderQuantity(orderQuantity-1)
+                }
+            }
+            console.log(orderQuantity)
+        }
 
     function renderHeader() {
         return (
@@ -146,7 +158,7 @@ function Company({ route, navigation }) {
                                             borderTopLeftRadius: 25,
                                             borderBottomLeftRadius: 25
                                         }}
-                                        // onPress={() => editOrder("-", item.id)}
+                                        onPress={() => editOrder("-", item.id)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}> - </Text>
                                     </TouchableOpacity>
@@ -159,6 +171,7 @@ function Company({ route, navigation }) {
                                             justifyContent: 'center'
                                         }}
                                     >
+                                          <Text style={{ ...FONTS.h2 }}>{orderQuantity}</Text>
                                     </View>
 
                                     <TouchableOpacity
@@ -170,7 +183,7 @@ function Company({ route, navigation }) {
                                             borderTopRightRadius: 25,
                                             borderBottomRightRadius: 25
                                         }}
-                                        // onPress={() => editOrder("+", item.id)}
+                                        onPress={() => editOrder("+", item.id)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}> + </Text>
                                     </TouchableOpacity>
