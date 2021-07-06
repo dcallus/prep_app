@@ -15,10 +15,12 @@ import ShopServices from '../../services/ShopServices';
 
 function Company({ route, navigation }) {
     
-        const scrollX = new Animated.Value(0);
+        // const scrollX = new Animated.Value(0);
         const [company, setCompany] = useState(null);
         const [menu, setMenu] = useState(null);
         const [orderQuantity, setOrderQuantity] = useState(0);
+        const [currentMenuId, setCurrentMenuId] = useState(null);
+        const [orderList, setOrderList] = useState([]);
         
         useEffect(() => {
             let {item} = route.params;
@@ -32,15 +34,27 @@ function Company({ route, navigation }) {
         //         .then(items => setMenu(items))
         // }, []);
 
-        function editOrder(action, menuId) {
+        function editOrder(action, item) {
+            // setOrderQuantity(item.quantity)
             if (action == "+") {
-                setOrderQuantity(orderQuantity+1)
+                if (item.hasOwnProperty('quantity')) {
+                    item.quantity += 1
+                }
+                else { item.quantity = 0}
+                setOrderQuantity(item.quantity)
+                // orderList.push(item)
+                // setCurrentMenuId(menuId)
             } else {
                 if (orderQuantity > 0) {
-                    setOrderQuantity(orderQuantity-1)
+                    setOrderQuantity(item.quantity)
+                    if (item.hasOwnProperty('quantity')) {
+                        item.quantity -= 1
+                    }
+                    else { item.quantity = 0}
                 }
             }
-            console.log(orderQuantity)
+            // console.log(orderQuantity)
+            // console.log(currentMenuId)
         }
 
     function renderHeader() {
@@ -109,6 +123,7 @@ function Company({ route, navigation }) {
     }
 
     function renderFoodInfo() {
+        
         return (
             <Animated.ScrollView
                 horizontal
@@ -158,7 +173,7 @@ function Company({ route, navigation }) {
                                             borderTopLeftRadius: 25,
                                             borderBottomLeftRadius: 25
                                         }}
-                                        onPress={() => editOrder("-", item.id)}
+                                        onPress={() => editOrder("-", item)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}> - </Text>
                                     </TouchableOpacity>
@@ -183,7 +198,7 @@ function Company({ route, navigation }) {
                                             borderTopRightRadius: 25,
                                             borderBottomRightRadius: 25
                                         }}
-                                        onPress={() => editOrder("+", item.id)}
+                                        onPress={() => editOrder("+", item)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}> + </Text>
                                     </TouchableOpacity>
