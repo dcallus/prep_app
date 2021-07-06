@@ -27,19 +27,11 @@ function Company({ route, navigation }) {
             // setCompany(null)
             let {item} = route.params;
             setCompany(item)
-
+            
             ShopServices.getShopMenu(company?.id)
             .then(items => setMenu(items))
-        })
+        }, [company])
 
-        // useEffect(() => {
-        //     orderQuantity
-        // }, [getOrderQuantity])
-        
-        // useEffect(() => {
-        //     ShopServices.getShopMenu(company?.id)
-        //         .then(items => setMenu(items))
-        // }, []);
 
         function editOrder(action, selectedItem) {
             
@@ -146,7 +138,8 @@ function Company({ route, navigation }) {
                         resizeMode="contain"
                         style={{
                             width: 30,
-                            height: 30
+                            height: 30,
+                            tintColor: COLORS.lightGray2
                         }}
                     />
                 </TouchableOpacity>

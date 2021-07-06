@@ -35,21 +35,26 @@ function Basket({ route, navigation }) {
                 <View
                 style={{ alignItems: 'center', 
                 flex: 1, 
-                flexDirection: "row", 
-                justifyContent: "space-around"}}
+                flexDirection: "column", 
+                justifyContent: "flex-start",
+                marginLeft: 30,
+                marginRight: 30,
+                alignItems: "left"
+                // marginTop: 10
+            }}
                 key={item => `basket-${item.id}`}
                 >
-                    <Text style={{
-                        flex: 0.75
-                    }}>{item.name.name} x {item.qty}</Text>
+                    <Text style={{...FONTS.h3, marginBottom: 10 }}
+                    >{item.qty}x {item.name.name}</Text>
                     <Image
                         source={{uri: item.name.imageUrl}}
-                        resizeMode="contain"
+                        resizeMode="cover"
                         style={{
-                            width: SIZES.width/2,
-                            height: "100%",
-                            borderRadius:20,
-                            flex: 0.25
+                            width: "100%",
+                            height: 90,
+                            // borderRadius: 20,
+                            flex: 1,
+                            marginBottom: 10
                         }}
                     />
                 </View>
@@ -58,9 +63,61 @@ function Basket({ route, navigation }) {
         return order;
     }
 
+    function renderPayment() {
+        return (
+
+                    <View>
+                        <View
+                            style={{
+                                backgroundColor: COLORS.white,
+                                borderTopLeftRadius: 40,
+                                borderTopRightRadius: 40
+                            }}
+                        >
+                            <View
+                                style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-between',
+                                    paddingVertical: SIZES.padding * 2,
+                                    paddingHorizontal: SIZES.padding * 3,
+                                    borderBottomColor: COLORS.lightGray2,
+                                    borderBottomWidth: 1
+                                }}
+                            >
+                                <Text style={{ ...FONTS.h3 }}> Total Payment Due: </Text>
+                            </View>
+                                {/* Order Button */}
+                                <View
+                    style={{
+                        padding: SIZES.padding * 2,
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                    >
+                    <TouchableOpacity
+                        style={{
+                            width: SIZES.width * 0.9,
+                            padding: SIZES.padding,
+                            backgroundColor: COLORS.primary,
+                            alignItems: 'center',
+                            borderRadius: SIZES.radius
+                        }}
+                        onPress={() => completeOrder()}
+                    >
+                        <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Pay Now</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </View>
+
+
+        )
+    }
+
     function renderHeader() {
         return (
-            <View>
+            <View
+            style={{ paddingBottom: 50}}>
             <View style={{ flexDirection: 'row' }}>
                 <TouchableOpacity
                     style={{
@@ -80,7 +137,6 @@ function Basket({ route, navigation }) {
                     />
                 </TouchableOpacity>
 
-                {/* Restaurant Name Section */}
                 <View
                     style={{
                         flex: 1,
@@ -116,54 +172,25 @@ function Basket({ route, navigation }) {
                         resizeMode="contain"
                         style={{
                             width: 30,
-                            height: 30
+                            height: 30,
+                            tintColor: COLORS.lightGray2
                         }}
                     />
                 </TouchableOpacity>
             </View>
-
-            <View
-            style={{
-                padding: SIZES.padding * 2,
-                alignItems: 'center',
-                justifyContent: 'center'
-            }}
-            >
-            <TouchableOpacity
-                style={{
-                    width: SIZES.width * 0.9,
-                    padding: SIZES.padding,
-                    backgroundColor: COLORS.primary,
-                    alignItems: 'center',
-                    borderRadius: SIZES.radius
-                }}
-                onPress={() => completeOrder()}
-            >
-                <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Pay Now</Text>
-            </TouchableOpacity>
-            </View>
+            <Text style={{ ...FONTS.h1, fontWeight: "800", paddingTop: 20, paddingLeft: 25 }}>ORDER SUMMARY:</Text>
             </View>
         )
     }
           
     return (
 
-        <Animated.ScrollView
-                vertical
-                pagingEnabled
-                scrollEventThrottle={16}
-                snapToAlignment="center"
-                showsHorizontalScrollIndicator={false}
-                onScroll={Animated.event([
-                    { nativeEvent: { contentOffset: { y: scrollY } } }
-                ], { useNativeDriver: false })}
-            >
-                <SafeAreaView style={styles.container}>
-                    {/* <Text> ? { orderItems[0].id} : null </Text> */}
-                    {renderHeader()}
-                    {renderOrderDetails()}
-                </SafeAreaView>
-        </Animated.ScrollView>
+            <SafeAreaView style={styles.container}>
+                {renderHeader()}
+                {renderOrderDetails()}
+                {renderPayment()}
+            </SafeAreaView>
+    
     );
 }
 
