@@ -252,7 +252,7 @@ function Company({ route, navigation }) {
                                 }}
                             >
                                 <Text style={{ marginVertical: 10, textAlign: 'center', ...FONTS.h2 }}>{selectedItem.name}</Text>
-                                <Text style={{ ...FONTS.body3 }}>{selectedItem.description}</Text>
+                                <Text style={{ ...FONTS.body3, color: "grey" }}>{selectedItem.description}</Text>
                             </View>
 
                             {/* Calories */}

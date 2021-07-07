@@ -81,8 +81,8 @@ const Home = ({ route, navigation }) => {
 
                     {/* Restaurant Info */}
                     <Text style={{ ...FONTS.body2 }}>{item.name}</Text>
+                    <Text style={{ ...FONTS.body4, color: "grey" }}>{item.description}</Text>
                     
-                    {/* Rating */}
                     
                 </TouchableOpacity>
         )
