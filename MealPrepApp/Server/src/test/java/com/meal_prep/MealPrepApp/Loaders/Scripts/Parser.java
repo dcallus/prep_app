@@ -118,7 +118,7 @@ public class Parser {
             Integer total_weight = convertStringToInteger(total_weight_string);
 
             String ingredients = record.get("INGREDIENTS (e.g. Chicken, Cauliflower…)");
-            String image_url = record.get("IMAGE_URL").toLowerCase();
+            String image_url = record.get("IMAGE_URL");
 
             String set_meal_string = record.get("SET_MEAL? (TRUE/FALSE - FALSE=Individual food item for a custom meal)").toLowerCase();
             Boolean set_meal = convertStringToBoolean(set_meal_string);

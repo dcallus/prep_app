@@ -99,7 +99,7 @@ function Company({ route, navigation }) {
                         width: 50,
                         paddingLeft: SIZES.padding * 2,
                         justifyContent: 'center',
-                        paddingBottom: 80
+                        // paddingBottom: 80
                     }}
                     onPress={() => navigation.navigate("Home")}
                     // onPress={() => this.props.navigation.push("Home")}
@@ -171,6 +171,9 @@ function Company({ route, navigation }) {
                 onScroll={Animated.event([
                     { nativeEvent: { contentOffset: { x: scrollX } } }
                 ], { useNativeDriver: false })}
+                style={{
+                    paddingTop: 50
+                }}
             >
                 {
                     menu?.setMealList.map((selectedItem, index) => (
