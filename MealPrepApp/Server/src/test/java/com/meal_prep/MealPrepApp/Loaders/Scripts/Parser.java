@@ -99,8 +99,8 @@ public class Parser {
         // for each line in the CSV file check it matches with the expected (above).
         for (CSVRecord record : records) {
             // Parse Strings
-            String shop_name = record.get("SHOP_NAME").toLowerCase();
-            String meal_name = record.get("MEAL_NAME").toLowerCase();
+            String shop_name = record.get("SHOP_NAME");
+            String meal_name = record.get("MEAL_NAME");
 
             String protein_amount_string = record.get("PROTEIN (grams)");
             Integer protein_amount = convertStringToInteger(protein_amount_string);
@@ -117,15 +117,15 @@ public class Parser {
             String total_weight_string = record.get("TOTAL_WEIGHT (grams)");
             Integer total_weight = convertStringToInteger(total_weight_string);
 
-            String ingredients = record.get("INGREDIENTS (e.g. Chicken, Cauliflower…)").toLowerCase();
+            String ingredients = record.get("INGREDIENTS (e.g. Chicken, Cauliflower…)");
             String image_url = record.get("IMAGE_URL").toLowerCase();
 
             String set_meal_string = record.get("SET_MEAL? (TRUE/FALSE - FALSE=Individual food item for a custom meal)").toLowerCase();
             Boolean set_meal = convertStringToBoolean(set_meal_string);
 
-            String category = record.get("CATEGORY (e.g. Breakfast - Muscle Food - Snack)").toLowerCase();
-            String main_protein = record.get("MAIN_PROTEIN (Optional)").toLowerCase();
-            String description = record.get("DESCRIPTION (Optional)").toLowerCase();
+            String category = record.get("CATEGORY (e.g. Breakfast - Muscle Food - Snack)");
+            String main_protein = record.get("MAIN_PROTEIN (Optional)");
+            String description = record.get("DESCRIPTION (Optional)");
 
             String price_string = record.get("PRICE (optional if there is a set price for all meals)");
 

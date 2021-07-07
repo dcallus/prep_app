@@ -22,6 +22,7 @@ function Company({ route, navigation }) {
         // const [currentMenuId, setCurrentMenuId] = useState(null);
         const [orderItems, setOrderItems] = useState([]);
         const [orderQuantity, setOrderQuantity] = useState(0);
+        const [orderTotal, setOrderTotal] = useState(0);
         
         useEffect(() => {
             // setCompany(null)
@@ -30,7 +31,11 @@ function Company({ route, navigation }) {
             
             ShopServices.getShopMenu(company?.id)
             .then(items => setMenu(items))
-        }, [company])
+        })
+
+        // useEffect(() => {
+        //     orderTotal
+        // }, [getOrderQuantity])
 
 
         function editOrder(action, selectedItem) {
@@ -80,6 +85,12 @@ function Company({ route, navigation }) {
             return itemCount;
         }
 
+        function getOrderTotal() {
+            let total = orderItems.reduce((counter, item) => counter + (item.name.price * item.qty || 0), 0)
+            // setOrderTotal(total);
+            return total.toFixed(2);
+        }
+
     function renderHeader() {
         return (
             <View style={{ flexDirection: 'row' }}>
@@ -87,7 +98,8 @@ function Company({ route, navigation }) {
                     style={{
                         width: 50,
                         paddingLeft: SIZES.padding * 2,
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        paddingBottom: 80
                     }}
                     onPress={() => navigation.navigate("Home")}
                     // onPress={() => this.props.navigation.push("Home")}
@@ -291,6 +303,7 @@ function Company({ route, navigation }) {
                         }}
                     >
                         <Text style={{ ...FONTS.h3 }}> {getOrderCount()} items in Cart</Text>
+                        <Text style={{ ...FONTS.h3 }}> £{getOrderTotal()}</Text>
                     </View>
                         {/* Order Button */}
                     <View
@@ -311,7 +324,8 @@ function Company({ route, navigation }) {
                             onPress={() => navigation.navigate("Basket", {
                                 company: company,
                                 orderItems: orderItems,
-                                menu: menu
+                                menu: menu,
+                                total: {getOrderTotal}
                             })}
                         >
                             <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Order</Text>

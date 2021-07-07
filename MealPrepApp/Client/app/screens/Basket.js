@@ -133,6 +133,11 @@ function Basket({ route, navigation }) {
         return order;
     }
 
+    function getOrderTotal() {
+        let total = orderItems.reduce((counter, item) => counter + (item.name.price * item.qty || 0), 0)
+        return total.toFixed(2);
+    }
+
     function renderPayment() {
         return (
                     <View>
@@ -153,7 +158,7 @@ function Basket({ route, navigation }) {
                                     borderBottomWidth: 1
                                 }}
                             >
-                                <Text style={{ ...FONTS.h3 }}> Total Payment Due: </Text>
+                                <Text style={{ ...FONTS.h3 }}> Total Payment Due: £{getOrderTotal()} </Text>
                             </View>
                                 {/* Order Button */}
                                 <View
