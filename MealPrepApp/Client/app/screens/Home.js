@@ -1,22 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import { Text, View, StyleSheet, SafeAreaView, TouchableOpacity, FlatList, Image } from "react-native";
-
+import RNRestart from 'react-native-restart';
 
 import colors from '../constants/colors';
 import ShopServices from '../../services/ShopServices';
 
 import { icons, images, SIZES, COLORS, FONTS } from '../constants';
 
-const Home = ({ navigation }) => {
+const Home = ({ route, navigation }) => {
 
     const [items, setItems] = useState([]);
 
     useEffect(() => {
         ShopServices.getShop()
             .then(items => setItems(items))
-    }, []);
+    });
+
 
     function renderCompaniesList() {
+        
         const renderItem = ({ item }) => (
            
                 <TouchableOpacity
@@ -79,8 +81,8 @@ const Home = ({ navigation }) => {
 
                     {/* Restaurant Info */}
                     <Text style={{ ...FONTS.body2 }}>{item.name}</Text>
+                    <Text style={{ ...FONTS.body4, color: "grey" }}>{item.description}</Text>
                     
-                    {/* Rating */}
                     
                 </TouchableOpacity>
         )
@@ -157,70 +159,6 @@ const Home = ({ navigation }) => {
         )
     }
 
-    // function renderCompanyList() {
-
-    //     const renderItem = ({item}) => {
-    //         return (
-    //             <TouchableOpacity
-    //                 style={{
-    //                     padding: SIZES.padding,
-    //                     paddingBottom: SIZES.padding *2,
-    //                     backgroundColor: COLORS.grassgreen,
-    //                     borderRadius: SIZES.radius,
-    //                     alignItems: 'center',
-    //                     justifyContent: 'center',
-    //                     marginRight: SIZES.padding,
-    //                     ...styles.shadow
-    //                 }}
-    //                 onPress={() => onSelectCategory(item)}
-    //             >
-    //                 <View
-    //                     style={{
-    //                         width: 50, 
-    //                         height: 50, 
-    //                         borderRadius: 25,
-    //                         alignItems: 'center',
-    //                         justifyContent: 'center',
-    //                         backgroundColor: (selectedCategory?.id == item.id) ? COLORS.white : COLORS.lightGray
-    //                     }}
-    //                 >
-    //                     <Image 
-    //                         source={item.icon}
-    //                         resizeMode='contain'
-    //                         style={{
-    //                             width: 30,
-    //                             height: 30
-    //                         }}
-    //                     />
-    //                 </View>
-
-    //                 <Text
-    //                     style={{
-    //                         marginTop: SIZES.padding,
-    //                         color: COLORS.white,
-    //                         ...FONTS.body5
-    //                     }}
-    //                 >
-    //                     {item.name}
-    //                 </Text>
-    //             </TouchableOpacity>
-    //         )
-    //     }
-    //     return (
-    //         <View style={{padding: SIZES.padding *2}}>
-    //             <Text style={{ ...FONTS.h1, fontWeight: "800" }}>ORDER NOW</Text>
-
-    //             <FlatList
-    //                 // data={categories}
-    //                 horizontal
-    //                 showsHorizontalScrollIndicator={false}
-    //                 keyExtractor={item => {item.id}}
-    //                 renderItem={renderItem}
-    //                 contentContainerStyle={{ paddingVertical: SIZES.padding }}
-    //             />
-    //         </View>
-    //     )
-    // }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -248,87 +186,5 @@ const styles = StyleSheet.create({
     
 })
 
-// function Home(props) {
-
-//     const [items, setItems] = useState([]);
-//     (items);
-
-//     useEffect(() => {
-//         MealAppService.getFoodItem()
-//             .then(items => setItems(items))
-//     }, []);
-
-//     const foodItems = items.map((item, key) => {
-//         return (
-//             <View style={styles.companyListContainer}>
-//                 <View>
-//                     <Image style={styles.image} source={{uri: item.imageUrl}}/>
-//                     <Text> {item.name} </Text>
-//                 </View>
-//             </View>
-//         )}) 
-//         console.log(foodItems[0]);
-
-
-//     return (
-//         <View>
-//             <View style={styles.background}>
-//                 <View style={styles.header}/>
-//                 <View style={styles.logoContainer}>
-//                     <Image style={styles.logo} source={require("../assets/images/logo2.png")}/>
-//                 </View>
-//             </View>
-//             <View>{foodItems}</View>
-//         </View>
-//     );
-// }
-
-
-// const styles = StyleSheet.create({
-//     background: {
-//         flex: 1, // sets the image background to entire screen
-//         // justifyContent: "space-between",
-//         alignItems: "center"
-//     },
-//     header: {
-//         width: "100%", 
-//         height: 135,
-//         backgroundColor: colors.black,
-//         alignItems: "flex-start", 
-//     },
-//     postcodeField: {
-//         backgroundColor: colors.white,
-//         width: "80%", 
-//         height: 100,
-//         borderRadius: 30
-//     },
-//     logoContainer: {
-//         position: "absolute",
-//         top: 20, 
-//         flexDirection: "row"
-//     },
-//     logo: {
-//         width: 480, 
-//         height: 100,
-//         alignItems: "center"
-//     },
-//     logoText: {
-//         color: "white",
-//         fontSize: 40
-//     },
-//     footer: {
-//         width: "100%", 
-//         height: 90,
-//         backgroundColor: colors.grassgreen
-//     },
-//     companyListContainer: {
-        
-//     },
-//     image: {
-//         width: '90%', 
-//         height: 250,
-//     }
-
-// });
 
 export default Home;

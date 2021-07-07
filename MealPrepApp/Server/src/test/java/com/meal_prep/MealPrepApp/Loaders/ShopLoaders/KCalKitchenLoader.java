@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 @SpringBootTest
-public class ShopOneLoader {
+public class KCalKitchenLoader {
 
     @Autowired
     ShopRepository shopRepository;
@@ -41,9 +41,9 @@ public class ShopOneLoader {
         badges.add(BadgeType.ORGANIC);
         badges.add(BadgeType.LOCALLY_SOURCED);
 
-        Shop shop = new Shop("Shop One", "01035356111", "shopone@theshop.com", 5.0, 25.5, mealsPerDay, deliveryDays,
-                "https://sm.pcmag.com/pcmag_uk/review/p/phase-one-/phase-one-capture-one-pro_q8qp.jpg", 4,
-                mealPriceByQuantity, badges, "The One-Stop prep shop!");
+        Shop shop = new Shop("KCal Kitchen", "01035356111", "shopone@theshop.com", 4.6, 25.5, mealsPerDay, deliveryDays,
+                "https://mybayutcdn.bayut.com/mybayut/wp-content/uploads/Kcal-Extra.jpg", 4,
+                mealPriceByQuantity, badges, "Get a Taste for Nutrition with the Best Healthy Food.");
         shopRepository.save(shop);
 }
 }

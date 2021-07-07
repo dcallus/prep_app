@@ -15,46 +15,80 @@ import ShopServices from '../../services/ShopServices';
 
 function Company({ route, navigation }) {
     
-        // const scrollX = new Animated.Value(0);
+        const scrollX = new Animated.Value(0);
         const [company, setCompany] = useState(null);
         const [menu, setMenu] = useState(null);
+        // const [orderQuantity, setOrderQuantity] = useState(0);
+        // const [currentMenuId, setCurrentMenuId] = useState(null);
+        const [orderItems, setOrderItems] = useState([]);
         const [orderQuantity, setOrderQuantity] = useState(0);
-        const [currentMenuId, setCurrentMenuId] = useState(null);
-        const [orderList, setOrderList] = useState([]);
+        const [orderTotal, setOrderTotal] = useState(0);
         
         useEffect(() => {
+            // setCompany(null)
             let {item} = route.params;
             setCompany(item)
+            
             ShopServices.getShopMenu(company?.id)
             .then(items => setMenu(items))
-        }, [company])
-        
-        // useEffect(() => {
-        //     ShopServices.getShopMenu(company?.id)
-        //         .then(items => setMenu(items))
-        // }, []);
+        })
 
-        function editOrder(action, item) {
-            // setOrderQuantity(item.quantity)
+        // useEffect(() => {
+        //     orderTotal
+        // }, [getOrderQuantity])
+
+
+        function editOrder(action, selectedItem) {
+            
+            let orderList = orderItems.slice() 
+            let currentItem = orderList.filter(item => item.menuId == selectedItem.id)
+
             if (action == "+") {
-                if (item.hasOwnProperty('quantity')) {
-                    item.quantity += 1
-                }
-                else { item.quantity = 0}
-                setOrderQuantity(item.quantity)
-                // orderList.push(item)
-                // setCurrentMenuId(menuId)
-            } else {
-                if (orderQuantity > 0) {
-                    setOrderQuantity(item.quantity)
-                    if (item.hasOwnProperty('quantity')) {
-                        item.quantity -= 1
+                if (currentItem.length > 0) {
+                    let newQty = currentItem[0].qty + 1
+                    currentItem[0].qty = newQty
+                } else {
+                    const currentItem = {
+                        name: selectedItem,
+                        menuId: selectedItem.id,
+                        qty: 1
                     }
-                    else { item.quantity = 0}
+                    orderList.push(currentItem)
                 }
+    
+                setOrderItems(orderList)
+            } else {
+                if (currentItem.length > 0) {
+                    if (currentItem[0]?.qty > 0) {
+                        let newQty = currentItem[0].qty - 1
+                        currentItem[0].qty = newQty
+                    }
+                }
+    
+                setOrderItems(orderList)
             }
-            console.log(item.quantity)
-            // console.log(currentMenuId)
+            // console.log(orderList);
+        }
+            
+        function getOrderQuantity(selectedItem) {
+            let orderItem = orderItems.filter(item => item.menuId == selectedItem.id)
+
+            if (orderItem.length > 0) {
+                return orderItem[0].qty
+            }
+    
+            return 0
+        }
+
+        function getOrderCount() {
+            let itemCount = orderItems.reduce((counter, item) => counter + (item.qty || 0), 0)
+            return itemCount;
+        }
+
+        function getOrderTotal() {
+            let total = orderItems.reduce((counter, item) => counter + (item.name.price * item.qty || 0), 0)
+            // setOrderTotal(total);
+            return total.toFixed(2);
         }
 
     function renderHeader() {
@@ -64,9 +98,11 @@ function Company({ route, navigation }) {
                     style={{
                         width: 50,
                         paddingLeft: SIZES.padding * 2,
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        // paddingBottom: 80
                     }}
-                    onPress={() => navigation.goBack()}
+                    onPress={() => navigation.navigate("Home")}
+                    // onPress={() => this.props.navigation.push("Home")}
                 >
                     <Image
                         source={icons.back}
@@ -114,7 +150,8 @@ function Company({ route, navigation }) {
                         resizeMode="contain"
                         style={{
                             width: 30,
-                            height: 30
+                            height: 30,
+                            tintColor: COLORS.lightGray2
                         }}
                     />
                 </TouchableOpacity>
@@ -131,12 +168,15 @@ function Company({ route, navigation }) {
                 scrollEventThrottle={16}
                 snapToAlignment="center"
                 showsHorizontalScrollIndicator={false}
-                // onScroll={Animated.event([
-                //     { nativeEvent: { contentOffset: { x: scrollX } } }
-                // ], { useNativeDriver: false })}
+                onScroll={Animated.event([
+                    { nativeEvent: { contentOffset: { x: scrollX } } }
+                ], { useNativeDriver: false })}
+                style={{
+                    paddingTop: 50
+                }}
             >
                 {
-                    menu?.setMealList.map((item, index) => (
+                    menu?.setMealList.map((selectedItem, index) => (
                         <View
                             key={`menu-${index}`}
                             style={{ alignItems: 'center' }}
@@ -144,7 +184,7 @@ function Company({ route, navigation }) {
                             <View style={{ height: SIZES.height * 0.35 }}>
                                 {/* Food Image */}
                                 <Image
-                                    source={item.imageUrl}
+                                    source={{uri: selectedItem.imageUrl}}
                                     resizeMode="contain"
                                     style={{
                                         width: SIZES.width,
@@ -173,7 +213,7 @@ function Company({ route, navigation }) {
                                             borderTopLeftRadius: 25,
                                             borderBottomLeftRadius: 25
                                         }}
-                                        onPress={() => editOrder("-", item)}
+                                        onPress={() => editOrder("-", selectedItem)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}> - </Text>
                                     </TouchableOpacity>
@@ -186,7 +226,7 @@ function Company({ route, navigation }) {
                                             justifyContent: 'center'
                                         }}
                                     >
-                                          <Text style={{ ...FONTS.h2 }}>{orderQuantity}</Text>
+                                          <Text style={{ ...FONTS.h2 }}>{getOrderQuantity(selectedItem)}</Text>
                                     </View>
 
                                     <TouchableOpacity
@@ -198,7 +238,7 @@ function Company({ route, navigation }) {
                                             borderTopRightRadius: 25,
                                             borderBottomRightRadius: 25
                                         }}
-                                        onPress={() => editOrder("+", item)}
+                                        onPress={() => editOrder("+", selectedItem)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}> + </Text>
                                     </TouchableOpacity>
@@ -214,8 +254,8 @@ function Company({ route, navigation }) {
                                     paddingHorizontal: SIZES.padding * 2
                                 }}
                             >
-                                <Text style={{ marginVertical: 10, textAlign: 'center', ...FONTS.h2 }}>{item.name}</Text>
-                                <Text style={{ ...FONTS.body3 }}>{item.description}</Text>
+                                <Text style={{ marginVertical: 10, textAlign: 'center', ...FONTS.h2 }}>{selectedItem.name}</Text>
+                                <Text style={{ ...FONTS.body3, color: "grey" }}>{selectedItem.description}</Text>
                             </View>
 
                             {/* Calories */}
@@ -236,7 +276,7 @@ function Company({ route, navigation }) {
 
                                 <Text style={{
                                     ...FONTS.body3, color: COLORS.darygray
-                                }}>{item.calories} cal - P:{item.protein} F:{item.fats} C:{item.carbs}</Text>
+                                }}>{selectedItem.calories} cal - P:{selectedItem.protein} F:{selectedItem.fats} C:{selectedItem.carbs}</Text>
                             </View>
                         </View>
                     ))
@@ -245,10 +285,68 @@ function Company({ route, navigation }) {
         )
     }
 
+    function renderOrder() {
+        return (
+            <View>
+                <View
+                    style={{
+                        backgroundColor: COLORS.white,
+                        borderTopLeftRadius: 40,
+                        borderTopRightRadius: 40
+                    }}
+                >
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            paddingVertical: SIZES.padding * 2,
+                            paddingHorizontal: SIZES.padding * 3,
+                            borderBottomColor: COLORS.lightGray2,
+                            borderBottomWidth: 1
+                        }}
+                    >
+                        <Text style={{ ...FONTS.h3 }}> {getOrderCount()} items in Cart</Text>
+                        <Text style={{ ...FONTS.h3 }}> £{getOrderTotal()}</Text>
+                    </View>
+                        {/* Order Button */}
+                    <View
+                        style={{
+                            padding: SIZES.padding * 2,
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <TouchableOpacity
+                            style={{
+                                width: SIZES.width * 0.9,
+                                padding: SIZES.padding,
+                                backgroundColor: COLORS.primary,
+                                alignItems: 'center',
+                                borderRadius: SIZES.radius
+                            }}
+                            onPress={() => navigation.navigate("Basket", {
+                                company: company,
+                                orderItems: orderItems,
+                                menu: menu,
+                                total: {getOrderTotal}
+                            })}
+                        >
+                            <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Order</Text>
+                        </TouchableOpacity>
+                    </View>
+ 
+                </View>
+
+
+            </View>
+        )
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
             {renderFoodInfo()}
+            {renderOrder()}
         </SafeAreaView>
     );
 }

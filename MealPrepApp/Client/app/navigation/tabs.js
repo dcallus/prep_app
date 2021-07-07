@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs";
 
-import { Home, Company, Basket, UserProfile } from "../screens";
+import { Home, Company, Basket, UserProfile, Splash} from "../screens";
 
 import { COLORS, icons } from '../constants';
 

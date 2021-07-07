@@ -40,9 +40,9 @@ public class BulkHouseLoader {
         badges.add(BadgeType.LIVING_WAGE);
         badges.add(BadgeType.ETHICAL_MEAT);
 
-        Shop shop = new Shop("Bulk House", "010353232231", "bullkhouse@bulkhouse.com", 5.0, 40.0, mealsPerDay, deliveryDays,
-                "https://www.haolaowai.co/wp-content/uploads/2019/09/the-bulk-house-beijing-logo.png", 5,
-                mealPriceByQuantity, badges, "Bulk House - GAINS!");
+        Shop shop = new Shop("Bulk House", "010353232231", "bullkhouse@bulkhouse.com", 4.6, 40.0, mealsPerDay, deliveryDays,
+                "http://www.candis.co.uk/wp-content/uploads/2020/05/june-2020-exc-offer-musclefood.jpg", 5,
+                mealPriceByQuantity, badges, "Bulk House - eat large!");
         shopRepository.save(shop);
     }
 }
