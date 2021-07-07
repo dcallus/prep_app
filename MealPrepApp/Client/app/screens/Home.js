@@ -152,6 +152,7 @@ const Home = ({ route, navigation }) => {
                                 width: 35, 
                                 height: 35,
                                 right: 15,
+                                tintColor: COLORS.lightGray4
                             }}
                         />
                 </TouchableOpacity>
