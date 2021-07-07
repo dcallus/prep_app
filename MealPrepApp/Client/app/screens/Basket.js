@@ -32,7 +32,7 @@ function Basket({ route, navigation }) {
     function renderHeader() {
         return (
             <View
-            style={{ paddingBottom: 50}}>
+            style={{ paddingBottom: 30}}>
             <View style={{ flexDirection: 'row' }}>
                 <TouchableOpacity
                     style={{
@@ -121,14 +121,13 @@ function Basket({ route, navigation }) {
                     resizeMode="cover"
                     style={{
                         width: "100%",
-                        height: 90,
+                        height: 100,
                         // borderRadius: 20,
                         flex: 1,
                         marginBottom: 10
                     }}
                 />
             </View>
-                
         )
             return (
                 // ORDER NOW text and list of companies
