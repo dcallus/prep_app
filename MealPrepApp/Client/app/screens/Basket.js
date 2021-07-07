@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import {View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity, Animated} from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity, Animated, Alert } from "react-native";
 
 import { icons, images, SIZES, COLORS, FONTS } from '../constants';
 
@@ -25,93 +25,8 @@ function Basket({ route, navigation }) {
         setCompany(null)
         setOrderItems([])
         setMenu(null)
+        Alert.alert("Order complete!")
         navigation.navigate("Home")
-    }
-
-    function renderOrderDetails() {
-        const order = orderItems.map(item => {
-            if (item.qty > 0)
-            return (
-                <View
-                style={{ alignItems: 'center', 
-                flex: 1, 
-                flexDirection: "column", 
-                justifyContent: "flex-start",
-                marginLeft: 30,
-                marginRight: 30,
-                alignItems: "left"
-                // marginTop: 10
-            }}
-                key={item => `basket-${item.id}`}
-                >
-                    <Text style={{...FONTS.h3, marginBottom: 10 }}
-                    >{item.qty}x {item.name.name}</Text>
-                    <Image
-                        source={{uri: item.name.imageUrl}}
-                        resizeMode="cover"
-                        style={{
-                            width: "100%",
-                            height: 90,
-                            // borderRadius: 20,
-                            flex: 1,
-                            marginBottom: 10
-                        }}
-                    />
-                </View>
-            )
-        })
-        return order;
-    }
-
-    function renderPayment() {
-        return (
-
-                    <View>
-                        <View
-                            style={{
-                                backgroundColor: COLORS.white,
-                                borderTopLeftRadius: 40,
-                                borderTopRightRadius: 40
-                            }}
-                        >
-                            <View
-                                style={{
-                                    flexDirection: 'row',
-                                    justifyContent: 'space-between',
-                                    paddingVertical: SIZES.padding * 2,
-                                    paddingHorizontal: SIZES.padding * 3,
-                                    borderBottomColor: COLORS.lightGray2,
-                                    borderBottomWidth: 1
-                                }}
-                            >
-                                <Text style={{ ...FONTS.h3 }}> Total Payment Due: </Text>
-                            </View>
-                                {/* Order Button */}
-                                <View
-                    style={{
-                        padding: SIZES.padding * 2,
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}
-                    >
-                    <TouchableOpacity
-                        style={{
-                            width: SIZES.width * 0.9,
-                            padding: SIZES.padding,
-                            backgroundColor: COLORS.primary,
-                            alignItems: 'center',
-                            borderRadius: SIZES.radius
-                        }}
-                        onPress={() => completeOrder()}
-                    >
-                        <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Pay Now</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        </View>
-
-
-        )
     }
 
     function renderHeader() {
@@ -180,6 +95,91 @@ function Basket({ route, navigation }) {
             </View>
             <Text style={{ ...FONTS.h1, fontWeight: "800", paddingTop: 20, paddingLeft: 25 }}>ORDER SUMMARY:</Text>
             </View>
+        )
+    }
+
+    function renderOrderDetails() {
+        const order = orderItems.map(item => {
+            if (item.qty > 0)
+            return (
+                <View
+                style={{ alignItems: 'center', 
+                flex: 1, 
+                flexDirection: "column", 
+                justifyContent: "flex-start",
+                marginLeft: 30,
+                marginRight: 30,
+                alignItems: "left"
+                // marginTop: 10
+            }}
+                key={item => `basket-${item.id}`}
+                >
+                    <Text style={{...FONTS.h3, marginBottom: 10 }}
+                    >{item.qty}x {item.name.name}</Text>
+                    <Image
+                        source={{uri: item.name.imageUrl}}
+                        resizeMode="cover"
+                        style={{
+                            width: "100%",
+                            height: 90,
+                            // borderRadius: 20,
+                            flex: 1,
+                            marginBottom: 10
+                        }}
+                    />
+                </View>
+            )
+        })
+        return order;
+    }
+
+    function renderPayment() {
+        return (
+                    <View>
+                        <View
+                            style={{
+                                backgroundColor: COLORS.white,
+                                borderTopLeftRadius: 40,
+                                borderTopRightRadius: 40
+                            }}
+                        >
+                            <View
+                                style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-between',
+                                    paddingVertical: SIZES.padding * 2,
+                                    paddingHorizontal: SIZES.padding * 3,
+                                    borderBottomColor: COLORS.lightGray2,
+                                    borderBottomWidth: 1
+                                }}
+                            >
+                                <Text style={{ ...FONTS.h3 }}> Total Payment Due: </Text>
+                            </View>
+                                {/* Order Button */}
+                                <View
+                    style={{
+                        padding: SIZES.padding * 2,
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                    >
+                    <TouchableOpacity
+                        style={{
+                            width: SIZES.width * 0.9,
+                            padding: SIZES.padding,
+                            backgroundColor: COLORS.primary,
+                            alignItems: 'center',
+                            borderRadius: SIZES.radius
+                        }}
+                        onPress={() => completeOrder()}
+                    >
+                        <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Pay Now</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </View>
+
+
         )
     }
           
