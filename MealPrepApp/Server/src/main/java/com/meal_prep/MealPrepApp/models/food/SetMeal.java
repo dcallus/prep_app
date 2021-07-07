@@ -1,52 +1,39 @@
 package com.meal_prep.MealPrepApp.models.food;
 
-import com.meal_prep.MealPrepApp.components.enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class SetMeal extends FoodItem{
+public class SetMeal extends Food {
 
-    private String mainProtein;
-    private String description;
-    private String category; //breakfast/lunch/dinner/snack/muscle-gain/weight-loss
+    private Double price;
+    public SetMeal(String shopName, String name, Integer protein, Integer carbs, Integer fats, Integer calories,
+                   Integer totalWeight, ArrayList<String> ingredients, ArrayList<AllergenType> allergens,
+                   ArrayList<FilterType> filters, String imageUrl, String description, String mainProtein,
+                   String category, Double price) {
+        super(shopName, name, protein, carbs, fats, calories, totalWeight, ingredients, allergens, filters,
+                imageUrl, description, mainProtein, category);
+        this.price = price;
 
-    public SetMeal(String name, Integer protein, Integer carbs, Integer fats, Integer calories, Integer totalWeight,
-                   ArrayList<String> ingredients, HashMap<AllergenType, Boolean> allergens, Double price,
-                   String imageUrl, String mainProtein, String description, String category) {
-        super(name, protein, carbs, fats, calories, totalWeight, ingredients, allergens, price, imageUrl);
-        this.mainProtein = mainProtein;
-        this.description = description;
-        this.category = category;
     }
 
-    public SetMeal(String mainProtein, String description, String category) {
-        this.mainProtein = mainProtein;
-        this.description = description;
-        this.category = category;
+    public SetMeal(String shopName, String name, Integer protein, Integer carbs, Integer fats, Integer calories,
+                   Integer totalWeight, ArrayList<String> ingredients, ArrayList<AllergenType> allergens,
+                   ArrayList<FilterType> filters, String imageUrl, String description, String mainProtein,
+                   String category) {
+        super(shopName, name, protein, carbs, fats, calories, totalWeight, ingredients, allergens, filters,
+                imageUrl, description, mainProtein, category);
     }
 
-    public String getMainProtein() {
-        return mainProtein;
+    public SetMeal() {
     }
 
-    public void setMainProtein(String mainProtein) {
-        this.mainProtein = mainProtein;
+    public Double getPrice() {
+        return price;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

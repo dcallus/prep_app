@@ -1,17 +1,17 @@
 package com.meal_prep.MealPrepApp.models;
 
-import com.meal_prep.MealPrepApp.models.food.FoodItem;
+import com.meal_prep.MealPrepApp.models.food.Food;
 
 import java.util.HashMap;
 
 public class Order {
 
     private String id;
-    private HashMap<FoodItem, Integer> orderList;
+    private HashMap<Food, Integer> orderList;
     private String date; //convert to date formatter
     private User user;
 
-    public Order(HashMap<FoodItem, Integer> orderList, String date, User user) {
+    public Order(HashMap<Food, Integer> orderList, String date, User user) {
         this.orderList = orderList;
         this.date = date;
         this.user = user;
@@ -28,11 +28,11 @@ public class Order {
         this.id = id;
     }
 
-    public HashMap<FoodItem, Integer> getOrderList() {
+    public HashMap<Food, Integer> getOrderList() {
         return orderList;
     }
 
-    public void setOrderList(HashMap<FoodItem, Integer> orderList) {
+    public void setOrderList(HashMap<Food, Integer> orderList) {
         this.orderList = orderList;
     }
 

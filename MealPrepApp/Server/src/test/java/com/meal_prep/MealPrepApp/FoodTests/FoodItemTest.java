@@ -1,17 +1,16 @@
 package com.meal_prep.MealPrepApp.FoodTests;
 
-import com.meal_prep.MealPrepApp.components.enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.AllergenType;
+import com.meal_prep.MealPrepApp.components.enums.food_enums.FilterType;
+import com.meal_prep.MealPrepApp.models.food.Food;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
-import com.meal_prep.MealPrepApp.repositories.FoodRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,17 +18,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class FoodItemTest {
 
-    HashMap<AllergenType, Boolean> allergenList;
+    ArrayList<AllergenType> allergenList;
     ArrayList<String> ingredientList;
     FoodItem food;
+    ArrayList<FilterType> filterList;
 
     @Before
     public void before() {
-        allergenList = new HashMap<>();
-        allergenList.put(AllergenType.CELERY, true);
+        allergenList = new ArrayList<>();
+        allergenList.add(AllergenType.CELERY);
         ingredientList = new ArrayList<>();
         ingredientList.add("pepper");
-        food = new FoodItem("Chicken Sandwich", 20, 20, 20, 100, 100, ingredientList, allergenList, 5.00, "http://stuff");
+        food = new FoodItem("The Chicken Shack", "Chicken Sandwich", 20, 20, 20,
+                100, 100, ingredientList, allergenList, filterList, "http://stuff",
+                "description", "chicken", "lunch", 5.00);
     }
 
     @Test
@@ -133,19 +135,7 @@ public class FoodItemTest {
 
     @Test
     public void foodHasAllergensList(){
-        assertEquals(true, food.getAllergens().get(AllergenType.CELERY));
-    }
-
-    @Test
-    public void canModifyAllergensList(){
-        allergenList.put(AllergenType.CELERY, false);
-        assertEquals(false, food.getAllergens().get(AllergenType.CELERY));
-    }
-
-    @Test
-    public void canAddAllergens(){
-        allergenList.put(AllergenType.CORN, true);
-        assertEquals(true, food.getAllergens().get(AllergenType.CORN));
+        assertEquals(true, food.getAllergens().contains(AllergenType.CELERY));
     }
 
     @Test

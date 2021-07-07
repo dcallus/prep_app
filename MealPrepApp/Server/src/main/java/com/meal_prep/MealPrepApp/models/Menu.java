@@ -1,6 +1,8 @@
 package com.meal_prep.MealPrepApp.models;
 
+import com.meal_prep.MealPrepApp.models.food.Food;
 import com.meal_prep.MealPrepApp.models.food.FoodItem;
+import com.meal_prep.MealPrepApp.models.food.SetMeal;
 
 import java.util.ArrayList;
 
@@ -8,13 +10,13 @@ public class Menu {
 
     private String id;
     private String name;
-    private ArrayList<FoodItem> mealList;
-    private ArrayList<String> filterList;
+    private ArrayList<SetMeal> setMealList;
+    private ArrayList<FoodItem> customFoodList;
 
-    public Menu(String name, ArrayList<FoodItem> mealList, ArrayList<String> filterList) {
+    public Menu(String name, ArrayList<SetMeal> setMealList, ArrayList<FoodItem> customFoodList) {
         this.name = name;
-        this.mealList = mealList;
-        this.filterList = filterList;
+        this.setMealList = setMealList;
+        this.customFoodList = customFoodList;
     }
 
     public Menu(){
@@ -36,20 +38,19 @@ public class Menu {
         return this.name;
     }
 
-    public ArrayList<FoodItem> getMealList() {
-        return mealList;
+    public ArrayList<SetMeal> getSetMealList() {
+        return setMealList;
     }
 
-    public void setMealList(ArrayList<FoodItem> mealList) {
-        this.mealList = mealList;
+    public void setSetMealList(ArrayList<SetMeal> setMealList) {
+        this.setMealList = setMealList;
     }
 
-    public ArrayList<String> getFilterList() {
-        return filterList;
+    public ArrayList<FoodItem> getCustomFoodList() {
+        return customFoodList;
     }
 
-    public void setFilterList(ArrayList<String> filterList) {
-        this.filterList = filterList;
+    public void setCustomFoodList(ArrayList<FoodItem> customFoodList) {
+        this.customFoodList = customFoodList;
     }
-
 }
