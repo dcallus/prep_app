@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity, Animated, Alert } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity, Animated, Alert, FlatList } from "react-native";
 
 import { icons, images, SIZES, COLORS, FONTS } from '../constants';
 
@@ -97,40 +97,51 @@ function Basket({ route, navigation }) {
             </View>
         )
     }
+    
 
     function renderOrderDetails() {
-        const order = orderItems.map(item => {
-            if (item.qty > 0)
-            return (
-                <View
-                style={{ alignItems: 'center', 
-                flex: 1, 
-                flexDirection: "column", 
-                justifyContent: "flex-start",
-                marginLeft: 30,
-                marginRight: 30,
-                alignItems: "left"
-                // marginTop: 10
+    
+        const renderItem = ({ item }) => (
+    
+            <View
+            style={{ alignItems: 'center', 
+            flex: 1, 
+            flexDirection: "column", 
+            justifyContent: "flex-start",
+            marginLeft: 30,
+            marginRight: 30,
+            alignItems: "left"
             }}
-                key={item => `basket-${item.id}`}
-                >
-                    <Text style={{...FONTS.h3, marginBottom: 10 }}
-                    >{item.qty}x {item.name.name}</Text>
-                    <Image
-                        source={{uri: item.name.imageUrl}}
-                        resizeMode="cover"
-                        style={{
-                            width: "100%",
-                            height: 90,
-                            // borderRadius: 20,
-                            flex: 1,
-                            marginBottom: 10
-                        }}
-                    />
-                </View>
-            )
-        })
-        return order;
+            key={item => `basket-${item.id}`}
+            >
+                <Text style={{...FONTS.h3, marginBottom: 10 }}
+                >{item.qty}x {item.name.name}</Text>
+                <Image
+                    source={{uri: item.name.imageUrl}}
+                    resizeMode="cover"
+                    style={{
+                        width: "100%",
+                        height: 90,
+                        // borderRadius: 20,
+                        flex: 1,
+                        marginBottom: 10
+                    }}
+                />
+            </View>
+                
+        )
+            return (
+                // ORDER NOW text and list of companies
+                <FlatList
+                data={orderItems}
+                keyExtractor={item => `${item.id}`}
+                renderItem={renderItem}
+                contentContainerStyle={{
+                    paddingHorizontal: SIZES.padding * 2,
+                    paddingBottom: 20
+                }}
+                />
+            )            
     }
 
     function getOrderTotal() {
@@ -140,7 +151,9 @@ function Basket({ route, navigation }) {
 
     function renderPayment() {
         return (
-                    <View>
+                    <View style={{
+                        position: "fixed"
+                    }}>
                         <View
                             style={{
                                 backgroundColor: COLORS.white,
@@ -201,9 +214,20 @@ function Basket({ route, navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-    flex: 1,
-    backgroundColor: COLORS.lightGray2,
+        flex: 1,
+        backgroundColor: COLORS.lightGray4
+    },
+    shadow: {
+        shadowColor: '#800',
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+        elevation: 1,
     }
+    
 })
 
 export default Basket;
