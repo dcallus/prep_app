@@ -55,7 +55,6 @@ public class Parser {
             number = Integer.parseInt(numberString);
         } catch (NumberFormatException ex) {
             ex.printStackTrace();
-            // HACK!
             number = 0;
         }
         return number;

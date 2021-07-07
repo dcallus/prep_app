@@ -22,10 +22,10 @@ function Basket({ route, navigation }) {
     }, [])
 
     function completeOrder() {
+        Alert.alert("Order complete!")
         setCompany(null)
         setOrderItems([])
         setMenu(null)
-        Alert.alert("Order complete!")
         navigation.navigate("Home")
     }
 
